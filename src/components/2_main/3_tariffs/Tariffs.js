@@ -32,6 +32,7 @@ const Container = styled.div`
 
 const arr=[
     {
+        color: "FFB64F",
         title: "Beginner",
         titleDesc: "Для небольшого исследования",
         icon: {
@@ -54,12 +55,13 @@ const arr=[
         btn_desc: "Перейти в личный кабинет",
     },
     {
+        color: "7CE3E1",
         title: "Pro",
         titleDesc: "Для HR и фрилансеров",
         icon: {
             img: Icon2,
-            width: 93.76,
-            height: 103.97,
+            width: 415-(283+12.04),
+            height: 132-(9.24-4),
             top: -4,
             right: 12.04,
         },
@@ -76,6 +78,7 @@ const arr=[
         btn_desc: "Подробнее",
     },
     {
+        color: "000000",
         title: "Business",
         titleDesc: "Для корпоративных клиентов",
         icon: {
@@ -108,6 +111,7 @@ function Tariffs() {
                     arr.map((item,index) => 
                         <Card 
                             key         ={index} 
+                            color       ={item.color    }
                             title       ={item.title    }
                             titleDesc   ={item.titleDesc}
                             icon        ={item.icon     }

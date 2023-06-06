@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components/macro';
 
 import Service from "./1_service/Service";
 import Advantages from "./2_advantages/Advantages";
-import Tariffs from "./3_rates/Tariffs";
+import Tariffs from "./3_tariffs/Tariffs";
 
 const MainDiv = styled.div`
     /* height: 2867px; */

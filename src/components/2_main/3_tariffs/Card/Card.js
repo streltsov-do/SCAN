@@ -19,19 +19,21 @@ const Container=styled.div`
     const TitleDiv=styled.div`
         width: ${cWidth}px;
         height: ${tHeight}px;
-        background: #FFB64F;
+        background: #${props => props.color};
         border-radius: 10px 10px 0px 0px;
         padding: 30px 0 0 30px;
         display: flex;
         position: relative;
     `
         const Title=styled.div`
+            color: ${props => props.color};
             font-weight: 500;
             font-size: 30px;
             line-height: 36px;
             margin-bottom: 10px;
         `
         const TitleDesc=styled.div`
+            color: ${props => props.color};
             font-size: 18px;
             line-height: 22px;
         `
@@ -113,14 +115,16 @@ const Container=styled.div`
 
 
 function Card(props) {
+
+    const titleColor = (props.color=="000000")?"white":"black";
     const p_installment=props.price.installment;
     const installment=(p_installment==0)?"":`или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
     return(
         <Container>
-            <TitleDiv>
+            <TitleDiv color={props.color}>
                 <div>
-                    <Title>{props.title}</Title>
-                    <TitleDesc>{props.titleDesc}</TitleDesc>
+                    <Title color={titleColor}>{props.title}</Title>
+                    <TitleDesc color={titleColor}>{props.titleDesc}</TitleDesc>
                 </div>
                 <Icon 
                     src     ={props.icon.img    }
