@@ -60,9 +60,6 @@ const HeaderDiv = styled.div`
         const NavA = styled.a`
             text-decoration: none;
             color: black;
-            &:hover{
-                text-decoration: underline;
-            }
         `
 
 

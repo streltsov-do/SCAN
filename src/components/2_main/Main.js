@@ -1,24 +1,42 @@
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import styled, {css} from 'styled-components/macro';
 
-import Service from "./1_service/Service";
-import Advantages from "./2_advantages/Advantages";
-import Tariffs from "./3_tariffs/Tariffs";
+import PageMain from "./PageMain/PageMain";
+import PageAutorization from "./PageAutorization/PageAutorization";
 
-const MainDiv = styled.div`
-    /* height: 2867px; */
-    background: #FFFFFF;
-    padding: 51px 43px 118px 51px;
-    position: relative;
-`
 
-function Main() {
+function Main(props) {
+    const {page} = props;
+
     return (
-        <MainDiv>
-            <Service></Service>
-            <Advantages></Advantages>
-            <Tariffs></Tariffs>
-        </MainDiv>
+        <Routes>
+            {/* <Route path="*" element={<NotFound></NotFound>} */}
+
+            <Route exact path="/"
+                element={
+                    <PageMain/>
+                }
+            />
+            <Route 
+                path="/autorization"
+                element={
+                    <PageAutorization></PageAutorization>
+                }
+            />
+            <Route 
+                path="/search"
+                element={
+                    <PageAutorization></PageAutorization>
+                }
+            />
+            <Route 
+                path="/results"
+                element={
+                    <PageAutorization></PageAutorization>
+                }
+            />
+        </Routes>
     )
 }
 

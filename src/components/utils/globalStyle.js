@@ -18,9 +18,16 @@ const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
         &:hover{
-            text-decoration: underline;
+            /* text-decoration: underline; */
             opacity: 80%;
             /* transform: scale(1.05); */
+        }
+    }
+    
+    a {
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
         }
     }
 

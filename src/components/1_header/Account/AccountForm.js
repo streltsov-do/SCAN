@@ -33,10 +33,6 @@ const Autorization=styled.div`
         color: #000000;
         opacity: 0.4;
         text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
     `
     const Separator=styled.div`
         width: 2px;
@@ -56,10 +52,6 @@ const Autorization=styled.div`
         line-height: 17px;
         font-weight: 500;
         letter-spacing: 0.01em;
-
-        &:hover {
-            text-decoration: underline;
-        }
     `
 
 function AccountForm(props) {
