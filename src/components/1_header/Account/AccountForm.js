@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import Logged from "./logged/Logged";
 import UserAcc from "./user/UserAcc";
@@ -76,7 +77,9 @@ function AccountForm(props) {
 
                         <Separator></Separator>
 
-                        <BtnLogin>Войти</BtnLogin>
+                        <Link to="/autorization" >
+                            <BtnLogin>Войти</BtnLogin>
+                        </Link>
                     </Autorization>
             }
         </>

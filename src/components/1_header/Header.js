@@ -1,6 +1,7 @@
 import React from "react";
 import styled, {css} from 'styled-components/macro';
 import { keyframes } from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import {FontFerry} from '../utils/fonts';
 
@@ -73,11 +74,13 @@ function Header(props) {
             <Logo scr={imgLogoSvg}></Logo> */}
             {/* <LogoDiv></LogoDiv>
             <div>${imgLogoSvg}</div> */}
-            <img src={imgLogoSvg} alt="СКАН"></img>
+            <Link to="/"> {/* TODO: небольшое смещение картинки */}
+                <img src={imgLogoSvg} alt="СКАН"></img>
+            </Link>
             {/* <Span>Главная1</Span>
             <Span2>Главная2</Span2> */}
             <NavUl>
-                <NavLi><NavA href="" >Главная  </NavA></NavLi>
+                <NavLi><NavA href="/" >Главная  </NavA></NavLi>
                 <NavLi><NavA href="#">Тарифы   </NavA></NavLi>
                 <NavLi><NavA href="#">FAQ      </NavA></NavLi>
             </NavUl>

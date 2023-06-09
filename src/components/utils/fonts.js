@@ -7,7 +7,7 @@ import { createGlobalStyle } from "styled-components";
 const FontInter = createGlobalStyle`
     @font-face {
         font-family: 'Inter';
-        src: url("https://fonts.googleapis.com/css2?family=Inter&display=swap")
+        src: url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap")
     }
 `
 const FontFerry = createGlobalStyle`

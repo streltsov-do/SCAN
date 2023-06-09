@@ -6,6 +6,7 @@ import Lock from './lock.svg';
 import LoginGoogle from './LoginGoogle.svg';
 import LoginFb from './LoginFb.svg';
 import LoginYandex from './LoginYandex.svg';
+import Button from "../PageMain/custom/Button/Button";
 
 const Container=styled.div`
     display: flex;
@@ -83,19 +84,6 @@ const Container=styled.div`
         border-radius: 5px;
         margin-bottom: ${props => props.mrg_bottom}px;
     `
-    const BtnLogin=styled.button`
-        width: 379px;
-        height: 59px;
-        background: #5970FF;
-        border-radius: 5px;
-        border-style: none;
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 27px;
-        letter-spacing: 0.02em;
-        color: #FFFFFF;
-        margin-bottom: 15px;
-    `
     const RestoreContainer=styled.div`
         display: flex;
         justify-content: center;
@@ -157,7 +145,7 @@ export default function PageAutorization() {
                 <Input mrg_bottom={20}></Input>
                 <Text>Пароль:</Text>
                 <Input mrg_bottom={30}></Input>
-                <BtnLogin>Войти</BtnLogin>
+                <Button name="Войти" width={367+12} m_bottom={15} disabled={true}  />
                 <RestoreContainer>
                     <LinkRestore>Восстановить пароль</LinkRestore>
                 </RestoreContainer>

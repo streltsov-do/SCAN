@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 import PicTitle from './pic1.png';
+import Button from "../custom/Button/Button";
 
 const Container=styled.div`
     width: 1320px;
@@ -41,21 +43,6 @@ const Container=styled.div`
             text-align: left;
             margin-bottom: 70px;
         `
-        const BtnRequestData=styled.button`
-            width: 335px;
-            height: 59px;
-            background: #5970FF;
-            border-radius: 5px;
-            border-style: none;
-            
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 27px;
-            letter-spacing: 0.01em;
-            color: #FFFFFF;
-        `
     const TitleImg=styled.img`
         width: 629px;
         height: 593px;
@@ -71,7 +58,9 @@ function Service(req) {
             <ContainerTitle>
                 <Title>сервис по поиску<br/>публикаций о компании<br/>по его ИНН</Title>
                 <TitleDesc>Комплексный анализ публикаций, получение данных<br/>в формате PDF на электронную почту.</TitleDesc>
-                <BtnRequestData>Запросить данные</BtnRequestData>
+                <Link to="/search">
+                    <Button name={"Запросить данные"}></Button>
+                </Link>
             </ContainerTitle>
             <TitleImg src={PicTitle}>
             </TitleImg>

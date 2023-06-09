@@ -4,6 +4,8 @@ import styled, {css} from 'styled-components/macro';
 
 import PageMain from "./PageMain/PageMain";
 import PageAutorization from "./PageAutorization/PageAutorization";
+import PageSearch from "./PageSearch/PageSearch";
+import PageResults from "./PageResults/PageResults";
 
 
 function Main(props) {
@@ -27,13 +29,13 @@ function Main(props) {
             <Route 
                 path="/search"
                 element={
-                    <PageAutorization></PageAutorization>
+                    <PageSearch></PageSearch>
                 }
             />
             <Route 
                 path="/results"
                 element={
-                    <PageAutorization></PageAutorization>
+                    <PageResults></PageResults>
                 }
             />
         </Routes>
