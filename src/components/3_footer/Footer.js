@@ -19,6 +19,7 @@ const FooterDiv = styled.div`
     `
         const Info = styled.div`
             width: 200px;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
             gap: 21px;

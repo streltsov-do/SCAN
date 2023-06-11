@@ -9,7 +9,7 @@ import PageResults from "./PageResults/PageResults";
 
 
 function Main(props) {
-    const {page} = props;
+    const {loading} = props;
 
     return (
         <Routes>
@@ -29,13 +29,16 @@ function Main(props) {
             <Route 
                 path="/search"
                 element={
-                    <PageSearch></PageSearch>
+                    <PageSearch
+                    />
                 }
             />
             <Route 
                 path="/results"
                 element={
-                    <PageResults></PageResults>
+                    <PageResults
+                        loading={loading}
+                    />
                 }
             />
         </Routes>

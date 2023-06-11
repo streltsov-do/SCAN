@@ -38,49 +38,6 @@ import Window       from './img/Window.svg';
             height: 48px;
             margin-bottom: 47px;
         `
-        const Form=styled.form`
-            width: 872px;
-            height: 543px;
-            background: #FFFFFF;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 29px 0 0 44px;
-            display: flex;
-            gap: 11px;
-            position: relative;
-        `
-            const DivFlex1=styled.div`
-                display: flex;
-                flex-direction: ${props => props.row?"row":"column"};
-                gap: ${props => props.gap || 30}px;
-            `
-                const InputDesc=styled.h3`
-                    font-family: 'Inter';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 18px;
-                    line-height: 22px;
-                    letter-spacing: 0.03em;
-                    margin-bottom: 20px;
-                    margin-top: ${props=>props.m_top}px;
-                `
-                const Input=styled.input`
-                    width: ${props => props.width || 242}px;
-                    height: 43px;
-                    background: #FFFFFF;
-                    border: 1px solid #C7C7C7;
-                    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
-                    border-radius: 5px;
-                    padding-left: 22px;
-                    padding-right: 22px;
-                    
-                    text-align: ${props => props.align || "center"};
-                    font-size: 14px;
-                    line-height: 17px;
-                    letter-spacing: 0.03em;
-                    color: rgba(148, 148, 148, 0.4);
-                `
-
 // 
     const ImgWindow=styled.img`
         position: absolute;

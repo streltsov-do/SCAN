@@ -1,13 +1,19 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
+import SeacrchCarousel from "./SearchCarousel/SearchCarousel";
+import CardDoc from "./CardDoc/CardDoc";
 
 import Searching from './Searching.svg';
+import Loader from "../../utils/Loading/Loader";
+import Button from "../PageMain/custom/Button/Button";
+
+const p_left=69;
 
 const DivMain=styled.div`
     position: relative;
-    padding: 69px 0 0 60px;
+    padding: ${p_left}px 0 0 60px;
 `
 const ImgSearching=styled.img`
     position: absolute;
@@ -51,8 +57,28 @@ const ImgSearching=styled.img`
         letter-spacing: 0.02em;
         color: #949494;
     `
+    const CardGrid=styled.div`
+        display: grid;
+        grid-template-columns: 641px 641px;
+        gap: 20px;
+    `
+
+const arr=[
+    {
+        date    : "13.09.2021"           ,      
+        source  : "Комсомольская правда KP.RU"  ,
+        title   : "Скиллфэктори - лучшая онлайн-школа для будущих айтишников",
+        type    : "Технические новости",
+        img     : 0,
+        desc    : `SkillFactory — школа для всех, кто хочет изменить свою карьеру и жизнь. С 2016 года обучение прошли 20 000+ человек из 40 стран с 4 континентов, самому взрослому студенту сейчас 86 лет. Выпускники работают в Сбере, Cisco, Bayer, Nvidia, МТС, Ростелекоме, Mail.ru, Яндексе, Ozon и других топовых компаниях.${<br></br>}Принципы SkillFactory: акцент на практике, забота о студентах и ориентир на трудоустройство. 80% обучения — выполнение упражнений и реальных проектов. Каждого студента поддерживают менторы, 2 саппорт-линии и комьюнити курса. А карьерный центр помогает составить резюме, подготовиться к собеседованиям и познакомиться с IT-рекрутерами.`,
+        link    : 0,
+        words   : 1235
+    }
+]
 
 export default function PageResults(props){
+
+    const { loading } = props;
 
     return(
         <DivMain>
@@ -82,8 +108,40 @@ export default function PageResults(props){
                     </>
                 }
             />
-
             <ImgSearching src={Searching}></ImgSearching>
+            <SeacrchCarousel loading={loading} parent_p_left={p_left}></SeacrchCarousel>
+            
+            <CardGrid>
+                <CardDoc
+                    date    ={arr[0].date    }
+                    source  ={arr[0].source  }
+                    title   ={arr[0].title   }
+                    type    ={arr[0].type    }
+                    img     ={arr[0].img     }
+                    desc    ={arr[0].desc    }
+                    link    ={arr[0].link    }
+                    words   ={arr[0].words   }
+                />
+                <CardDoc
+                    date    ={arr[0].date    }
+                    source  ={arr[0].source  }
+                    title   ={arr[0].title   }
+                    type    ={arr[0].type    }
+                    img     ={arr[0].img     }
+                    desc    ={arr[0].desc    }
+                    link    ={arr[0].link    }
+                    words   ={arr[0].words   }
+                />
+            </CardGrid>
+            <DivFlex
+                m_bottom="109"
+                justify="center"
+                render={
+                    <Button
+                        name="Показать больше"
+                    />
+                }
+            />
         </DivMain>
     )
 }

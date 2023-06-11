@@ -21,7 +21,7 @@ function App() {
                 
                 <Header logged={logged} loading={loading} name={name} avatar={avatar}></Header>
 
-                <Main page={page}></Main>
+                <Main page={page} loading={loading}></Main>
 
                 <Footer></Footer>
             

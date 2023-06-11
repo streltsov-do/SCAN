@@ -11,7 +11,7 @@ const Container=styled.div`
     width: ${cWidth}px;
     height: ${cHeight}px;
     background: #FFFFFF;
-    border: 2px solid #FFB64F;
+    border: 2px solid #${props => props.color};
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     position: relative;
@@ -120,7 +120,7 @@ function Card(props) {
     const p_installment=props.price.installment;
     const installment=(p_installment==0)?"":`или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
     return(
-        <Container>
+        <Container color={props.color}>
             <TitleDiv color={props.color}>
                 <div>
                     <Title color={titleColor}>{props.title}</Title>

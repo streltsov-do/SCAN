@@ -1,33 +1,11 @@
 import React from "react";
 import styled, {css, keyframes} from "styled-components/macro";
-
-import loader from './loader.svg';
+import Loader from "../../../utils/Loading/Loader";
 
 const StatsFont = css`
     font-size: 14px;
     line-height: 17px;
 `
-
-const StatsLoading = styled.div`
-    min-width: 175px;
-    min-height: 63px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-    const spin360 = keyframes`
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
-    `
-    const StatsLoader = styled.img`
-        animation: ${spin360} 2s linear infinite;
-    `
-
 
 const StatsLogged = styled.div`
     width: 175px;
@@ -76,9 +54,7 @@ function Logged(props){
         <>
             {
                 props.loading?
-                    <StatsLoading>
-                        <StatsLoader src={loader} alt="loading"></StatsLoader>
-                    </StatsLoading>
+                    <Loader/>
                 :
                     <StatsLogged>
                         <StatsCol1>

@@ -5,12 +5,13 @@ import App from './App';
 // import './index.css';
 import styled, {css, createGlobalStyle} from 'styled-components';
 import GlobalStyle from './components/utils/globalStyle';
-import { FontFerry } from './components/utils/fonts';
+import FontStyles from './components/utils/FontStyles';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <FontStyles/>
     <GlobalStyle />
     <App />
   </React.StrictMode>

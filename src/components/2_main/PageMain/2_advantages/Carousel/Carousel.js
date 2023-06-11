@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import Slider from "react-slick";
-
 import Slide from "./Slide/Slide";
+import ButtonArrow from "../../../../utils/ButtonArrow/ButtonArrow";
 
 import Icon1 from './icon_time.svg';
 import Icon2 from './icon_search.svg';
 import Icon3 from './icon_lock.svg';
-import ArrowRight from './arrow_right.svg';
 
 const Container = styled.div`
     width: 1346px;
@@ -56,13 +55,13 @@ const arr = [
 function Carousel() {
     return (
         <Container>
-            <BtnArrow><ImgRotate src={ArrowRight}/></BtnArrow>
+            <ButtonArrow rotate={180} />
             <SliderDiv>
                 {arr.map((item,index) =>
                     <Slide key={index} icon={item.icon} desc={item.desc} alt={item.alt}></Slide>
                 )}
             </SliderDiv>
-            <BtnArrow><img src={ArrowRight}></img></BtnArrow>
+            <ButtonArrow />
         </Container>
     );
 }

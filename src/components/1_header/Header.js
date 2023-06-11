@@ -3,8 +3,6 @@ import styled, {css} from 'styled-components/macro';
 import { keyframes } from "styled-components/macro";
 import { Link } from "react-router-dom";
 
-import {FontFerry} from '../utils/fonts';
-
 import imgLogoSvg from './scan.svg';
 
 import AccountForm from "./Account/AccountForm";
@@ -81,8 +79,8 @@ function Header(props) {
             <Span2>Главная2</Span2> */}
             <NavUl>
                 <NavLi><NavA href="/" >Главная  </NavA></NavLi>
-                <NavLi><NavA href="#">Тарифы   </NavA></NavLi>
-                <NavLi><NavA href="#">FAQ      </NavA></NavLi>
+                <NavLi><NavA href="#">Тарифы    </NavA></NavLi>
+                <NavLi><NavA href="#">FAQ       </NavA></NavLi>
             </NavUl>
             <AccountForm logged={logged} loading={loading} name={name} avatar={avatar}>
             </AccountForm>
