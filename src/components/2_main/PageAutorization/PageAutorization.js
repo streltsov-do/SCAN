@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import Characters from './Characters.svg';
@@ -61,7 +61,7 @@ const Container=styled.div`
                 font-size: 16px;
                 line-height: 19px;
                 letter-spacing: 0.02em;
-                color: ${props => props.color};
+                color: #${props => props.color};
             `
             const Line=styled.div`
                 height: 2px;
@@ -83,6 +83,11 @@ const Container=styled.div`
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
         border-radius: 5px;
         margin-bottom: ${props => props.mrg_bottom}px;
+        font-family: 'Inter';
+        letter-spacing: 0.01em;
+        font-size: 17px;
+        line-height: 20px;
+
     `
     const RestoreContainer=styled.div`
         display: flex;
@@ -113,13 +118,56 @@ const Container=styled.div`
             background: #FFFFFF;
         `
             const ImgExtLogin=styled.img`
-                width: ${props => props.width}px;
-                height: ${props => props.height}px;
-                margin-top: ${props => props.mrg_top}px;
-                margin-left: ${props => props.mrg_left}px;
+                width:      ${props => props.width      }px;
+                height:     ${props => props.height     }px;
+                margin-top: ${props => props.mrg_top    }px;
+                margin-left:${props => props.mrg_left   }px;
             `
 
 export default function PageAutorization() {
+    const inputLogin    =useRef(null);
+    const inputPassword =useRef(null);
+
+    const [loginDis,    setLoginDis  ] = useState(false);
+    const [stateLog,    setStateLog ] = useState(false);
+    const [statePass,   setStatePass] = useState(false);
+
+
+    function handleClick(e) {
+        e.preventDefault();
+        
+    }
+
+    useEffect(() => {
+        const inputLoginVal = inputLogin.current;
+        const inLogChange = () => {
+            setStateLog(inputLoginVal.value!="");
+            console.log("1=",inputLoginVal.value)
+        }
+        inputLoginVal.addEventListener("input", inLogChange);
+
+        const inputPassVal = inputPassword.current;
+
+        const inputPasChange = () => {
+            setStatePass(inputPassVal.value!="");
+            console.log("2=",inputPassVal.value)
+        }
+        inputPassVal.addEventListener("input", inputPasChange);
+        
+        console.log("11=",inputLoginVal.value)
+        console.log("22=",inputPassVal.value)
+        if (stateLog && statePass){
+            setLoginDis(false);
+        } else {
+            setLoginDis(true);
+        }
+
+        return () => {
+            inputLoginVal.removeEventListener("input", inLogChange)
+            inputPassVal.removeEventListener("input", inputPasChange)
+        };
+    });
+
     return(
         <Container>
             <div>
@@ -133,19 +181,25 @@ export default function PageAutorization() {
                 <ImgLock src={Lock}></ImgLock>
                 <LinkContainer>
                     <LinkDiv >
-                        <LinkAuto>Войти</LinkAuto>
+                        <LinkAuto color="029491">Войти</LinkAuto>
                         <Line color="029491" width={151}></Line>
                     </LinkDiv>
                     <LinkDiv>
-                        <LinkAuto>Зарегистрироваться</LinkAuto>
+                        <LinkAuto color="C7C7C7">Зарегистрироваться</LinkAuto>
                         <Line color="C7C7C7" width={213}></Line>
                     </LinkDiv>
                 </LinkContainer>
                 <Text>Логин или номер телефона:</Text>
-                <Input mrg_bottom={20}></Input>
+                <Input mrg_bottom={20} ref={inputLogin}></Input>
                 <Text>Пароль:</Text>
-                <Input mrg_bottom={30}></Input>
-                <Button name="Войти" width={367+12} m_bottom={15} disabled={true}  />
+                <Input mrg_bottom={30} ref={inputPassword} type="password"></Input>
+                <Button 
+                    name="Войти" 
+                    width={367+12} 
+                    m_bottom={15} 
+                    disabled={loginDis}
+                    onClick={handleClick}
+                />
                 <RestoreContainer>
                     <LinkRestore>Восстановить пароль</LinkRestore>
                 </RestoreContainer>

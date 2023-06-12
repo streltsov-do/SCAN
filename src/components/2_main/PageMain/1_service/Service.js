@@ -52,15 +52,21 @@ const Container=styled.div`
     `
 
 
-function Service(req) {
+function Service(props) {
+    const {logged} = props;
     return (
         <Container>
             <ContainerTitle>
                 <Title>сервис по поиску<br/>публикаций о компании<br/>по его ИНН</Title>
                 <TitleDesc>Комплексный анализ публикаций, получение данных<br/>в формате PDF на электронную почту.</TitleDesc>
-                <Link to="/search">
-                    <Button name={"Запросить данные"}></Button>
-                </Link>
+                {   
+                    logged
+                    ?
+                        <Link to="/search">
+                            <Button name={"Запросить данные"}></Button>
+                        </Link>
+                    :   <></>
+                }
             </ContainerTitle>
             <TitleImg src={PicTitle}>
             </TitleImg>

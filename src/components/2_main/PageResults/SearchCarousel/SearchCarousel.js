@@ -123,6 +123,7 @@ export default function SearchCarousel(props) {
 
     function handleResize2(){
         let newDisplayNum=Math.floor((ref.current.clientWidth-descWidth - parent_p_left)/cardWidth);
+        newDisplayNum=(newDisplayNum>8)?8:newDisplayNum;
         let dn=displayNum;
         console.log("hr2 old=",dn);
         console.log("hr2 new=",newDisplayNum);
@@ -143,7 +144,6 @@ export default function SearchCarousel(props) {
 
     useEffect(() => {
         window.addEventListener('load', handleResize2)
-
         return () => {
             document.removeEventListener('load', handleResize2);
         };
@@ -183,16 +183,16 @@ export default function SearchCarousel(props) {
                                 }
                             />
                         :
-                        arr.slice(0,displayNum).map((item,index) => (
-                            <CardResult
-                                key   ={index       }
-                                width ={cardWidth   }
-                                period={item.period }
-                                all   ={item.all    }
-                                risc  ={item.risc   }
-                                last  ={displayNum == index+1 }
-                            />
-                        ))
+                            arr.slice(0,displayNum).map((item,index) => (
+                                <CardResult
+                                    key   ={index       }
+                                    width ={cardWidth   }
+                                    period={item.period }
+                                    all   ={item.all    }
+                                    risc  ={item.risc   }
+                                    last  ={displayNum == index+1 }
+                                />
+                            ))
                     }
                 />
             </Container>

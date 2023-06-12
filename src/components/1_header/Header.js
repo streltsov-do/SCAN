@@ -64,26 +64,25 @@ const HeaderDiv = styled.div`
 
 function Header(props) {
     
-    const {logged, loading, name, avatar} = props;
+    const {logged, setLogged, loading, name, avatar} = props;
 
     return (
         <HeaderDiv>
-            {/* <Logo></Logo>
-            <Logo scr={imgLogoSvg}></Logo> */}
-            {/* <LogoDiv></LogoDiv>
-            <div>${imgLogoSvg}</div> */}
             <Link to="/"> {/* TODO: небольшое смещение картинки */}
                 <img src={imgLogoSvg} alt="СКАН"></img>
             </Link>
-            {/* <Span>Главная1</Span>
-            <Span2>Главная2</Span2> */}
             <NavUl>
                 <NavLi><NavA href="/" >Главная  </NavA></NavLi>
                 <NavLi><NavA href="#">Тарифы    </NavA></NavLi>
                 <NavLi><NavA href="#">FAQ       </NavA></NavLi>
             </NavUl>
-            <AccountForm logged={logged} loading={loading} name={name} avatar={avatar}>
-            </AccountForm>
+            <AccountForm
+                logged={logged} 
+                setLogged={setLogged}
+                loading={loading} 
+                name={name} 
+                avatar={avatar}
+            />
             
         </HeaderDiv>
     )

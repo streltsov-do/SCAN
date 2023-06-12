@@ -44,14 +44,19 @@ const DivMain = styled.div`
         border-radius: 16px;
     `
 
+
 function UserAcc(props) {
-    const {name, avatar} = props;
+    const { setLogged, name, avatar} = props;
+    
+    function handleClick(e){
+        setLogged(false)
+    }
 
     return (
         <DivMain>
             <DivCol>
                 <UserName>{name}</UserName>
-                <BtnLogout>Выйти</BtnLogout>
+                <BtnLogout onClick={handleClick}>Выйти</BtnLogout>
             </DivCol>
 
             <UserAvatar src={avatar} alt='ava'></UserAvatar>

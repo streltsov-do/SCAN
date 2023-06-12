@@ -41,11 +41,12 @@ const Div=styled.div`
         margin: 24px 0 14px 0;
     `
     const Type=styled.div`
-        width: 157px;
+        /* width: 157px; */
+        padding: 0 11px 0 14px;
         height: 22px;
-        background: #FFB64F;
+        /* background: #FFB64F; */
+        background: ${props => props.bg};
         border-radius: 5px;
-        margin-bottom: 14px;
         font-size: 12px;
         line-height: 15px;
         letter-spacing: 0.02em;
@@ -53,11 +54,12 @@ const Div=styled.div`
         align-items: center;
         justify-content: center;
     `
-    const Img=styled.img`
+    const Img=styled.div`
         width: 581px;
         height: 158px;
         border-radius: 10px;
         margin-bottom: 20px;
+        background-image: url(${props => props.background});
     `
     const Desc=styled.div`
         width: 581px;
@@ -86,11 +88,13 @@ export default function CardDoc(props) {
             date, 
             source, 
             title, 
-            type, 
             img, 
             desc, 
             link, 
-            words
+            wordCount       ,
+            isTechNews      ,
+            isAnnouncement  ,
+            isDigest        ,
         } = props;
 
     return (
@@ -105,8 +109,22 @@ export default function CardDoc(props) {
                 }
             />
             <Title>{title}</Title>
-            <Type>{type}</Type>
-            <Img src={img} alt="Amasing"></Img>
+            <DivFlex
+                gap={10}
+                m_bottom= {14}
+                height={22}
+                render={
+                    <>
+                        {isTechNews     ?<Type bg="#FFB64F">Технические новости</Type>:<></>}
+                        {isAnnouncement ?<Type bg="#11B64F">Анонс</Type>:<></>}
+                        {isDigest       ?<Type bg="#FF004F">Дайджест</Type>:<></>}
+                    </>
+                }
+            />
+            <Img    
+                background={img} 
+                alt="Amasing"
+            ></Img>
             <Desc>
                 {desc}
             </Desc>
@@ -128,7 +146,7 @@ export default function CardDoc(props) {
                             f_size={16}
                             f_height={19}
                         />
-                        <Words>{words} слова</Words>
+                        <Words>{wordCount} слова</Words>
                     </>
                 }
             />

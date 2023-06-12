@@ -52,7 +52,6 @@ const arr=[
             "Безопасная сделка",
             "Поддержка 24/7",
         ],
-        btn_desc: "Перейти в личный кабинет",
     },
     {
         color: "7CE3E1",
@@ -75,7 +74,6 @@ const arr=[
             "Экспорт истории",
             "Рекомендации по приоритетам",
         ],
-        btn_desc: "Подробнее",
     },
     {
         color: "000000",
@@ -98,11 +96,12 @@ const arr=[
             "Безлимитное количество запросов",
             "Приоритетная поддержка",
         ],
-        btn_desc: "Подробнее",
     }
 ];
 
-function Tariffs() {
+function Tariffs(props) {
+    const {logged, tariff} = props;
+
     return (
         <Container>
             <Title>наши тарифы</Title>
@@ -110,14 +109,14 @@ function Tariffs() {
                 {
                     arr.map((item,index) => 
                         <Card 
-                            key         ={index} 
+                            key         ={index     }
+                            active      ={logged && (tariff==index) }
                             color       ={item.color    }
                             title       ={item.title    }
                             titleDesc   ={item.titleDesc}
                             icon        ={item.icon     }
                             price       ={item.price    }
                             options     ={item.options  }
-                            btn_desc    ={item.btn_desc }
                         />
                     )
                 }

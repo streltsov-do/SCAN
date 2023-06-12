@@ -6,7 +6,6 @@ import SeacrchCarousel from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 
 import Searching from './Searching.svg';
-import Loader from "../../utils/Loading/Loader";
 import Button from "../PageMain/custom/Button/Button";
 
 const p_left=69;
@@ -78,7 +77,7 @@ const arr=[
 
 export default function PageResults(props){
 
-    const { loading } = props;
+    const { loading, publications } = props;
 
     return(
         <DivMain>
@@ -109,29 +108,30 @@ export default function PageResults(props){
                 }
             />
             <ImgSearching src={Searching}></ImgSearching>
-            <SeacrchCarousel loading={loading} parent_p_left={p_left}></SeacrchCarousel>
+            <SeacrchCarousel 
+                loading={loading} 
+                parent_p_left={p_left}
+            />
             
             <CardGrid>
-                <CardDoc
-                    date    ={arr[0].date    }
-                    source  ={arr[0].source  }
-                    title   ={arr[0].title   }
-                    type    ={arr[0].type    }
-                    img     ={arr[0].img     }
-                    desc    ={arr[0].desc    }
-                    link    ={arr[0].link    }
-                    words   ={arr[0].words   }
-                />
-                <CardDoc
-                    date    ={arr[0].date    }
-                    source  ={arr[0].source  }
-                    title   ={arr[0].title   }
-                    type    ={arr[0].type    }
-                    img     ={arr[0].img     }
-                    desc    ={arr[0].desc    }
-                    link    ={arr[0].link    }
-                    words   ={arr[0].words   }
-                />
+                {
+                    publications.map((item, index) => 
+                        <CardDoc
+                            key             = {index                        }
+                            date            = {item.date                    }
+                            source          = {item.source                  }
+                            title           = {item.title                   }
+                            type            = {item.type                    }
+                            img             = {item.img                     }
+                            desc            = {item.desc                    }
+                            link            = {item.link                    }
+                            wordCount       = {item.attributes.wordCount     }
+                            isTechNews      = {item.attributes.isTechNews    }
+                            isAnnouncement  = {item.attributes.isAnnouncement}
+                            isDigest        = {item.attributes.isDigest      }
+                        />
+                    )
+                }
             </CardGrid>
             <DivFlex
                 m_bottom="109"

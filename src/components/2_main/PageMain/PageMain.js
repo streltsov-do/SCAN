@@ -12,12 +12,18 @@ const Container = styled.div`
     position: relative;
 `
 
-export default function PageMain(){
+export default function PageMain(props){
+    const {logged, tariff} = props;
     return(
         <Container>
-            <Service></Service>
-            <Advantages></Advantages>
-            <Tariffs></Tariffs>
+            <Service
+                logged={logged}
+            />
+            <Advantages/>
+            <Tariffs 
+                logged={logged}
+                tariff={tariff}
+            />
         </Container>
     )
 }

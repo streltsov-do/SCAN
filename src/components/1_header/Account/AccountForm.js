@@ -57,7 +57,7 @@ const Autorization=styled.div`
 
 function AccountForm(props) {
 
-    const {logged, loading, name, avatar} = props;
+    const {logged, setLogged, loading, name, avatar} = props;
 
     
     return(
@@ -69,7 +69,11 @@ function AccountForm(props) {
                             <Logged loading={loading}></Logged>
                         </Stats>
 
-                        <UserAcc name={name} avatar={avatar}></UserAcc>
+                        <UserAcc 
+                            setLogged={setLogged} 
+                            name={name} 
+                            avatar={avatar}
+                        />
                     </>
                 :
                     <Autorization>

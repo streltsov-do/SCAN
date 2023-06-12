@@ -6,7 +6,7 @@ const Btn=styled.button`
     height: ${props => props.height || 59}px;
     border-radius: 5px;
     border-style: none;
-    background      :#${props => props.background   ||"5970FF"};
+    background      : ${props => props.background };
     color           :#${props => props.color        ||"FFFFFF"};
     margin-top      : ${props => props.m_top      }px;
     margin-right    : ${props => props.m_right    }px;
@@ -25,6 +25,9 @@ const Btn=styled.button`
     font-size       : ${props => props.f_size   || 22}px;
     line-height     : ${props => props.f_height || 27}px;
     letter-spacing: 0.02em;
+    &:hover{
+        opacity: ${props => props.disabled ? 100 : 80}%;
+    }
 `
 
 export default function Button(props) {
@@ -47,13 +50,18 @@ export default function Button(props) {
         justify     ,
         f_size      ,
         f_height    ,
+        disabled    ,
+        onClick     ,
     } = props;
 
+    const bg  = "#"+(background || "5970FF") + (disabled ? "88":"FF");
+
+    // console.log("bg",bg);
     return(
         <Btn 
             width       ={width     }
             height      ={height    }
-            background  ={background}
+            background  ={bg        }
             color       ={color     }
             m_top       ={m_top     }
             m_right     ={m_right   }
@@ -68,6 +76,8 @@ export default function Button(props) {
             justify     ={justify   }
             f_size      ={f_size    }
             f_height    ={f_height  }
+            disabled    ={disabled  }
+            onClick     ={onClick   }
         >
             {name}
         </Btn>

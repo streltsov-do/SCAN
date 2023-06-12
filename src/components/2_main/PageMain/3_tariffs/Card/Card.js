@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import Button from "../../custom/Button/Button";
 
 import CheckMark from './CheckMark.svg'
 
@@ -7,7 +8,7 @@ const cWidth=415;
 const cHeight=540;
 const tHeight=132;
 
-const Container=styled.div`
+const Div=styled.div`
     width: ${cWidth}px;
     height: ${cHeight}px;
     background: #FFFFFF;
@@ -24,6 +25,7 @@ const Container=styled.div`
         padding: 30px 0 0 30px;
         display: flex;
         position: relative;
+        margin: -2px 0 0 -2px;
     `
         const Title=styled.div`
             color: ${props => props.color};
@@ -51,11 +53,25 @@ const Container=styled.div`
         height: ${cHeight-tHeight}px;
         padding: 33px 0 24px 30px;
         position: relative;
-    `
+    `   
+        const Current=styled.div`
+            position: absolute;
+            width: 134px;
+            height: 24px;
+            background: #3BA5E0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            right: 10px;
+            top:12px;
+        `
         const PriceDiv=styled.div`
             display: flex;
             gap: 19px;
             margin-bottom: 10px;
+            align-items: center;
         `
             const PriceSale=styled.div`
                 font-weight: 500;
@@ -64,8 +80,8 @@ const Container=styled.div`
             `
             const Price=styled.div`
                 font-weight: 500;
-                font-size: 30px;
-                line-height: 36px;
+                font-size: 25px;
+                line-height: 30px;
                 text-decoration: line-through;
                 opacity: 0.5;
             `
@@ -80,6 +96,7 @@ const Container=styled.div`
             font-size: 20px;
             line-height: 24px;
             margin-bottom: 10px;
+            
         `
             const TariffOptions=styled.div`
                 display: flex;
@@ -99,45 +116,44 @@ const Container=styled.div`
                         font-size: 18px;
                         line-height: 22px;
                     `
-        const BtnDetailed=styled.button`
-            width: 355px;
-            height: 59px;
-            background: #5970FF;
-            border-radius: 5px;
-            border-style: none;
-            font-size: 20px;
-            line-height: 24px;
-            &:hover{
-                background: #D2D2D2;
-                text-decoration: none;
-            }
-        `
 
 
 function Card(props) {
+    const {color, price, title, titleDesc, icon, active} = props;
 
-    const titleColor = (props.color=="000000")?"white":"black";
-    const p_installment=props.price.installment;
+    const divColor  = active?color:"FFFFFF";
+    const btnDesc   = active?"Перейти в личный кабинет":"Подробнее"
+    const btnBg     = active?"D2D2D2":"5970FF";
+    const btnColor  = active?"000000":"FFFFFF";
+    
+    const titleColor = (color=="000000")?"white":"black";
+
+    const p_installment=price.installment;
     const installment=(p_installment==0)?"":`или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
     return(
-        <Container color={props.color}>
-            <TitleDiv color={props.color}>
+        <Div color={divColor}>
+            <TitleDiv color={color}>
                 <div>
-                    <Title color={titleColor}>{props.title}</Title>
-                    <TitleDesc color={titleColor}>{props.titleDesc}</TitleDesc>
+                    <Title color={titleColor}>{title}</Title>
+                    <TitleDesc color={titleColor}>{titleDesc}</TitleDesc>
                 </div>
                 <Icon 
-                    src     ={props.icon.img    }
-                    width   ={props.icon.width  }
-                    height  ={props.icon.width  }
-                    top     ={props.icon.top    }
-                    right   ={props.icon.right  }
+                    src     ={icon.img    }
+                    width   ={icon.width  }
+                    height  ={icon.width  }
+                    top     ={icon.top    }
+                    right   ={icon.right  }
                 />
             </TitleDiv>
             <MainDiv>
+                {   
+                    active
+                    ?   <Current>Текущий тариф</Current>
+                    :   <></>
+                }
                 <PriceDiv>
-                    <PriceSale>{props.price.sale}₽</PriceSale>
-                    <Price>{props.price.src}₽</Price>
+                    <PriceSale>{price.sale} ₽</PriceSale>
+                    <Price>{price.src} ₽</Price>
                 </PriceDiv>
                 <PriceInstallment>{installment}</PriceInstallment>
                 <TariffDesc>В тариф входит:</TariffDesc>
@@ -151,9 +167,17 @@ function Card(props) {
                         )
                     }
                 </TariffOptions>
-                <BtnDetailed>{props.btn_desc}</BtnDetailed>
+                <Button 
+                    width       ={355}
+                    height      ={59}
+                    background  ={btnBg}
+                    color       ={btnColor}
+                    name        ={btnDesc}
+                    f_size      ={20}
+                    f_height    ={24}
+                />
             </MainDiv>
-        </Container>
+        </Div>
     )
 }
 

@@ -9,7 +9,7 @@ import PageResults from "./PageResults/PageResults";
 
 
 function Main(props) {
-    const {loading} = props;
+    const {logged, loading, tariff, publications} = props;
 
     return (
         <Routes>
@@ -17,13 +17,17 @@ function Main(props) {
 
             <Route exact path="/"
                 element={
-                    <PageMain/>
+                    <PageMain
+                        logged={logged}
+                        tariff={tariff}
+                    />
                 }
             />
             <Route 
                 path="/autorization"
                 element={
-                    <PageAutorization></PageAutorization>
+                    <PageAutorization
+                    />
                 }
             />
             <Route 
@@ -38,6 +42,7 @@ function Main(props) {
                 element={
                     <PageResults
                         loading={loading}
+                        publications={publications}
                     />
                 }
             />
