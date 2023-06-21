@@ -1,11 +1,12 @@
 import React from "react";
 import styled, {css} from 'styled-components/macro';
 import { keyframes } from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import imgLogoSvg from './scan.svg';
 
-import AccountForm from "./Account/AccountForm";
+import AccInfo from "./Account/AccInfo";
+import { connect } from "react-redux";
 
 const HeaderDiv = styled.div`
     width: auto;
@@ -64,7 +65,9 @@ const HeaderDiv = styled.div`
 
 function Header(props) {
     
-    const {logged, setLogged, loading, name, avatar} = props;
+    const {
+        // logged, setLogged, loading, 
+        name, avatar} = props;
 
     return (
         <HeaderDiv>
@@ -72,14 +75,22 @@ function Header(props) {
                 <img src={imgLogoSvg} alt="СКАН"></img>
             </Link>
             <NavUl>
-                <NavLi><NavA href="/" >Главная  </NavA></NavLi>
+                <NavLink to="/" style={({ isActive, isPending }) => {
+                        return {
+                            color: "black",
+                            textDecoration: "none"
+                        };
+                    }}
+                >
+                    Главная
+                </NavLink>
                 <NavLi><NavA href="#">Тарифы    </NavA></NavLi>
                 <NavLi><NavA href="#">FAQ       </NavA></NavLi>
             </NavUl>
-            <AccountForm
-                logged={logged} 
-                setLogged={setLogged}
-                loading={loading} 
+            <AccInfo
+                // logged={logged} 
+                // setLogged={setLogged}
+                // loading={loading} 
                 name={name} 
                 avatar={avatar}
             />

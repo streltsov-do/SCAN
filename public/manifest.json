@@ -1,6 +1,9 @@
 {
   "short_name": "React App",
   "name": "Create React App Sample",
+  "permissions": [
+    "https://gateway.scan-interfax.ru/"
+  ],
   "icons": [
     {
       "src": "favicon.ico",

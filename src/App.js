@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom"
-import { useState } from 'react';
-import styled, {css, createGlobalStyle} from 'styled-components';
+import { connect } from 'react-redux';
 
 import Header from './components/1_header/Header';
 import Main from './components/2_main/Main';
@@ -10,19 +9,9 @@ import Footer from './components/3_footer/Footer';
 import ava from "./components/utils/img/ava.png";
 import sf from "./components/utils/img/sf.png"
 
-// const logout = () = {
-
-// }
-
-function App() {
-    const [logged,setLogged] = useState(true);
-
-    // const logged = true;
-    const loading = false;
+function App(props) {
     const name = "Алексей А.";
     const avatar = ava;
-    const page="main";
-    const tariff=2;
 
     const publications = [
         {
@@ -51,17 +40,14 @@ function App() {
             <div className="App">
                 
                 <Header 
-                    logged={logged} 
-                    setLogged={setLogged}
-                    loading={loading} 
+                    // logged={logged} 
+                    // setLogged={setLogged}
+                    // loading={loading} 
                     name={name} 
                     avatar={avatar}
                 />
 
                 <Main 
-                    logged={logged} 
-                    loading={loading}
-                    tariff={tariff}
                     publications={publications}
                 />
 
@@ -72,4 +58,14 @@ function App() {
     );
 }
 
-export default App;
+// export default App;
+
+export default connect(
+    state => ({
+        state: state
+    }), 
+    dispatch => ({
+
+    })
+)
+(App);

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import PicTitle from './pic1.png';
 import Button from "../custom/Button/Button";
@@ -54,6 +54,12 @@ const Container=styled.div`
 
 function Service(props) {
     const {logged} = props;
+    const navigate=useNavigate();
+    
+    function handleClick(){
+        navigate("/search")
+    }
+
     return (
         <Container>
             <ContainerTitle>
@@ -62,9 +68,7 @@ function Service(props) {
                 {   
                     logged
                     ?
-                        <Link to="/search">
-                            <Button name={"Запросить данные"}></Button>
-                        </Link>
+                        <Button name={"Запросить данные"} onClick={handleClick}></Button>
                     :   <></>
                 }
             </ContainerTitle>

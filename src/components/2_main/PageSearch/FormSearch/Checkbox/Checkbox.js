@@ -13,11 +13,11 @@ const Label=styled.label`
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 0.03em;
-    opacity: ${props => props.enabled?1:0.4};
+    opacity: ${props => (props.enabled)?1:0.4};
 `
 
 export default function Checkbox(props){
-    const {name, checked, enabled} = props;
+    const {name, defaultChecked, enabled, change} = props;
 
     return(
         <DivFlex 
@@ -26,8 +26,14 @@ export default function Checkbox(props){
             align="center"
             render={
                 <>
-                    <Input type="checkbox" value={name} name={name} checked={checked} enabled={enabled}></Input>
-                    <Label for="Input" enabled={enabled}>{name}</Label>
+                    <Input 
+                        type="checkbox" 
+                        value={name} 
+                        name={name} 
+                        defaultChecked={defaultChecked} 
+                        onChange={change}
+                    ></Input>
+                    <Label htmlFor="Input" enabled={enabled}>{name}</Label>
                 </>
             }
         />

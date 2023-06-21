@@ -5,8 +5,8 @@ import { createGlobalStyle } from "styled-components";
 const FontStyles = createGlobalStyle`
     @font-face {
         font-family: 'Inter';
-        /* src:    url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500&display=swap') */
-        src: url("/Inter/Inter-Italic.otf") format('opentype');
+        src:    url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500&display=swap')
+        /* src: url("/Inter/Inter-Italic.otf") format('opentype'); */
     }
     
     @font-face {

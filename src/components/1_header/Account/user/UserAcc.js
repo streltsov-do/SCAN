@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { connect } from "react-redux";
 
 const DivMain = styled.div`
     min-width: 120px;
@@ -46,10 +47,10 @@ const DivMain = styled.div`
 
 
 function UserAcc(props) {
-    const { setLogged, name, avatar} = props;
+    const { logout, name, avatar} = props;
     
     function handleClick(e){
-        setLogged(false)
+        logout();
     }
 
     return (
@@ -65,3 +66,16 @@ function UserAcc(props) {
 }
 
 export default UserAcc;
+
+// export default connect(
+//     // state => ({
+//     //     logged  : state.rLogin.logged,
+//     //     loading : state.rLogin.loading,
+//     // }),
+//     null,
+//     dispatch => ({
+//         logout: () => {
+//             dispatch({ type: 'LOGOUT'});
+//         }
+//     })
+// )(UserAcc);

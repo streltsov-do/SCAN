@@ -49,11 +49,13 @@ const StatsLogged = styled.div`
         `
 
 function Logged(props){
+    
+    const { loading, used, limit} = props;
 
     return (
         <>
             {
-                props.loading?
+                loading?
                     <Loader/>
                 :
                     <StatsLogged>
@@ -62,8 +64,8 @@ function Logged(props){
                             <StatsDesc>Лимит по компаниям</StatsDesc>
                         </StatsCol1>
                         <StatsCol2>
-                            <StatsUsed>34</StatsUsed>
-                            <StatsLim>100</StatsLim>
+                            <StatsUsed>{used}</StatsUsed>
+                            <StatsLim>{limit}</StatsLim>
                         </StatsCol2>
                     </StatsLogged>
             }

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import styled, {css} from 'styled-components/macro';
+import { connect } from "react-redux";
 
 import PageMain from "./PageMain/PageMain";
 import PageAutorization from "./PageAutorization/PageAutorization";
@@ -50,4 +51,15 @@ function Main(props) {
     )
 }
 
-export default Main;
+// export default Main;
+
+export default connect(
+    state => ({
+        logged  : state.rLogin[state.rLogin.length-1].logged,
+        loading : state.rLogin[state.rLogin.length-1].loading,
+    }), 
+    dispatch => ({
+
+    })
+)
+(Main);

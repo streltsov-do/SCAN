@@ -1,12 +1,19 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { redirect, useNavigate } from "react-router";
+
+import Button from "../PageMain/custom/Button/Button";
+import reducer from "../../reducers/reducers";
 
 import Characters from './Characters.svg';
 import Lock from './lock.svg';
 import LoginGoogle from './LoginGoogle.svg';
 import LoginFb from './LoginFb.svg';
 import LoginYandex from './LoginYandex.svg';
-import Button from "../PageMain/custom/Button/Button";
+import DivFlex from "../../utils/DivFlex/DivFlex";
+
+const inited=true;
 
 const Container=styled.div`
     display: flex;
@@ -68,20 +75,20 @@ const Container=styled.div`
                 background-color: #${props => props.color};
                 width: ${props => props.width}px;
             `
-    const Text=styled.div`
+    const Label=styled.label`
         font-size: 16px;
         line-height: 19px;
         letter-spacing: 0.02em;
-        margin-bottom: 15px;
         color: #949494;
     `
     const Input=styled.input`
         width: 379px;
         height: 43px;
         background: #FFFFFF;
-        border: 1px solid #C7C7C7;
+        border: 1px solid ${props => props.b_color};
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
         border-radius: 5px;
+        margin-top: 15px;
         margin-bottom: ${props => props.mrg_bottom}px;
         font-family: 'Inter';
         letter-spacing: 0.01em;
@@ -124,49 +131,138 @@ const Container=styled.div`
                 margin-left:${props => props.mrg_left   }px;
             `
 
-export default function PageAutorization() {
-    const inputLogin    =useRef(null);
-    const inputPassword =useRef(null);
+function PageAutorization(props) {
+    const refLogin    =useRef(null);
+    const refPassword =useRef(null);
+    const navigate=useNavigate();
 
-    const [loginDis,    setLoginDis  ] = useState(false);
-    const [stateLog,    setStateLog ] = useState(false);
-    const [statePass,   setStatePass] = useState(false);
+    const [sumbitDis,   setSumbitDis] = useState(false);
+    const [stateLog,    setStateLog ] = useState(inited?1:-1);
+    const [statePass,   setStatePass] = useState(inited?1:-1);
 
+    const urlBase="https://gateway.scan-interfax.ru";
+
+    function fPostAuth(login,password) {
+        fetch(urlBase+"/api/v1/account/login", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                // login:      "sf_student1",
+                // password:   "4i2385j",
+                login:      login,
+                password:   password,
+            })
+        })
+            .then((response)=>{
+                console.log("response",response);
+                return response.json();
+            })
+            .then((data)=>{
+                console.log("AUTH data",data);
+                if (data.errorCode==undefined){
+                    props.auth(
+                        data.accessToken,
+                        data.expire,
+                        true,
+                        true
+                    );
+                    
+                    const localData = {
+                        token: data.accessToken,
+                        expire: data.expire
+                    }
+
+                    localStorage.setItem("auth",JSON.stringify(localData))
+
+                    navigate("/");
+                    // const sl=JSON.stringify({
+                    //     Authorization: data.accessToken,
+                    // });
+                    // console.log("AUTH sl",sl);
+                    // fGetAccInfo(data.accessToken);
+                } else {
+                    console.log("AUTH",data.message);
+                    setStatePass(0);
+                    // setSumbitDis(true);
+                    return true;
+                }
+            })
+            .catch(() => { 
+                console.log('PostAuth error')
+                return false;
+            });
+    }
 
     function handleClick(e) {
         e.preventDefault();
+        const login= refLogin.current.value;
+        const password= refPassword.current.value;
+        fPostAuth(login,password);
         
+        // props.login(
+        //     login,
+        //     password,
+        // );
+        // fGetAccInfo();
+        // const xhr = new XMLHttpRequest();
+
+        // xhr.open("POST",urlBase+"/api/v1/account/login")
+
+        // xhr.onload = () => {
+        //     if (xhr.status != 200) {
+        //         console.log("Error, status=",xhr.status);
+        //     } else {
+        //         const result = JSON.parse(xhr.response);
+
+        //         console.log("result",result);
+        //     }
+        // }
+        // let data=
+        // {
+        //     "login": "sf_student1",
+        //     "password": "4i2385j"
+        // }
+        // console.log("data",data);
+        // data=JSON.stringify(data)
+        // console.log("data_stringifu",data);
+        // console.log("type",typeof(data));
+        // xhr.send(data);
+
     }
 
     useEffect(() => {
-        const inputLoginVal = inputLogin.current;
+        const inputLoginVal = refLogin.current;
         const inLogChange = () => {
-            setStateLog(inputLoginVal.value!="");
-            console.log("1=",inputLoginVal.value)
+            setStateLog(inputLoginVal.value==""?(-1):1);
         }
         inputLoginVal.addEventListener("input", inLogChange);
 
-        const inputPassVal = inputPassword.current;
+        const inputPassVal = refPassword.current;
 
         const inputPasChange = () => {
-            setStatePass(inputPassVal.value!="");
-            console.log("2=",inputPassVal.value)
+            setStatePass(inputPassVal.value==""?(-1):1);
         }
         inputPassVal.addEventListener("input", inputPasChange);
         
-        console.log("11=",inputLoginVal.value)
-        console.log("22=",inputPassVal.value)
-        if (stateLog && statePass){
-            setLoginDis(false);
+        if ((stateLog!=-1) && (statePass!=-1)){
+            setSumbitDis(false);
         } else {
-            setLoginDis(true);
+            setSumbitDis(true);
         }
 
         return () => {
             inputLoginVal.removeEventListener("input", inLogChange)
             inputPassVal.removeEventListener("input", inputPasChange)
         };
-    });
+    },[stateLog,statePass]);
+
+    // state.subscribe( ()=>{
+    //     const cState=state.getState();
+    //     console.log("cState",cState);
+    // });
 
     return(
         <Container>
@@ -177,7 +273,7 @@ export default function PageAutorization() {
                 </Title>
                 <Img src={Characters}></Img>
             </div>
-            <Form>
+            <Form name="formAutorization">
                 <ImgLock src={Lock}></ImgLock>
                 <LinkContainer>
                     <LinkDiv >
@@ -189,47 +285,69 @@ export default function PageAutorization() {
                         <Line color="C7C7C7" width={213}></Line>
                     </LinkDiv>
                 </LinkContainer>
-                <Text>Логин или номер телефона:</Text>
-                <Input mrg_bottom={20} ref={inputLogin}></Input>
-                <Text>Пароль:</Text>
-                <Input mrg_bottom={30} ref={inputPassword} type="password"></Input>
+                <Label htmlFor="lblLogin">Логин или номер телефона:</Label>
+                    <Input 
+                        name="lblLogin" 
+                        form="formAutorization" 
+                        mrg_bottom={6} 
+                        b_color={(stateLog==0)?"#FF5959":"#C7C7C7"}
+                        ref={refLogin}
+                        defaultValue={inited?"sf_student1":""}
+                    ></Input>
+                    <DivFlex 
+                        color="#FF5959"
+                        justify="center"
+                        height={17}
+                        render={
+                            (stateLog==0)?"Введите корректные данные":""
+                        }
+                    />
+                <Label htmlFor="lblPassword">Пароль:</Label>
+                    <Input 
+                        name="lblPassword" 
+                        form="formAutorization" 
+                        mrg_bottom={6} 
+                        b_color={(statePass==0)?"#FF5959":"#C7C7C7"}
+                        ref={refPassword} 
+                        type="password"
+                        defaultValue={inited?"4i2385j":""}
+                    ></Input>
+                    <DivFlex 
+                        color="#FF5959"
+                        justify="center"
+                        m_bottom={7} 
+                        height={17}
+                        render={
+                            (statePass==0)?"Неправильный пароль":""
+                        }
+                    />
                 <Button 
+                    form="formAutorization"
+                    type="submit"
                     name="Войти" 
                     width={367+12} 
                     m_bottom={15} 
-                    disabled={loginDis}
+                    disabled={sumbitDis}
                     onClick={handleClick}
                 />
                 <RestoreContainer>
                     <LinkRestore>Восстановить пароль</LinkRestore>
                 </RestoreContainer>
-                <Text>Войти через:</Text>
+                <Label>Войти через:</Label>
                 <ExtLoginDiv>
                     <BtnExtLogin>
                         <ImgExtLogin 
                             src={LoginGoogle} 
-                            // width={59.46} 
-                            // height={19.57}
-                            // mrg_top={6}
-                            // mrg_left={18}
                         />
                     </BtnExtLogin>
                     <BtnExtLogin>
                         <ImgExtLogin 
                             src={LoginFb} 
-                            // width={59.46} 
-                            // height={19.57}
-                            // mrg_top={10}
-                            // mrg_left={18}
                         />
                     </BtnExtLogin>
                     <BtnExtLogin>
                         <ImgExtLogin 
                             src={LoginYandex}
-                            // width={56} 
-                            // height={16.22}
-                            // mrg_top={7}
-                            // mrg_left={20}
                         />
                     </BtnExtLogin>
                 </ExtLoginDiv>
@@ -237,3 +355,22 @@ export default function PageAutorization() {
         </Container>
     )
 }
+
+export default connect(
+    state => ({
+        logged  : state.rLogin[state.rLogin.length-1].logged,
+        loading : state.rLogin[state.rLogin.length-1].loading,
+    }),
+    dispatch => ({
+        auth: (token,expire,logged,loading) => {
+            dispatch({ 
+                type    : 'AUTH',
+                id      : 0,
+                logged  : logged,
+                token   : token,
+                expire  : expire,
+                loading : loading,
+            });
+        }
+    })
+)(PageAutorization);

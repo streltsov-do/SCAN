@@ -52,6 +52,7 @@ export default function Button(props) {
         f_height    ,
         disabled    ,
         onClick     ,
+        type        ,
     } = props;
 
     const bg  = "#"+(background || "5970FF") + (disabled ? "88":"FF");
@@ -78,6 +79,7 @@ export default function Button(props) {
             f_height    ={f_height  }
             disabled    ={disabled  }
             onClick     ={onClick   }
+            type        ={type      }
         >
             {name}
         </Btn>
