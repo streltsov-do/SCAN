@@ -4,7 +4,7 @@ import styled from "styled-components"
 import ImgArrow from './ArrowRight.svg';
 
 const Btn=styled.button`
-    width: 39px;
+    width: ${props => props.width || 39}px;
     height: 39px;
     padding: 0;
     border: none;

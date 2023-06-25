@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Logged from "./logged/Logged";
@@ -93,6 +93,8 @@ function AccInfo(props) {
 
     const {auth, token, logged, loading, logout, name, avatar} = props;
 
+    const navigate=useNavigate();
+
     useEffect(()=>{
         if (loading) {
             fGetAccInfo(token,auth);
@@ -102,6 +104,7 @@ function AccInfo(props) {
     const fLogout = () => {
         localStorage.removeItem("auth");
         logout();
+        navigate('/');
     }
 
     return(
@@ -112,7 +115,6 @@ function AccInfo(props) {
                         <Stats>
                             <Logged 
                                 loading={loading}
-                                // loading={ auth(false)}
                                 used={1}
                                 limit={1}
                             />

@@ -84,7 +84,7 @@ function Header(props) {
                 >
                     Главная
                 </NavLink>
-                <NavLi><NavA href="#">Тарифы    </NavA></NavLi>
+                <NavLi><NavA href="#idTariffs">Тарифы    </NavA></NavLi>
                 <NavLi><NavA href="#">FAQ       </NavA></NavLi>
             </NavUl>
             <AccInfo

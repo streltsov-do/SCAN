@@ -39,18 +39,18 @@ export default function rLogin(state=[initialState], action) {
                 ]
             )
             break;
-            case 'END_LOADING':
-                return([
-                    ...state,
-                        {
-                            id      : state[state.length-1].id,
-                            logged  : state[state.length-1].logged,
-                            token   : state[state.length-1].token,
-                            expire  : state[state.length-1].expire,
-                            loading : action.loading,
-                        }
-                ])
-                break;
+        case 'END_LOADING':
+            return([
+                ...state,
+                    {
+                        id      : state[state.length-1].id,
+                        logged  : state[state.length-1].logged,
+                        token   : state[state.length-1].token,
+                        expire  : state[state.length-1].expire,
+                        loading : action.loading,
+                    }
+            ])
+            break;
         case 'LOGOUT':
             return (
                 [

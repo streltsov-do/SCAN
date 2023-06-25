@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { connect } from "react-redux";
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
 import SeacrchCarousel from "./SearchCarousel/SearchCarousel";
@@ -75,9 +76,11 @@ const arr=[
     }
 ]
 
-export default function PageResults(props){
+function PageResults(props){
 
-    const { loading, publications } = props;
+    const { state, loading_his, loading_obj, publications } = props;
+
+    const loading = loading_his && loading_obj;
 
     return(
         <DivMain>
@@ -111,6 +114,7 @@ export default function PageResults(props){
             <SeacrchCarousel 
                 loading={loading} 
                 parent_p_left={p_left}
+                state={state}
             />
             
             <CardGrid>
@@ -145,3 +149,15 @@ export default function PageResults(props){
         </DivMain>
     )
 }
+
+export default connect(
+    state => ({
+        state       : state.rSearch[state.rSearch.length-1],
+        loading_his : state.rSearch[state.rSearch.length-1].loading_his,
+        loading_obj : state.rSearch[state.rSearch.length-1].loading_his,
+    }),
+    // dispatch => {
+    //     add => 
+    // }
+)
+(PageResults)

@@ -2,12 +2,16 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import Slider from "react-slick";
+// import css from "./Slider.css";
+// import "~slick-carousel/slick/slick.css"; 
+// import "~slick-carousel/slick/slick-theme.css";
 import Slide from "./Slide/Slide";
 import ButtonArrow from "../../../../utils/ButtonArrow/ButtonArrow";
 
 import Icon1 from './icon_time.svg';
 import Icon2 from './icon_search.svg';
 import Icon3 from './icon_lock.svg';
+import DivFlex from "../../../../utils/DivFlex/DivFlex";
 
 const Container = styled.div`
     width: 1346px;
@@ -51,9 +55,35 @@ const arr = [
     },
 ];
 
+const DivContainer=styled.div`
+    background: #419be0;
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 300px;
+`
+const Div=styled.div`
+    border-color: brown;
+    border-radius: 2px;
+    border-style: solid;
+    background-color: red;
+    width: 20px;
+    max-width: 50px;
+    height: 30px;
+`
 
 function Carousel() {
+    var settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        row: 2,
+        vertical: false,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
     return (
+        <>
         <Container>
             <ButtonArrow rotate={180} />
             <SliderDiv>
@@ -63,34 +93,33 @@ function Carousel() {
             </SliderDiv>
             <ButtonArrow />
         </Container>
+        
+        {/* <DivContainer>
+            <Slider {...settings}>
+                <Div>
+                    <h3>111</h3>
+                </Div>
+                <Div>
+                    <h3>2</h3>
+                </Div>
+                <Div>
+                    <h3>3</h3>
+                </Div>
+                <Div>
+                    <h3>4</h3>
+                </Div>
+                <Div>
+                    <h3>5</h3>
+                </Div>
+                <Div>
+                    <h3>6</h3>
+                </Div>
+                <Div>
+                    <h3>7</h3>
+                </Div>
+            </Slider>
+        </DivContainer> */}
+        </>
     );
 }
 export default Carousel;
-
-            // var settings = {
-            //     dots: true,
-            //     infinite: true,
-            //     speed: 500,
-            //     slidesToShow: 3,
-            //     slidesToScroll: 3
-            // };
-            {/* <Slider {...settings}>
-                <Slide>
-                    <h3>1</h3>
-                </Slide>
-                <Slide>
-                    <h3>2</h3>
-                </Slide>
-                <Slide>
-                    <h3>3</h3>
-                </Slide>
-                <Slide>
-                    <h3>4</h3>
-                </Slide>
-                <Slide>
-                    <h3>5</h3>
-                </Slide>
-                <Slide>
-                    <h3>6</h3>
-                </Slide>
-            </Slider> */}

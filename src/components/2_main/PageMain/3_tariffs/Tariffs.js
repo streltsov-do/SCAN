@@ -103,7 +103,9 @@ function Tariffs(props) {
     const {logged, tariff} = props;
 
     return (
-        <Container>
+        <Container
+            id="idTariffs"
+        >
             <Title>наши тарифы</Title>
             <RatesMain>
                 {

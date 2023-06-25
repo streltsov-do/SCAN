@@ -140,10 +140,10 @@ function PageAutorization(props) {
     const [stateLog,    setStateLog ] = useState(inited?1:-1);
     const [statePass,   setStatePass] = useState(inited?1:-1);
 
-    const urlBase="https://gateway.scan-interfax.ru";
+    // const urlBase="https://gateway.scan-interfax.ru";
 
     function fPostAuth(login,password) {
-        fetch(urlBase+"/api/v1/account/login", {
+        fetch("https://gateway.scan-interfax.ru/api/v1/account/login", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -178,15 +178,9 @@ function PageAutorization(props) {
                     localStorage.setItem("auth",JSON.stringify(localData))
 
                     navigate("/");
-                    // const sl=JSON.stringify({
-                    //     Authorization: data.accessToken,
-                    // });
-                    // console.log("AUTH sl",sl);
-                    // fGetAccInfo(data.accessToken);
                 } else {
                     console.log("AUTH",data.message);
                     setStatePass(0);
-                    // setSumbitDis(true);
                     return true;
                 }
             })
@@ -201,36 +195,6 @@ function PageAutorization(props) {
         const login= refLogin.current.value;
         const password= refPassword.current.value;
         fPostAuth(login,password);
-        
-        // props.login(
-        //     login,
-        //     password,
-        // );
-        // fGetAccInfo();
-        // const xhr = new XMLHttpRequest();
-
-        // xhr.open("POST",urlBase+"/api/v1/account/login")
-
-        // xhr.onload = () => {
-        //     if (xhr.status != 200) {
-        //         console.log("Error, status=",xhr.status);
-        //     } else {
-        //         const result = JSON.parse(xhr.response);
-
-        //         console.log("result",result);
-        //     }
-        // }
-        // let data=
-        // {
-        //     "login": "sf_student1",
-        //     "password": "4i2385j"
-        // }
-        // console.log("data",data);
-        // data=JSON.stringify(data)
-        // console.log("data_stringifu",data);
-        // console.log("type",typeof(data));
-        // xhr.send(data);
-
     }
 
     useEffect(() => {
@@ -258,11 +222,6 @@ function PageAutorization(props) {
             inputPassVal.removeEventListener("input", inputPasChange)
         };
     },[stateLog,statePass]);
-
-    // state.subscribe( ()=>{
-    //     const cState=state.getState();
-    //     console.log("cState",cState);
-    // });
 
     return(
         <Container>
@@ -357,10 +316,11 @@ function PageAutorization(props) {
 }
 
 export default connect(
-    state => ({
-        logged  : state.rLogin[state.rLogin.length-1].logged,
-        loading : state.rLogin[state.rLogin.length-1].loading,
-    }),
+    // state => ({
+    //     logged  : state.rLogin[state.rLogin.length-1].logged,
+    //     loading : state.rLogin[state.rLogin.length-1].loading,
+    // }),
+    null,
     dispatch => ({
         auth: (token,expire,logged,loading) => {
             dispatch({ 

@@ -9,12 +9,13 @@ const Input1=styled.div`
     line-height: 30px;
     letter-spacing: 0.03em;
     position: absolute;
-    top:    ${props => props.top   || -10}px  ;
-    left:   ${props => props.left  || -1 }px  ;
+    color:  ${props => props.$warning ? "#FF5959" : "black"};
+    top:    ${props => props.top   || -9}px  ;
+    left:   ${props => props.left  || -2 }px  ;
 `
 
 export default function Asterisk(props) {
-    const {top, left} = props;
+    const {top, left, warning} = props;
 
     return(
         <DivFlex
@@ -29,6 +30,7 @@ export default function Asterisk(props) {
                             <Input1
                                 top={top}
                                 left={left}
+                                $warning={warning}
                             >*</Input1>
                         }
 

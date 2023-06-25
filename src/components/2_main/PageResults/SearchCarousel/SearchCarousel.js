@@ -6,6 +6,7 @@ import DivFlex from "../../../utils/DivFlex/DivFlex";
 import CardResult from "./CardResult/CardResult";
 import ButtonArrow from "../../../utils/ButtonArrow/ButtonArrow";
 import Loader from "../../../utils/Loading/Loader";
+import { connect } from "react-redux";
 
 
 const Dobby=styled.div`
@@ -13,9 +14,12 @@ const Dobby=styled.div`
     align-items: center;
     height: 158px;
     margin-bottom: 107px;
+    width: ${props => props.width || "auto"};
 `
+    const widthDesc=133;
+    const widthBtn=39;
     const Container=styled.div`
-        /* width: 1260px; */
+        /* width: ${props => props.width}px; */
         height: 158px;
         background: #FFFFFF;
         border: 2px solid #029491;
@@ -23,9 +27,8 @@ const Dobby=styled.div`
         display: flex;
         position: relative;
     `
-        const descWidth=133;
         const Desc=styled.div`
-            width: ${descWidth}px;
+            width: ${widthDesc}px;
             height: 158px;
             background: #029491;
             border-radius: 10px 0px 0px 10px;
@@ -104,29 +107,24 @@ const handleClick = (val) => {
 }
 
 export default function SearchCarousel(props) {
-    const {parent_p_left, loading} = props;
-    const [width,setWidth] = useState(0);
+    const {parent_p_left, loading, state} = props;
+    const cards = state.docs;
+    console.log("cards",cards);
+    const [loaderWidth,setLoaderWidth] = useState(window.innerWidth-widthDesc - parent_p_left-2*widthBtn-30);
     const [displayNum,setDisplayNum] = useState(0);
     const [arrSlice,setArrSlice] = useState([]);
 
-    const ref = useRef(null);
-    // let displayNum=0;
-    
-    function handleResize1(valNew,valOld){
-        console.log("hr old=",valOld);
-        console.log("hr new=",valNew);
-        if ((valNew!=valOld)){
-            console.log("yep");
-            setDisplayNum(valNew);
-        }
-    }
+    const refN = useRef(null);
 
-    function handleResize2(){
-        let newDisplayNum=Math.floor((ref.current.clientWidth-descWidth - parent_p_left)/cardWidth);
+    function handeResize(){
+        const widthCur=refN.current.offsetWidth;
+        const widthDobbyMax=window.innerWidth-widthDesc - parent_p_left-2*widthBtn-30;
+        setLoaderWidth(widthDobbyMax);
+        let newDisplayNum=Math.floor(widthDobbyMax/cardWidth);
         newDisplayNum=(newDisplayNum>8)?8:newDisplayNum;
         let dn=displayNum;
-        console.log("hr2 old=",dn);
-        console.log("hr2 new=",newDisplayNum);
+        
+        const widthMax = cardWidth*newDisplayNum;
         if ((newDisplayNum!=displayNum) && (newDisplayNum>0)){
             console.log("yep2");
             setDisplayNum(newDisplayNum);
@@ -134,27 +132,30 @@ export default function SearchCarousel(props) {
     }
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize2);
+        window.addEventListener('resize', handeResize);
         
         return () => {
-            document.removeEventListener('resize', handleResize2);
+            window.removeEventListener('resize', handeResize);
         };
 
-    }, [displayNum]);
+    }, [displayNum,loaderWidth]);
 
     useEffect(() => {
-        window.addEventListener('load', handleResize2)
-        return () => {
-            document.removeEventListener('load', handleResize2);
-        };
-    }, []);
+        // window.addEventListener('load', handeResize)
+        // console.log("1111111111111111111111111111111111111111111")
+        // return () => {
+        //     window.removeEventListener('load', handeResize);
+        // };
+        handeResize();
+    }, [displayNum,loaderWidth]);
 
     return (
         <Dobby
-            ref={ref}
+            ref={refN}
         >
             <ButtonArrow onClick={handleClick(false)} rotate={180}/>
-            <Container>
+            <Container
+            >
                 <Desc>
                     <DescTitle>Период</DescTitle>
                     <DescTitle>Всего </DescTitle>
@@ -168,28 +169,28 @@ export default function SearchCarousel(props) {
                     render=
                     { 
                         loading
-                        ?  
+                        ?
                             <DivFlex
                                 direction="column"
                                 justify="center"
                                 render={
                                     <>
                                         <Loader 
-                                            widthDiv={displayNum*cardWidth}
+                                            widthDiv={loaderWidth}
                                             widthLoader={50}
                                         />
-                                        <LoaderDesc width={displayNum*cardWidth}>Загружаем данные</LoaderDesc>
+                                        <LoaderDesc >Загружаем данные</LoaderDesc>
                                     </>
                                 }
                             />
                         :
-                            arr.slice(0,displayNum).map((item,index) => (
+                            cards.slice(0,displayNum).map((item,index) => (
                                 <CardResult
-                                    key   ={index       }
-                                    width ={cardWidth   }
-                                    period={item.period }
-                                    all   ={item.all    }
-                                    risc  ={item.risc   }
+                                    key   ={index               }
+                                    width ={cardWidth           }
+                                    period={state.date[index]   }
+                                    all   ={item                }
+                                    risc  ={state.docs[index]   }
                                     last  ={displayNum == index+1 }
                                 />
                             ))
@@ -200,3 +201,9 @@ export default function SearchCarousel(props) {
         </Dobby>
     )
 }
+
+// export default connect(
+//     state => ({
+//         state : state.rSearch[state.rSearch.length-1]
+//     }),
+// )(SearchCarousel);
