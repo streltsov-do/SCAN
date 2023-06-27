@@ -10,7 +10,7 @@ import PageResults from "./PageResults/PageResults";
 
 
 function Main(props) {
-    const {logged, loading, tariff, publications} = props;
+    const {logged, loading, tariff} = props;
 
     return (
         <Routes>
@@ -43,7 +43,6 @@ function Main(props) {
                 element={
                     <PageResults
                         loading={loading}
-                        publications={publications}
                     />
                 }
             />

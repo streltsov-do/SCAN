@@ -108,8 +108,8 @@ const handleClick = (val) => {
 
 export default function SearchCarousel(props) {
     const {parent_p_left, loading, state} = props;
-    const cards = state.docs;
-    console.log("cards",cards);
+    const cards = state.cards;
+
     const [loaderWidth,setLoaderWidth] = useState(window.innerWidth-widthDesc - parent_p_left-2*widthBtn-30);
     const [displayNum,setDisplayNum] = useState(0);
     const [arrSlice,setArrSlice] = useState([]);
@@ -126,7 +126,6 @@ export default function SearchCarousel(props) {
         
         const widthMax = cardWidth*newDisplayNum;
         if ((newDisplayNum!=displayNum) && (newDisplayNum>0)){
-            console.log("yep2");
             setDisplayNum(newDisplayNum);
         }
     }
@@ -188,9 +187,9 @@ export default function SearchCarousel(props) {
                                 <CardResult
                                     key   ={index               }
                                     width ={cardWidth           }
-                                    period={state.date[index]   }
-                                    all   ={item                }
-                                    risc  ={state.docs[index]   }
+                                    period={item.date           }
+                                    all   ={item.docs           }
+                                    risc  ={item.risk           }
                                     last  ={displayNum == index+1 }
                                 />
                             ))

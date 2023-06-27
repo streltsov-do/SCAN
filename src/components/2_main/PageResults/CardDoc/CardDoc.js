@@ -85,12 +85,12 @@ const Div=styled.div`
 
 export default function CardDoc(props) {
     const {
-            date, 
+            issueDate, 
             source, 
             title, 
             img, 
             desc, 
-            link, 
+            url, 
             wordCount       ,
             isTechNews      ,
             isAnnouncement  ,
@@ -103,7 +103,7 @@ export default function CardDoc(props) {
                 gap={14}
                 render={
                     <>
-                        <Date>{date}</Date>
+                        <Date>{issueDate}</Date>
                         <Source>{source}</Source>
                     </>
                 }

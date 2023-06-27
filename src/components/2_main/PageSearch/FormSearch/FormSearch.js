@@ -73,7 +73,7 @@ const DivGray=styled.div`
 
 function FormSearch(props){
     
-    const { token, get_histograms, get_objects, loading_set } = props;
+    const { token, set_histograms, set_objects, set_loading } = props;
 
 
     const [inn      , setInn        ] = useState(7710137066 );
@@ -228,31 +228,30 @@ function FormSearch(props){
             body: JSON.stringify(data)
         })
         .then((response)=>{
-            console.log(op+" response",response);
+            // console.log(op+" response",response);
             return response.json();
         })
         .then((data)=>{
-            console.log(op+" data",data);
+            // console.log(op+" data",data);
 
             if (op=="histograms") {
-                console.log(op+" data[0]",data.data[0]);
-                console.log(op+" data[1]",data.data[1]);
+                // console.log(op+" data[0]",data.data[0]);
+                // console.log(op+" data[1]",data.data[1]);
                 
-                const outData = {
-                    docs: [],
-                    date: [],
-                    risk: [],
-                }
+                const outData = [];
 
-                console.log("data.data[0].data.length",data.data[0].data.length);
                 for (var i=0; i<data.data[0].data.length; i++){
-                    outData.docs[i] = data.data[0].data[i].value;
-                    outData.date[i] = data.data[0].data[i].date.slice(0,10);
-                    outData.risk[i] = data.data[1].data[i].value;
+                    const obj= {
+                        docs : data.data[0].data[i].value,
+                        date : data.data[0].data[i].date.slice(0,10),
+                        risk : data.data[1].data[i].value,
+                    }
+                    outData.push(obj);
                 }
-                console.log(op+" outData",outData);
+                // console.log(op+" outData",outData);
+                localStorage.setItem("searchHistograms",JSON.stringify(outData));
 
-                get_histograms(outData);
+                set_histograms(outData);
             } else {
                 
                 const outData = {
@@ -266,8 +265,11 @@ function FormSearch(props){
                     outData.influence   [i] = data.items[i].influence   ;
                     outData.similarCount[i] = data.items[i].similarCount;
                 }
+                console.log(op+" outData",outData);
+            
+                localStorage.setItem("searchObjects",JSON.stringify(outData));
 
-                get_objects(outData);
+                set_objects(outData);
             }
         })
         .catch(() => { 
@@ -362,9 +364,10 @@ function FormSearch(props){
         
             const data = getData();
             console.log("data",data);
-            loading_set();
+            set_loading();
             fPostSearch("histograms"    , token, data);
             fPostSearch("objectsearch"  , token, data);
+            
             navigate('/results');
         }
 
@@ -578,17 +581,14 @@ function FormSearch(props){
                 right={39}
                 render={
                     <>
-                        {/* <Link to="/results"
-                        > */}
-                            <Button 
-                                name="Поиск" 
-                                width={305} 
-                                align= "flex-end"
-                                m_bottom={10}
-                                type="submit"
-                                onClick={handleSearh}
-                            />
-                        {/* </Link> */}
+                        <Button 
+                            name="Поиск" 
+                            width={305} 
+                            align= "flex-end"
+                            m_bottom={10}
+                            type="submit"
+                            onClick={handleSearh}
+                        />
                         <DivGray>* Обязательные к заполнению поля</DivGray>
                     </>
                 }
@@ -603,25 +603,26 @@ export default connect(
         token  : state.rLogin[state.rLogin.length-1].token,
     }),
     dispatch => ({
-        get_histograms : (data) => {
+        set_histograms : (data) => {
             dispatch({
-                type: "GET_HISTOGRAMS",
-                docs: data.docs,
-                date: data.date,
-                risk: data.risk,
+                type: "SET_HISTOGRAMS",
+                cards: data,
+                // docs: data.docs,
+                // date: data.date,
+                // risk: data.risk,
             });
         },
-        get_objects : (data) => {
+        set_objects : (data) => {
             dispatch({
-                type: "GET_OBJECTS",
+                type: "SET_OBJECTS",
                 encodedId   : data.encodedId   ,
                 influence   : data.influence   ,
                 similarCount: data.similarCount,
             });
         },
-        loading_set : (data) => {
+        set_loading : (data) => {
             dispatch({
-                type: "LOADING_SET",
+                type: "SET_LOADING",
             });
         },
     })
