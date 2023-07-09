@@ -1,0 +1,42 @@
+/* the slides */
+.slick-slide {
+    width: 124px;
+    height: 124px;
+    margin: 0 0;
+}
+/* the parent */
+.slick-list {
+    margin: 0 0px;
+    /* width: 415px; */
+    /* width: auto; */
+    height: 124px;
+}
+
+.slick-arrow {
+	z-index: 1;
+    content: "";
+	width: 39px;
+    height: 39px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    background-image: url('../../../utils/ButtonArrow/ArrowRight.svg');
+}
+.slick-arrow:hover {
+    background-image: url('../../../utils/ButtonArrow/ArrowRight.svg');
+}
+.slick-prev {
+    transform: rotate(180deg);
+    top: calc(130px/2 - 39px/2);
+    left: calc(-4px - 133px - 39px);
+}
+.slick-next {
+    right: calc(-39px - 4px);
+}
+.slick-prev::before {
+    content: "";
+}
+.slick-next::before {
+    content: "";
+}

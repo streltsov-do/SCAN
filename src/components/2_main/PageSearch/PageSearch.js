@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import styled from "styled-components/macro";
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
@@ -76,30 +77,46 @@ import Window       from './img/Window.svg';
         z-index: 4;
     `
 
-export default function PageSearch() {
+export default function PageSearch(props) {
+    const { logged } = props;
+    const [isLoading, setIsLoading] = useState(true);
+
+    const navigate=useNavigate();
+
+    useEffect(() => {
+
+        if (!logged){
+            setIsLoading(true);
+            navigate("/");
+        } else {
+            setIsLoading(false);
+        }
+    });
 
     return(
-        <DivFlex
-            m_top={69}
-            m_right={0}
-            m_bottom={80}
-            m_left={64}
-            position="relative"
-            render={
-                <>
-                    <DivMain>
-                        <Title>Найдите необходимые данные в пару кликов.</Title>
-                        <TitleDesc>Задайте параметры поиска.<br/>Чем больше заполните, тем точнее поиск</TitleDesc>
-                        <FormSearch/>
-                    </DivMain>
-                    <ImgWindow src={Window}></ImgWindow>
-                    <ImgSearchbar src={Searchbar}></ImgSearchbar>
-                    <ImgRocket src={Rocket}></ImgRocket>
-                    <ImgCharacter src={Character}></ImgCharacter>
-                    <ImgFolders src={Folders}></ImgFolders>
-                    <ImgDocument src={Document}></ImgDocument>
-                </>
-            }
-        />
+            (!isLoading)?
+                <DivFlex
+                    m_top={69}
+                    m_right={0}
+                    m_bottom={80}
+                    m_left={64}
+                    position="relative"
+                    render={
+                        <>
+                            <DivMain>
+                                <Title>Найдите необходимые данные в пару кликов.</Title>
+                                <TitleDesc>Задайте параметры поиска.<br/>Чем больше заполните, тем точнее поиск</TitleDesc>
+                                <FormSearch/>
+                            </DivMain>
+                            <ImgWindow src={Window}></ImgWindow>
+                            <ImgSearchbar src={Searchbar}></ImgSearchbar>
+                            <ImgRocket src={Rocket}></ImgRocket>
+                            <ImgCharacter src={Character}></ImgCharacter>
+                            <ImgFolders src={Folders}></ImgFolders>
+                            <ImgDocument src={Document}></ImgDocument>
+                        </>
+                    }
+                />
+            : <></>
     )
 }

@@ -18,7 +18,7 @@ const Div=styled.div`
 `
     //
         const Date=styled.div`
-            width: 88px;
+            /* width: 88px; */
             height: 19px;
             font-size: 16px;
             line-height: 19px;
@@ -145,6 +145,7 @@ export default function CardDoc(props) {
                             name="Читать в источнике"
                             f_size={16}
                             f_height={19}
+                            onClick={(e)=>( window.open(url, '_blank'))}
                         />
                         <Words>{wordCount} слова</Words>
                     </>

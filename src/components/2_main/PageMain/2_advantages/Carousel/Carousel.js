@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 
 import Slider from "react-slick";
@@ -7,6 +7,7 @@ import Slider from "react-slick";
 // import "~slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import './slick-styles.css';
 
 import Slide from "./Slide/Slide";
 import ButtonArrow from "../../../../utils/ButtonArrow/ButtonArrow";
@@ -17,7 +18,7 @@ import Icon3 from './icon_lock.svg';
 import DivFlex from "../../../../utils/DivFlex/DivFlex";
 
 const Container = styled.div`
-    width: 1346px;
+    /* width: 110px; */
     height: 225px;
     display: flex;
     gap: 4px;
@@ -88,57 +89,61 @@ const arr = [
     },
 ];
 
-const DivContainer=styled.div`
-    display: flex;
-    width: ${400*3+30*2}px;
-    height: 300px;
-    align-items: center;
-`
 const Div=styled.div`
-    border-color: brown;
-    border-radius: 2px;
-    border-style: solid;
-    background-color: red;
-    /* width: 100px; */
-    height: 30px;
+    width: ${props => props.num*430}px;
 `
 
 function Carousel() {
+    const refDiv = useRef(null);
+    const [slideNum, setSlideNum] = useState(1);
+
+    const handeResize = () => {
+        const vOut=(window.innerWidth-51*2-10)/430;
+        if ((vOut!=slideNum)&&(vOut>1)){
+            setSlideNum(parseInt(vOut));
+        }
+    }
+
+    useEffect(() => {
+        handeResize()
+    },[]);
+
+    useEffect(() => {
+        window.addEventListener('resize', handeResize);
+        
+        return () => {
+            window.removeEventListener('resize', handeResize);
+        };
+
+    }, [slideNum]);
+
     var settings = {
         dots: false,
         infinite: true,
         speed: 500,
         row: 1,
         vertical: false,
-        slidesToShow: 3,
-        slidesToScroll: 3
-    };
-    var settings2 = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        row: 1,
-        vertical: false,
-        slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToShow: slideNum,
+        slidesToScroll: slideNum,
+        height: 230,
     };
     return (
-        <>
-            <Container>
-                <ButtonArrow rotate={180} />
-                <SliderDiv>
+        <>            
+            <Div
+                num={slideNum}
+                ref={refDiv}
+            >
+                <Slider {...settings}>
                     {arr.map((item,index) =>
-                        <Slide key={index} icon={item.icon} desc={item.desc} alt={item.alt}></Slide>
+                        <Slide 
+                            key={index} 
+                            icon={item.icon} 
+                            desc={item.desc} 
+                            alt={item.alt}
+                        />
                     )}
-                </SliderDiv>
-                <ButtonArrow />
-            </Container>
-            
-            <Slider {...settings}>
-                {arr.map((item,index) =>
-                    <Slide key={index} icon={item.icon} desc={item.desc} alt={item.alt}></Slide>
-                )}
-            </Slider>
+                </Slider>
+            </Div>
         </>
     );
 }

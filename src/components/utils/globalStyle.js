@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import FontStyles from "./Fonts/FontStyles";
 
-import Rectangle from './Rectangle.svg';
+import Rectangle1 from './Rectangle.svg';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -49,16 +49,26 @@ const GlobalStyle = createGlobalStyle`
         -moz-appearance:textfield; /* Firefox */
     }
 
-    /* ::-webkit-datetime-edit { padding: 1em; }
-    ::-webkit-datetime-edit-fields-wrapper { background: silver; }
-    ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
-    ::-webkit-datetime-edit-month-field { color: blue; }
-    ::-webkit-datetime-edit-day-field { color: green; }
-    ::-webkit-datetime-edit-year-field { color: purple; }
-    ::-webkit-inner-spin-button { display: none; } */
-    ::-webkit-calendar-picker-indicator { 
-            background-image: ${Rectangle}
-        }
+    input[type="date"]::-webkit-calendar-picker-indicator { 
+        opacity: 1;
+        display: block;
+        width: 20px;
+        height: 11px;
+        border-width: thin;
+        position: relative;
+        right: -16px;
+        top: 2px;
+        z-index:1;
+        background-image: url(${Rectangle1});
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator:-moz-suppressed { 
+        display: none;
+    }
+    
+    input[type="date"]:in-range::-webkit-datetime-edit-year-field, 
+    input[type="date"]:in-range::-webkit-datetime-edit-month-field, 
+    input[type="date"]:in-range::-webkit-datetime-edit-day-field, 
+    input[type="date"]:in-range::-webkit-datetime-edit-text { 	color: transparent; }
 `
 
 export default GlobalStyle;

@@ -10,6 +10,7 @@ import ava from "./components/utils/img/ava.png";
 function App(props) {
     const name = "Алексей А.";
     const avatar = ava;
+    const tariff = 1;
 
     return (
         <BrowserRouter>
@@ -21,6 +22,7 @@ function App(props) {
                 />
 
                 <Main 
+                    tariff={tariff}
                 />
 
                 <Footer></Footer>

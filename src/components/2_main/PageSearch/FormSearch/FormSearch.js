@@ -35,7 +35,8 @@ const Form=styled.form`
             line-height: 22px;
             letter-spacing: 0.03em;
             margin-bottom: 20px;
-            margin-top: ${props=>props.m_top}px;
+            margin-top: ${props=>props.m_top || 0}px;
+            z-index: 0;
         `
         const Input=styled.input`
             width: ${props => props.width || 242}px;
@@ -77,16 +78,22 @@ function FormSearch(props){
 
 
     const [inn      , setInn        ] = useState(7710137066 );
-    const [tone     , setTone       ] = useState(2  );
     const [docs     , setDocs       ] = useState(12 );
     const [dateStart, setDateStart  ] = useState("2022-07-22");
     const [dateEnd  , setDateEnd    ] = useState("2023-07-22");
-    const [dateGood , setDateGood   ] = useState(true);
 
-    // const [inn      , setInn        ] = useState(undefined);
-    // const [docs     , setDocs       ] = useState(undefined);
-    // const [dateStart, setDateStart  ] = useState(undefined);
-    // const [dateEnd  , setDateEnd    ] = useState(undefined);
+    // const [inn      , setInn        ] = useState("");
+    // const [docs     , setDocs       ] = useState("");
+    // const [dateStart, setDateStart  ] = useState("");
+    // const [dateEnd  , setDateEnd    ] = useState("");
+
+    const [chkNecessary, setChkNecessary] = useState({
+        inn:  0,
+        docs: 0,
+        date: 0,
+    })
+
+    const [tone     , setTone       ] = useState(2);
 
     const [chkFiltMax   , setChkFiltMax     ] = useState(true);
     const [chkFiltEnd   , setChkFiltBuis    ] = useState(true);
@@ -155,27 +162,31 @@ function FormSearch(props){
     }
 
     const limitInn = (val) => {
+        
+        setChkNecessary({
+            inn: 0,
+            docs: chkNecessary.docs,
+            date: chkNecessary.date,
+        });
+
         if (val.length>10){
             val=val.slice(0,10);
             refInn.current.value=val;
         }
-        // if (val.length==10){
-        //     setInn(val);
-        // }
-        // setInn(0);
         setInn(val);
     }
     const limitDocs = (val) => {
-        let change=false;
+        
+        setChkNecessary({
+            inn : chkNecessary.inn,
+            docs: 0,
+            date: chkNecessary.date,
+        });
+
         if (val>1000){
             val=1000;
-            change=true;
         } else if ((val<1)&&(val!="")) {
             val=1;
-            change=true;
-        }
-        if (change) {
-            refDocs.current.value=val;
         }
         setDocs(val);
     }
@@ -185,12 +196,20 @@ function FormSearch(props){
         arr=arr.map(Number);
 
         if (arr.length==0){
-            setInn(-2);
-            return false;
+            setChkNecessary({
+                inn: -2,
+                docs: chkNecessary.docs,
+                date: chkNecessary.date,
+            });
+            return -2;
         }
         if (arr.length!=10){
-            setInn(-1);
-            return false;
+            setChkNecessary({
+                inn: -1,
+                docs: chkNecessary.docs,
+                date: chkNecessary.date,
+            });
+            return -1;
         }
         const coefs=[2, 4, 10, 3, 5, 9, 4, 6, 8];
 
@@ -200,20 +219,21 @@ function FormSearch(props){
         }
         v_out= v_out%11;
         if (v_out==arr[9]) {
-            return true;
+            return 1;
         }
-        setInn(-1);
-        return false;
+        return -1;
     }
 
     function chkDate(start,end){
-        // console.log("start="+start);
-        // console.log("end="+end);
-        if (start>end) {
-            setDateGood(false);
-            return false;
+        if (    (start>end)
+            ||  (start==undefined)
+            ||  (end==undefined)
+            ||  (start=="")
+            ||  (end=="")
+        ) {
+            return -1;
         }
-        return true;
+        return 1;
     }
     
     function fPostSearch(op,token,data) {
@@ -228,7 +248,6 @@ function FormSearch(props){
             body: JSON.stringify(data)
         })
         .then((response)=>{
-            // console.log(op+" response",response);
             return response.json();
         })
         .then((data)=>{
@@ -265,7 +284,7 @@ function FormSearch(props){
                     outData.influence   [i] = data.items[i].influence   ;
                     outData.similarCount[i] = data.items[i].similarCount;
                 }
-                console.log(op+" outData",outData);
+                // console.log(op+" outData",outData);
             
                 localStorage.setItem("searchObjects",JSON.stringify(outData));
 
@@ -286,25 +305,25 @@ function FormSearch(props){
         const searchContext = {
             "targetSearchEntitiesContext": {
             "targetSearchEntities": 
-                    [
-                        {
-                            "type": "company",
-                            "sparkId": null,
-                            "entityId": null,
-                            "inn": inn,
-                            "maxFullness": chkFiltMax,
-                            "inBusinessNews": chkFiltEnd
-                        }
-                    ],
-                    "onlyMainRole": chkFiltMain,
-                    "tonality": "any",
-                    "onlyWithRiskFactors": chkFiltRisc,
-                    "riskFactors": {
-                        "and": [],
-                        "or": [],
-                        "not": []
-                    },
-                    "themes": {
+                [
+                    {
+                        "type": "company",
+                        "sparkId": null,
+                        "entityId": null,
+                        "inn": inn,
+                        "maxFullness": chkFiltMax,
+                        "inBusinessNews": chkFiltEnd
+                    }
+                ],
+                "onlyMainRole": chkFiltMain,
+                "tonality": (tone==2)?"any":((tone==1)?"negative":"positive"),
+                "onlyWithRiskFactors": chkFiltRisc,
+                "riskFactors": {
+                    "and": [],
+                    "or": [],
+                    "not": []
+                },
+                "themes": {
                     "and": [],
                     "or": [],
                     "not": []
@@ -344,26 +363,25 @@ function FormSearch(props){
     }
     function handleSearh(e){
         e.preventDefault();
-        var err=!chkInn(inn);
-        if(err){
-            console.log("err_inn=",err);
-        }
+        let stateNecessary = {
+            inn : 1,
+            docs: 1,
+            date: 1,
+        };
+
+        stateNecessary.inn=chkInn(inn);
         
-        if ((docs=="")||(docs==-1)){
-            setDocs(-1);
-            err = true;
-            console.log("err_docs=",err);
-        }
-        err = err || !chkDate(dateStart,dateEnd);
-        
-        if (err==true){
-            console.log("err_date=",err);
+        if ((docs=="")||(docs==-1)||(docs==undefined)){
+            stateNecessary.docs=-1;
+        }        
+
+        stateNecessary.date=chkDate(dateStart,dateEnd);
+
+        setChkNecessary(stateNecessary);
+        if ((stateNecessary.inn!=1)||(stateNecessary.docs!=1)||(stateNecessary.date!=1)){
             return;
         } else {
-            console.log("gj");
-        
             const data = getData();
-            console.log("data",data);
             set_loading();
             fPostSearch("histograms"    , token, data);
             fPostSearch("objectsearch"  , token, data);
@@ -388,7 +406,7 @@ function FormSearch(props){
                                     <>
                                         <InputDesc>ИНН компании</InputDesc>
                                         <Asterisk
-                                            $warning={(inn==-1)||(inn==-2)}
+                                            good={(chkNecessary.inn>-1)}
                                         />
                                     </> 
                                 }
@@ -404,13 +422,13 @@ function FormSearch(props){
                                             onChange={(e) => limitInn(e.target.value)}
                                             ref={refInn}
                                             defaultValue={inn}
-                                            $valid={(inn>0)}
+                                            $valid={(chkNecessary.inn>-1)}
                                         ></Input>
                                         <InputErr>
                                             {   
-                                                ((inn==-1)||(inn==-2))
+                                                ((chkNecessary.inn==-1)||(chkNecessary.inn==-2))
                                                 ?
-                                                    (inn==-1)
+                                                    (chkNecessary.inn==-1)
                                                     ? "Введите корректные данные"
                                                     : "Обязательное поле"
                                                 : ""
@@ -439,7 +457,7 @@ function FormSearch(props){
                                     <>
                                         <InputDesc>Количество документов в выдаче</InputDesc>
                                         <Asterisk
-                                            warning={(docs==-1)}
+                                            good={!(chkNecessary.docs==-1)}
                                         />
                                     </> 
                                 }
@@ -456,14 +474,13 @@ function FormSearch(props){
                                             ref={refDocs}
                                             onChange={(e)=>{
                                                 limitDocs(e.target.value)
-
                                             }}
                                             defaultValue={docs}
-                                            $valid={!(docs==-1)}
+                                            $valid={!(chkNecessary.docs==-1)}
                                         ></Input>
                                         <InputErr>
                                             {   
-                                                (docs==-1)
+                                                (chkNecessary.docs==-1)
                                                 ? "Обязательное поле"
                                                 : ""
                                             }
@@ -485,51 +502,74 @@ function FormSearch(props){
                                                 <InputDesc m_top={9}>Диапазон поиска</InputDesc>
                                                 <Asterisk
                                                     top={-1}
-                                                    warning={!dateGood}
+                                                    good={chkNecessary.date!=-1}
                                                 />
                                             </>
                                         }
                                     />
-                                    <DivFlex gap={20} direction="row"
+                                    <DivFlex 
+                                        gap={20} 
+                                        direction="row"
+                                        position="relative"
                                         render={
                                             <>
-                                                {/* <DivFlex
-                                                    position="relative"
-                                                    render={
-                                                        <> */}
-                                                            <Input 
-                                                                type="date" 
-                                                                width={176} 
-                                                                placeholder="Дата начала" 
-                                                                align="start"
-                                                                defaultValue={dateStart}   
-                                                                $valid={dateGood}
-                                                                onChange={(e) => {
-                                                                    setDateStart(e.target.value);
-                                                                    setDateGood(true);
-                                                                }}
-                                                            ></Input>
-                                                            
-                                                            {/* <ArrowDown 
-                                                                rotate={
-                                                                    (false.toString())
-                                                                }
-                                                            /> */}
-                                                        {/* </>
+                                                <Input 
+                                                    type="date"
+                                                    width={176} 
+                                                    align="start"
+                                                    defaultValue={dateStart}   
+                                                    $valid={chkNecessary.date!=-1}
+                                                    onChange={(e) => {
+                                                        setChkNecessary({
+                                                            inn : chkNecessary.inn,
+                                                            docs: chkNecessary.docs,
+                                                            date: 0,
+                                                        });
+                                                        setDateStart(e.target.value);
+                                                    }}
+                                                ></Input>
+                                                <DivFlex
+                                                    position="absolute"
+                                                    top="13"
+                                                    left="44"
+                                                    render="Дата начала"
+                                                    color= "#949494"
+                                                    opacity= "0.4000000059604645"
+                                                    letter_spacing="0.42px"
+                                                    display={
+                                                        ((dateStart=="")||(dateStart==undefined))?"flex":"none"
                                                     }
-                                                /> */}
+                                                />
                                                 <Input 
                                                     type="date" 
                                                     width={176} 
-                                                    placeholder="Дата конца"  
                                                     align="start"
                                                     defaultValue={dateEnd}
-                                                    $valid={dateGood}               
+                                                    $valid={chkNecessary.date!=-1}
                                                     onChange={(e) => {
+                                                        setChkNecessary({
+                                                            inn : chkNecessary.inn,
+                                                            docs: chkNecessary.docs,
+                                                            date: 0,
+                                                        });
                                                         setDateEnd(e.target.value);
-                                                        setDateGood(true);
                                                     }}
                                                 ></Input>
+                                                {/* <ArrowDown
+                                                    right={8.56}
+                                                /> */}
+                                                <DivFlex
+                                                    position="absolute"
+                                                    top="13"
+                                                    right="51"
+                                                    render="Дата конца"
+                                                    color= "#949494"
+                                                    opacity= "0.4000000059604645"
+                                                    letter_spacing="0.42px"
+                                                    display={
+                                                        ((dateEnd=="")||(dateEnd==undefined))?"flex":"none"
+                                                    }
+                                                />
                                             </>
                                         }
                                     />
@@ -539,9 +579,9 @@ function FormSearch(props){
                                         render={
                                             <InputErr>
                                                 {   
-                                                    (!dateGood)
+                                                    (chkNecessary.date==-1)
                                                     ? "Введите корректные данные"
-                                                    : " "
+                                                    : ""
                                                 }
                                             </InputErr>
                                         }
@@ -597,7 +637,6 @@ function FormSearch(props){
     )
 }
 
-// export default FormSearch();
 export default connect(
     state => ({
         token  : state.rLogin[state.rLogin.length-1].token,
@@ -607,9 +646,6 @@ export default connect(
             dispatch({
                 type: "SET_HISTOGRAMS",
                 cards: data,
-                // docs: data.docs,
-                // date: data.date,
-                // risk: data.risk,
             });
         },
         set_objects : (data) => {

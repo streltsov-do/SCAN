@@ -8,7 +8,7 @@ function init(){
         expire  : 0,
         loading : false,
     }
-    console.log("localData",localData);
+    // console.log("localData",localData);
     if (localData!==null){
         initialValue={
             id      : 0,

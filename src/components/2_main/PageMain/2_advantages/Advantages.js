@@ -31,9 +31,12 @@ function Advantages() {
     return (
         <Container>
             <Title>Почему именно мы</Title>
-            <Carousel></Carousel>
+            <Carousel/>
             <div>
-                <PerfectImg src={Perfect} alt="Perfect"></PerfectImg>
+                <PerfectImg 
+                    src={Perfect} 
+                    alt="Perfect"
+                ></PerfectImg>
             </div>
         </Container>
     )

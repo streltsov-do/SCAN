@@ -1,13 +1,22 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+const Container2 = styled.div`
+    height: 250px;
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+`
 const Container = styled.div`
     width: 400px;
     height: 225px;
     background: #FFFFFF;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20);
     border-radius: 10px;
     padding: 22px 0 0 19px;
+    position: relative;
 `
     const IconDiv = styled.div`
         width: 65px;
@@ -30,10 +39,12 @@ const Container = styled.div`
 function Slide(props) {
     
     return (
-        <Container>
-                <IconImg src={props.icon} alt={props.alt}></IconImg>
-            <H3styled>{props.desc}</H3styled>
-        </Container>
+        <Container2>
+            <Container>
+                    <IconImg src={props.icon} alt={props.alt}></IconImg>
+                <H3styled>{props.desc}</H3styled>
+            </Container>
+        </Container2>
     );
 }
 

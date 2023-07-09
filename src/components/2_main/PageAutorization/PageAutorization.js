@@ -18,6 +18,7 @@ const inited=true;
 const Container=styled.div`
     display: flex;
     padding: 69px 0 80px 60px;
+    position: relative;
 `
     // div
         const Title=styled.div`
@@ -44,7 +45,9 @@ const Container=styled.div`
         background: #FFFFFF;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
         border-radius: 10px;
-        position: relative;
+        position: absolute;
+        right: 141px;
+        top: 69px
     `
         const ImgLock=styled.img`
             width: 75.22px;
@@ -157,11 +160,11 @@ function PageAutorization(props) {
             })
         })
             .then((response)=>{
-                console.log("response",response);
+                // console.log("response",response);
                 return response.json();
             })
             .then((data)=>{
-                console.log("AUTH data",data);
+                // console.log("AUTH data",data);
                 if (data.errorCode==undefined){
                     props.auth(
                         data.accessToken,
@@ -179,7 +182,7 @@ function PageAutorization(props) {
 
                     navigate("/");
                 } else {
-                    console.log("AUTH",data.message);
+                    // console.log("AUTH",data.message);
                     setStatePass(0);
                     return true;
                 }

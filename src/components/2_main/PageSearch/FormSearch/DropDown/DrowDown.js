@@ -104,6 +104,7 @@ export default function DropDown(props) {
     return(
         <DivFlex
             position="relative"
+            zindex={2}
             render={
                 <>
                     <DivFlex
@@ -133,6 +134,7 @@ export default function DropDown(props) {
                             top={43}
                             height={43*3}
                             width={242}
+                            background_color="#FFFFFF"
                             render={
                                 items.map((item,index)=>
                                     <DivFlex
@@ -141,7 +143,6 @@ export default function DropDown(props) {
                                         top={43*index}
                                         height={43}
                                         position="absolute"
-                                        zindex= {2}
                                         render={
                                             <>
                                                 <Btn

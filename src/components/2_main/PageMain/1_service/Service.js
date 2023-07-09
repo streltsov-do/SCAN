@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { useNavigate } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
 
 import PicTitle from './pic1.png';
 import Button from "../custom/Button/Button";
 
 const Container=styled.div`
-    width: 1320px;
+    /* width: 1320px; */
     height: 620px;
     display: flex;
     position: relative;
@@ -46,9 +47,11 @@ const Container=styled.div`
     const TitleImg=styled.img`
         width: 629px;
         height: 593px;
-        left: ${0-(629-577)}px;
+        /* margin-left: 530px; */
+        left:  ${props => props.left};
+        right: ${props => props.right};
         z-index: 1;
-        position: relative;
+        position: absolute;
     `
 
 
@@ -56,12 +59,38 @@ function Service(props) {
     const {logged} = props;
     const navigate=useNavigate();
     
+    const refDiv = useRef(null);
+
+    const [ imgOffset, setImgOffset] = useState(["530px","60px"]);
+
     function handleClick(){
-        navigate("/search")
+        navigate("/search");
     }
 
+    function handeResize() {
+        let v_width = refDiv.current.offsetWidth;
+        let lOffset = (v_width<1210)?"522px":"auto";
+        let rOffset = (v_width<1210)?"auto":"60px";
+        setImgOffset([lOffset,rOffset]);
+    }
+
+    useEffect(() => {
+        handeResize()
+    },[]);
+
+    useEffect(() => {
+        window.addEventListener('resize', handeResize);
+        
+        return () => {
+            window.removeEventListener('resize', handeResize);
+        };
+
+    }, [imgOffset]);
+
     return (
-        <Container>
+        <Container
+            ref={refDiv}
+            >
             <ContainerTitle>
                 <Title>сервис по поиску<br/>публикаций о компании<br/>по его ИНН</Title>
                 <TitleDesc>Комплексный анализ публикаций, получение данных<br/>в формате PDF на электронную почту.</TitleDesc>
@@ -72,7 +101,11 @@ function Service(props) {
                     :   <></>
                 }
             </ContainerTitle>
-            <TitleImg src={PicTitle}>
+            <TitleImg 
+                src={PicTitle}
+                left={imgOffset[0]}
+                right={imgOffset[1]}
+            >
             </TitleImg>
         </Container>
     )
