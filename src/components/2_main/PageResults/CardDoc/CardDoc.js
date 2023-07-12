@@ -12,13 +12,10 @@ const Div=styled.div`
     padding: 19px 0 35px 30px;
     border-radius: 10px;
     margin-bottom: 38px;
-    /* display: flex;
-    flex-direction: column; */
     position: relative;
 `
     //
         const Date=styled.div`
-            /* width: 88px; */
             height: 19px;
             font-size: 16px;
             line-height: 19px;
@@ -41,10 +38,8 @@ const Div=styled.div`
         margin: 24px 0 14px 0;
     `
     const Type=styled.div`
-        /* width: 157px; */
         padding: 0 11px 0 14px;
         height: 22px;
-        /* background: #FFB64F; */
         background: ${props => props.bg};
         border-radius: 5px;
         font-size: 12px;
@@ -72,7 +67,6 @@ const Div=styled.div`
     `
     const Words=styled.div`
         position: absolute;
-        /* right: 28px; */
         bottom: 0;
         right: 0;
         font-size: 16px;
@@ -130,8 +124,6 @@ export default function CardDoc(props) {
             </Desc>
             <DivFlex 
                 position='absolute'
-                // justify_s="end"
-                // align_s="flex-end"
                 bottom={35}
                 width= {338+223}
 

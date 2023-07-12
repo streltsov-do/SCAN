@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 const Div=styled.div`
     display         :${props => props.display || "flex"};
     width           :${props => (props.width    ==undefined)?"auto":props.width +"px"};
+    min-width       :${props => (props.min_width==undefined)?"auto":props.min_width +"px"};
     height          :${props => (props.height   ==undefined)?"auto":props.height+"px"};
     flex-direction  :${props => props.direction         };
     justify-content :${props => props.justify           };
@@ -48,6 +49,7 @@ export default function DivFlex(props){
         display     ,
         render      ,
         width       ,
+        min_width   ,
         height      ,
         direction   ,
         justify     ,
@@ -88,6 +90,7 @@ export default function DivFlex(props){
         <Div        
             display         ={display           }
             width           ={width             }
+            min_width       ={min_width         }
             height          ={height            }
             direction       ={direction         }
             justify         ={justify           }

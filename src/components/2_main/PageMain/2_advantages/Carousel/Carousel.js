@@ -1,45 +1,18 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
+import { useMediaQuery } from "react-responsive";
 
 import Slider from "react-slick";
-// import css from "./Slider.css";
-// import "~slick-carousel/slick/slick.css"; 
-// import "~slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import './slick-styles.css';
+import './sliderMain.css';
 
 import Slide from "./Slide/Slide";
-import ButtonArrow from "../../../../utils/ButtonArrow/ButtonArrow";
+import { mediaMaxWidh } from "../../../../utils/consts";
 
 import Icon1 from './icon_time.svg';
 import Icon2 from './icon_search.svg';
 import Icon3 from './icon_lock.svg';
-import DivFlex from "../../../../utils/DivFlex/DivFlex";
-
-const Container = styled.div`
-    /* width: 110px; */
-    height: 225px;
-    display: flex;
-    gap: 4px;
-    align-items: center;
-`
-    const SliderDiv = styled.div`
-        width: ${400*3+30*2}px;
-        height: 225px;
-        display: flex;
-        gap: 30px;
-    `
-    const BtnArrow=styled.button`
-        width: 39px;
-        height: 39px;
-        padding: 0;
-        border: none;
-        background-color: transparent;
-    `
-        const ImgRotate=styled.img`
-            transform: rotate(180deg);
-        `
 
 const arr = [
     {
@@ -90,8 +63,11 @@ const arr = [
 ];
 
 const Div=styled.div`
-    width: ${props => props.num*430}px;
-`
+    /* height: 430px; */
+    height: ${props => props.height}px;
+    width: ${props => props.num*props.width}px;
+    margin-bottom: ${props => props.m_bottom}px;
+`;
 
 function Carousel() {
     const refDiv = useRef(null);
@@ -106,7 +82,7 @@ function Carousel() {
 
     useEffect(() => {
         handeResize()
-    },[]);
+    });
 
     useEffect(() => {
         window.addEventListener('resize', handeResize);
@@ -116,6 +92,8 @@ function Carousel() {
         };
 
     }, [slideNum]);
+
+    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
 
     var settings = {
         dots: false,
@@ -132,8 +110,11 @@ function Carousel() {
             <Div
                 num={slideNum}
                 ref={refDiv}
+                width={isMobile?(298+30):430}
+                height={isMobile?(188+30):255}
+                m_bottom={isMobile?80:0}
             >
-                <Slider {...settings}>
+                <Slider {...settings} className="sliderMain">
                     {arr.map((item,index) =>
                         <Slide 
                             key={index} 

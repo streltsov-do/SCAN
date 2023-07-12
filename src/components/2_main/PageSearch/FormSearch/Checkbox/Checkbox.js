@@ -4,7 +4,6 @@ import styled from "styled-components/macro";
 import DivFlex from "../../../../utils/DivFlex/DivFlex";
 
 const Input=styled.input`
-    /* width: 100px; */
     width: 20px;
     height: 20px;
 `

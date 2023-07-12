@@ -13,10 +13,10 @@ const Btn=styled.button`
     margin-bottom   : ${props => (props.m_bottom ==undefined)?0:props.m_bottom+"px"};
     margin-left     : ${props => (props.m_left   ==undefined)?0:props.m_left  +"px"};
     position        : ${props => props.position   };
-    top             : ${props => (props.top      ==undefined)?0:props.top     +"px"};
-    right           : ${props => (props.right    ==undefined)?0:props.right   +"px"};
-    bottom          : ${props => (props.bottom   ==undefined)?0:props.bottom  +"px"};
-    left            : ${props => (props.left     ==undefined)?0:props.left    +"px"};
+    top             : ${props => (props.top      ==undefined)?'auto':props.top     +"px"};
+    right           : ${props => (props.right    ==undefined)?'auto':props.right   +"px"};
+    bottom          : ${props => (props.bottom   ==undefined)?'auto':props.bottom  +"px"};
+    left            : ${props => (props.left     ==undefined)?'auto':props.left    +"px"};
     align-self      : ${props => props.align      };
     justify-self    : ${props => props.justify    };
     font-family     : 'Inter';
@@ -57,7 +57,6 @@ export default function Button(props) {
 
     const bg  = "#"+(background || "5970FF") + (disabled ? "88":"FF");
 
-    // console.log("bg",bg);
     return(
         <Btn 
             width       ={width     }

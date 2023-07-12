@@ -1,11 +1,11 @@
 import React from "react";
-import styled, {css, keyframes} from "styled-components/macro";
+import styled, {keyframes} from "styled-components/macro";
 
 import loader from './loader.svg';
 
 const StatsLoading = styled.div`
     width: ${props => props.width || 175}px;
-    min-width: 175px;
+    min-width: ${props => props.min_width || 175}px;
     min-height: 63px;
     padding: 0;
     display: flex;
@@ -26,9 +26,9 @@ const StatsLoading = styled.div`
     `
 
 const Loader = (props) => {
-    const { widthDiv, widthLoader } = props;
+    const { widthDiv, widthLoader, min_widthDiv } = props;
     return(
-        <StatsLoading width={widthDiv}>
+        <StatsLoading width={widthDiv} min_width={min_widthDiv}>
             <StatsLoader width={widthLoader} src={loader} alt="loading"></StatsLoader>
         </StatsLoading>
     )

@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom"
-import styled, {css} from 'styled-components/macro';
+import React, { useEffect } from "react";
+import { Route, Routes } from "react-router-dom"
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import PageMain from "./PageMain/PageMain";
 import PageAutorization from "./PageAutorization/PageAutorization";
 import PageSearch from "./PageSearch/PageSearch";
 import PageResults from "./PageResults/PageResults";
+import NotFound from "../utils/NotFound/NotFound";
 
 function Main(props) {
     const {logged, tariff, logout} = props;
 
     useEffect(() => {
-        const localData1 = localStorage.getItem("auth");
         const localData = JSON.parse(localStorage.getItem("auth"));
 
         let authorised=false;
@@ -36,7 +34,6 @@ function Main(props) {
 
     return (
         <Routes>
-            {/* <Route path="*" element={<NotFound></NotFound>} */}
 
             <Route exact path="/"
                 element={
@@ -67,6 +64,11 @@ function Main(props) {
                         logged={logged}
                     />
                 }
+            />
+
+            <Route 
+                path="*" 
+                element={<NotFound/>}
             />
         </Routes>
     )

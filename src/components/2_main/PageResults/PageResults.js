@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
@@ -21,7 +21,8 @@ const DivMain=styled.div`
 const ImgSearching=styled.img`
     position: absolute;
     top: 20px;
-    right: 103.44px;
+    left : ${props => props.left};
+    right: ${props => props.right};
     z-index: 1;
 `
     const Title=styled.h1`
@@ -89,16 +90,16 @@ const dummyPublications = [
 
 function PageResults(props){
     const { logged } = props;
-    const [loading, setLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(true);
+    const [ loading,    setLoading  ] = useState(true);
+    const [ isLoading,  setIsLoading] = useState(true);
     const { state, token } = props;
-    const [publications, setPublications ] = 
+    const [ publications, setPublications ] = 
         useState([])
         // useState(dummyPublications)
         ;
     const [ total, setTotal ] = useState(0);
     const [ showNum, setShowNum ] = useState(0);
-    const [ aa, setAa ] = useState(0);
+    const [ imgOffset, setImgOffset] = useState(["auto","103.44px"]);
 
     const navigate=useNavigate();
 
@@ -125,7 +126,28 @@ function PageResults(props){
             return fPostDocs();
         }
     },[showNum,total,loading]);
+    
+    function handeResize(){
+        const v_width=window.innerWidth;
         
+        let left = (v_width<1210)?"521px":"auto";
+        let right = (v_width<1210)?"auto":"103.44px";
+        setImgOffset([left,right]);
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handeResize);
+        
+        return () => {
+            window.removeEventListener('resize', handeResize);
+        };
+
+    }, [imgOffset]);
+
+    useEffect(() => {
+        handeResize();
+    }, []);
+
     function fPostDocs() {
         let maxI=10;
         const len=state.encodedId.length-showNum;
@@ -210,7 +232,11 @@ function PageResults(props){
                         </>
                     }
                 />
-                <ImgSearching src={Searching}></ImgSearching>
+                <ImgSearching 
+                    src={Searching}
+                    left={imgOffset[0]}
+                    right={imgOffset[1]}
+                ></ImgSearching>
                 <SearchCarousel 
                     loading={loading} 
                     parent_p_left={p_left}
@@ -246,7 +272,7 @@ function PageResults(props){
                     render={
                         <>  
                             {
-                                (showNum!=-1)
+                                ((showNum!=-1)&&(((publications!=undefined)&&(publications.length>0))))
                                 ?
                                     <Button
                                         onClick = {(e) => {

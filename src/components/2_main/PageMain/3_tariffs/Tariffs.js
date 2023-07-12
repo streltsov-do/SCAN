@@ -1,26 +1,40 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+import Card from "./Card/Card";
+import { mediaMaxWidh } from "../../../utils/consts";
+
 import Icon1 from './icon1.svg';
 import Icon2 from './icon2.svg';
 import Icon3 from './icon3.svg';
 
-import Card from "./Card/Card";
+const gap = 37;
+const gapMedia = 40;
 
 const Container = styled.div`
     width: 1320px;
     height: 664px;
     position: relative;
+
+    @media (max-width: ${mediaMaxWidh}) {
+        height: ${34+37 + 512*3+gapMedia*2 +43}px;
+    }
 `
-    const Title = styled.div`
+    const Title = styled.h1`
         font-family: 'Ferry';
         font-style: normal;
         font-weight: 900;
         font-size: 45px;
         line-height: 54px;
         margin-bottom: 70px;
+
+        @media (max-width: ${mediaMaxWidh}) {
+            font-size: 28px;
+            line-height: normal;
+            letter-spacing: 0.28px;
+            margin-bottom: 37px;
+        }
     `
-    const gap = 37;
     const RatesMain=styled.div`
         display: flex;
         justify-content: space-between;
@@ -28,6 +42,14 @@ const Container = styled.div`
         height: 540px;
         width: ${415*3+gap*2};
         position: relative;
+
+        @media (max-width: ${mediaMaxWidh}) {
+            flex-direction: column;
+            justify-content: space-between;
+            height: ${512*3+gapMedia*2};
+            width : 335px;
+            gap: ${gapMedia}px;
+        }
     `
 
 const arr=[

@@ -2,19 +2,25 @@ import React from "react";
 import styled from "styled-components/macro";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import PicTitle from './pic1.png';
 import Button from "../custom/Button/Button";
+import { mediaMaxWidh } from "../../../utils/consts";
 
 const Container=styled.div`
-    /* width: 1320px; */
     height: 620px;
     display: flex;
     position: relative;
     padding-left: 9px;
+    @media (max-width: ${mediaMaxWidh}) {
+        padding: 0;
+        width : auto;
+        height: auto;
+        flex-direction: column;
+    }
 `
-    const ContainerTitle=styled.div`
-        /* width: 629px; */
+    const DivTItle=styled.div`
         width: 743px;
         height: 593px;
         z-index: 2;
@@ -22,6 +28,11 @@ const Container=styled.div`
         display: flex;
         flex-direction: column;
         position: relative;
+        @media (max-width: ${mediaMaxWidh}) {
+            padding-top: 0;
+            width : auto;
+            height: auto;
+        }
     `
         const Title=styled.h1`
             width: 743px;
@@ -34,6 +45,14 @@ const Container=styled.div`
             letter-spacing: 0.01em;
             text-align: left;
             margin-bottom: 20px;
+            @media (max-width: ${mediaMaxWidh}) {
+                width : auto;
+                height: auto;
+                font-size: 28px;
+                line-height: normal;
+                letter-spacing: 0.28px;
+                margin-bottom: 19px;
+            }
         `
         const TitleDesc=styled.h3`
             width: 550px;
@@ -43,15 +62,26 @@ const Container=styled.div`
             line-height: 24px;
             text-align: left;
             margin-bottom: 70px;
+            @media (max-width: ${mediaMaxWidh}) {
+                width : auto;
+                height: auto;
+                margin-bottom: 32px;
+            }
         `
     const TitleImg=styled.img`
         width: 629px;
         height: 593px;
-        /* margin-left: 530px; */
         left:  ${props => props.left};
         right: ${props => props.right};
         z-index: 1;
         position: absolute;
+        @media (max-width: ${mediaMaxWidh}) {
+            position: relative;
+            left:  0;
+            width: 347.182px;
+            height: 327.312px;
+            margin-bottom: 55.39px;
+        }
     `
 
 
@@ -87,20 +117,26 @@ function Service(props) {
 
     }, [imgOffset]);
 
+    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+
     return (
         <Container
             ref={refDiv}
             >
-            <ContainerTitle>
-                <Title>сервис по поиску<br/>публикаций о компании<br/>по его ИНН</Title>
+            <DivTItle>
+                <Title>сервис по поиску<br/>публикаций {isMobile?<br/>:""}о компании<br/>по его ИНН</Title>
                 <TitleDesc>Комплексный анализ публикаций, получение данных<br/>в формате PDF на электронную почту.</TitleDesc>
                 {   
                     logged
                     ?
-                        <Button name={"Запросить данные"} onClick={handleClick}></Button>
+                        <Button 
+                            name={"Запросить данные"} 
+                            onClick={handleClick}
+                            m_bottom={39}
+                        />
                     :   <></>
                 }
-            </ContainerTitle>
+            </DivTItle>
             <TitleImg 
                 src={PicTitle}
                 left={imgOffset[0]}

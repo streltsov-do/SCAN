@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import Button from "../../PageMain/custom/Button/Button";
 import Checkbox from "./Checkbox/Checkbox";
 import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
-import ArrowDown from "./ArrowDown/ArrowDown";
 
 const Form=styled.form`
     width: 872px;
@@ -52,7 +51,6 @@ const Form=styled.form`
             font-size: 14px;
             line-height: 17px;
             letter-spacing: 0.03em;
-            /* color: rgba(148, 148, 148); */
             color: ${props => (!props.$valid)?"#FF5959":"black"};
         `
         const InputErr=styled.div`
@@ -555,9 +553,6 @@ function FormSearch(props){
                                                         setDateEnd(e.target.value);
                                                     }}
                                                 ></Input>
-                                                {/* <ArrowDown
-                                                    right={8.56}
-                                                /> */}
                                                 <DivFlex
                                                     position="absolute"
                                                     top="13"

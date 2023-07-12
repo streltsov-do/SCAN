@@ -1,20 +1,15 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import CardResult from "./CardResult/CardResult";
-import ButtonArrow from "../../../utils/ButtonArrow/ButtonArrow";
 import Loader from "../../../utils/Loading/Loader";
-import { connect } from "react-redux";
 
 import Slider from "react-slick";
-// import css from "./Slider.css";
-// import "~slick-carousel/slick/slick.css"; 
-// import "~slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./slick-styles.css";
+import "./sliderResults.css";
 
 
 const cardWidth = 131;
@@ -120,7 +115,7 @@ export default function SearchCarousel(props) {
     const {parent_p_left, loading, state} = props;
     const cards = state.cards;
 
-    const [displayNum,setDisplayNum] = useState(0);
+    const [displayNum,setDisplayNum] = useState(1);
 
     function handeResize(){
         const widthDobbyMax=window.innerWidth-descWidth - parent_p_left-2*btnWidth-30;
@@ -143,7 +138,7 @@ export default function SearchCarousel(props) {
 
     useEffect(() => {
         handeResize();
-    }, [displayNum]);
+    }, []);
 
     var settings = {
         dots: false,
@@ -156,9 +151,11 @@ export default function SearchCarousel(props) {
         height: cardHeight,
     };
 
+    const cWidth = displayNum*cardWidth;
+
     return (
         <DivFlex
-            width={displayNum*(cardWidth)+descWidth}
+            width={cWidth+descWidth}
             m_bottom={107}
             render={
                 <Container>
@@ -173,22 +170,27 @@ export default function SearchCarousel(props) {
                                 <DivFlex
                                     direction="column"
                                     justify="center"
-                                    width={displayNum*cardWidth}
+                                    width={cWidth}
+                                    min_width={262}
+                                    m_left={descWidth}
                                     render={
                                         <>
+                                            {/* TODO: Плавное уменьшение ширины лоадера */}
                                             <Loader 
-                                                widthDiv={displayNum*cardWidth}
+                                                widthDiv={(cWidth < 262)?262:displayNum*cardWidth}
                                                 widthLoader={50}
                                             />
-                                            <LoaderDesc >Загружаем данные</LoaderDesc>
+                                            <LoaderDesc
+                                                width={(cWidth)+"px"}
+                                            >Загружаем данные</LoaderDesc>
                                         </>
                                     }
                                 />
                             :
                                 <Div
-                                    width={displayNum*cardWidth}
+                                    width={cWidth}
                                 >
-                                    <Slider {...settings}>
+                                    <Slider {...settings} className="sliderResults">
                                         {cards.map((item,index) =>
                                             <CardResult  
                                                 key   ={index                 }
@@ -206,10 +208,4 @@ export default function SearchCarousel(props) {
             }
         />
     )
-}
-
-// export default connect(
-//     state => ({
-//         state : state.rSearch[state.rSearch.length-1]
-//     }),
-// )(SearchCarousel);
+};

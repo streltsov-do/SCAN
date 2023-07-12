@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components/macro";
+import {useMediaQuery} from "react-responsive";
+
 import Button from "../../custom/Button/Button";
+import { mediaMaxWidh } from "../../../../utils/consts";
 
 import CheckMark from './CheckMark.svg'
 
-const cWidth=415;
+const cWidth =415;
 const cHeight=540;
 const tHeight=132;
+
+const cMediaWidth =335;
+const cMediaHeight=512;
+const tMediaHeight=132;
 
 const Div=styled.div`
     width: ${cWidth}px;
@@ -16,6 +23,10 @@ const Div=styled.div`
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     position: relative;
+    @media (max-width: ${mediaMaxWidh}) {
+        width: ${cMediaWidth}px;
+        height: ${cMediaHeight}px;
+    }
 `
     const TitleDiv=styled.div`
         width: ${cWidth}px;
@@ -26,6 +37,10 @@ const Div=styled.div`
         display: flex;
         position: relative;
         margin: -2px 0 0 -2px;
+        @media (max-width: ${mediaMaxWidh}) {
+            width: ${cMediaWidth}px;
+            height: ${tMediaHeight}px;
+        }
     `
         const Title=styled.div`
             color: ${props => props.color};
@@ -39,7 +54,7 @@ const Div=styled.div`
             font-size: 18px;
             line-height: 22px;
         `
-        const Icon=styled.img`
+        const IconImg=styled.img`
             font-size: 18px;
             line-height: 22px;
             position: absolute;
@@ -47,12 +62,23 @@ const Div=styled.div`
             height  : ${props => props.height   }px;
             top     : ${props => props.top      }px;
             right   : ${props => props.right    }px;
+            @media (max-width: ${mediaMaxWidh}) {
+                width: 59px;
+                height: 53.181px;
+                top   : 13px;
+                right : 5px;
+            }
         `
     const MainDiv=styled.div`
         width: ${cWidth}px;
         height: ${cHeight-tHeight}px;
         padding: 33px 0 24px 30px;
         position: relative;
+        @media (max-width: ${mediaMaxWidh}) {
+            width: ${cMediaWidth}px;
+            height: ${cMediaHeight-tHeight}px;
+            padding: 20px 0 0 24px;
+        }
     `   
         const Current=styled.div`
             position: absolute;
@@ -66,17 +92,31 @@ const Div=styled.div`
             color: white;
             right: 10px;
             top:12px;
+            @media (max-width: ${mediaMaxWidh}) {
+                font-size: 12px;
+                right: 10px;
+                top:6px;
+                width: 120px;
+                height: 18px;
+            }
         `
         const PriceDiv=styled.div`
             display: flex;
             gap: 19px;
             margin-bottom: 10px;
             align-items: center;
+            @media (max-width: ${mediaMaxWidh}) {
+                gap: 10px;
+            }
         `
             const PriceSale=styled.div`
                 font-weight: 500;
                 font-size: 30px;
                 line-height: 36px;
+                /* @media (max-width: ${mediaMaxWidh}) {
+                    font-size: 30px;
+                    letter-spacing: 0.3px;
+                } */
             `
             const Price=styled.div`
                 font-weight: 500;
@@ -84,19 +124,32 @@ const Div=styled.div`
                 line-height: 30px;
                 text-decoration: line-through;
                 opacity: 0.5;
+                color: #000;
             `
         const PriceInstallment=styled.div`
             font-size: 18px;
             line-height: 22px;
             margin-bottom: 59px;
             height: 22px;
+            @media (max-width: ${mediaMaxWidh}) {
+                font-weight: 400;
+                line-height: normal;
+                display: flex;
+                width: 276px;
+                height: 44px;
+                margin-bottom: 37px;
+            }
         `
         const TariffDesc=styled.div`
             font-weight: 500;
             font-size: 20px;
             line-height: 24px;
             margin-bottom: 10px;
-            
+            @media (max-width: ${mediaMaxWidh}) {
+                font-size: 18px;
+                letter-spacing: 0.18px;
+                line-height: normal;
+            }
         `
             const TariffOptions=styled.div`
                 display: flex;
@@ -111,10 +164,18 @@ const Div=styled.div`
                         width: 20px;
                         height: 20px;
                         margin-right: 8px;
+                        @media (max-width: ${mediaMaxWidh}) {
+                            width: 16px;
+                        }
                     `
                     const OptionDecs=styled.div`
                         font-size: 18px;
                         line-height: 22px;
+                        @media (max-width: ${mediaMaxWidh}) {
+                            font-size: 16px;
+                            line-height: normal;
+                            letter-spacing: 0.16px;
+                        }
                     `
 
 
@@ -130,6 +191,9 @@ function Card(props) {
 
     const p_installment=price.installment;
     const installment=(p_installment==0)?"":`или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
+    
+    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    
     return(
         <Div color={divColor}>
             <TitleDiv color={color}>
@@ -137,13 +201,13 @@ function Card(props) {
                     <Title color={titleColor}>{title}</Title>
                     <TitleDesc color={titleColor}>{titleDesc}</TitleDesc>
                 </div>
-                <Icon 
+                <IconImg 
                     src     ={icon.img    }
                     width   ={icon.width  }
                     height  ={icon.width  }
                     top     ={icon.top    }
                     right   ={icon.right  }
-                />
+                ></IconImg>
             </TitleDiv>
             <MainDiv>
                 {   
@@ -168,13 +232,16 @@ function Card(props) {
                     }
                 </TariffOptions>
                 <Button 
-                    width       ={355}
+                    width       ={isMobile?286.566:355}
                     height      ={59}
                     background  ={btnBg}
                     color       ={btnColor}
                     name        ={btnDesc}
                     f_size      ={20}
                     f_height    ={24}
+                    position    ="absolute"
+                    bottom      ={33}
+                    right       ={24}
                 />
             </MainDiv>
         </Div>

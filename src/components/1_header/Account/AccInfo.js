@@ -2,27 +2,31 @@ import React, { useEffect } from "react";
 import styled from "styled-components/macro";
 import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 
-import Logged from "./logged/Logged";
+import UserStats from "./UserStats/UserStats";
 import UserAcc from "./user/UserAcc";
+import { mediaMaxWidh } from "../../utils/consts";
+import UserDropdown from "./user/UserDropdown/UserDropdown";
+import BtnMenu from "./user/BtnMenu/BtnMenu";
+
 
 const Stats = styled.div`
     width: 175px;
     height: 63px;
-    /* background: #D9D9D9; */
-    /* opacity: 0.3; */
     background: rgba(217,217,217, 0.3);
     border-radius: 5px;
     padding: 0;
-
     display: flex;
-    /* display: none; */
     justify-content: space-between;
     align-items: center;
-    /* flex-direction: column; */
     gap: 7px;
+    @media (max-width: ${mediaMaxWidh}) {
+        width: 132px;
+        height: 75px;
+        flex-shrink: 0;
+    }
 `
-
 
 const Autorization=styled.div`
     min-width: 251px;
@@ -68,19 +72,14 @@ function fGetAccInfo(token,loadingChange) {
         },
     })
         .then((response)=>{
-            console.log("AccInfo response",response);
-            // const vOut = response.url;
-            // console.log("response url",vOut);
-            // console.log("response.body",response.body);
-            // console.log("response.body.accessToken",response.body.accessToken);
-            // console.log("response.body.expire",response.body.expire);
+            // console.log("AccInfo response",response);
             if (response.ok) {
                 return response.json();
             }
             return Promise.reject(response);
         })
         .then((data)=>{
-            console.log("AccInfo",data);
+            // console.log("AccInfo",data);
             loadingChange(false);
         })
         .catch(() => { 
@@ -91,41 +90,68 @@ function fGetAccInfo(token,loadingChange) {
 
 function AccInfo(props) {
 
-    const {auth, token, logged, loading, logout, name, avatar} = props;
+    const {
+        auth, token, logged, loading, logout, name, avatar,
+        openMenu, isMenuOpened
+    } = props;
 
     const navigate=useNavigate();
-
+    
+    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    
     useEffect(()=>{
         if (loading) {
             fGetAccInfo(token,auth);
         }
     })
 
-    const fLogout = () => {
-        localStorage.removeItem("auth");
-        logout();
-        navigate('/');
-    }
+    // const logout = () => {
+    //     localStorage.removeItem("auth");
+    //     logout();
+    //     navigate('/');
+    // }
 
     return(
         <>
-            {
-                logged?
-                    <>
-                        <Stats>
-                            <Logged 
-                                loading={loading}
-                                used={1}
-                                limit={1}
-                            />
-                        </Stats>
+            {logged?
+                <>
+                    <Stats>
+                        <UserStats
+                            loading={loading}
+                            used={1}
+                            limit={1}
+                        />
+                    </Stats>
 
-                        <UserAcc 
-                            logout={fLogout} 
+                    {isMobile?
+                        // <UserDropdown
+                        //     logout={logout}
+                        //     logged={logged}
+                        // />
+                        
+                        <BtnMenu
+                            openMenu={openMenu}
+                            isMenuOpened={isMenuOpened}
+                        />
+                    : 
+                        <UserAcc
+                            logout={logout} 
                             name={name} 
                             avatar={avatar}
                         />
-                    </>
+                    }
+                </>
+            :
+                
+                isMobile?
+                    <BtnMenu
+                        openMenu={openMenu}
+                        isMenuOpened={isMenuOpened}
+                    />
+                    // <UserDropdown
+                    //     logout={logout}
+                    //     logged={logged}
+                    // />
                 :
                     <Autorization>
                         <Astyled href="#">Зарегистрироваться</Astyled>
@@ -136,12 +162,11 @@ function AccInfo(props) {
                             <BtnLogin>Войти</BtnLogin>
                         </Link>
                     </Autorization>
+                
             }
         </>
     )
 }
-
-// export default AccInfo;
 
 export default connect(
     state => ({
@@ -156,8 +181,8 @@ export default connect(
                 loading : loading,
             });
         },
-        logout: () => {
-            dispatch({ type: 'LOGOUT'});
-        }
+        // logout: () => {
+        //     dispatch({ type: 'LOGOUT'});
+        // }
     })
 )(AccInfo);
