@@ -326,13 +326,7 @@ function PageResults(props){
                                 ((showNum!=-1)&&(((publications!=undefined)&&(publications.length>0))))
                                 ?
                                     <Button
-                                        // width={isMobile?335:""}
-                                        // height={isMobile?59:""}
-                                        // m_bottom={isMobile?57:""}
                                         onClick = {(e) => {
-                                            const alo = {
-                                                ids : state.encodedId.slice(0,10)
-                                            }
                                             fPostDocs();
                                         }}
                                         name="Показать больше"

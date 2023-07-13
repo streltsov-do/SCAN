@@ -14,7 +14,7 @@ import LoginGoogle from './LoginGoogle.svg';
 import LoginFb from './LoginFb.svg';
 import LoginYandex from './LoginYandex.svg';
 
-const inited=true;
+const inited=false;
 
 const Container=styled.div`
     display: flex;

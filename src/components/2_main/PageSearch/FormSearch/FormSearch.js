@@ -269,12 +269,7 @@ function FormSearch(props){
             return response.json();
         })
         .then((data)=>{
-            // console.log(op+" data",data);
-
-            if (op=="histograms") {
-                // console.log(op+" data[0]",data.data[0]);
-                // console.log(op+" data[1]",data.data[1]);
-                
+            if (op=="histograms") {                
                 const outData = [];
 
                 for (var i=0; i<data.data[0].data.length; i++){
@@ -285,7 +280,6 @@ function FormSearch(props){
                     }
                     outData.push(obj);
                 }
-                // console.log(op+" outData",outData);
                 localStorage.setItem("searchHistograms",JSON.stringify(outData));
 
                 set_histograms(outData);
@@ -298,11 +292,10 @@ function FormSearch(props){
                 }
 
                 for (var i=0; i<data.items.length; i++){
-                    outData.encodedId   [i] = data.items[i].encodedId   ;
-                    outData.influence   [i] = data.items[i].influence   ;
+                    outData.encodedId[i]    = data.items[i].encodedId   ;
+                    outData.influence[i]    = data.items[i].influence   ;
                     outData.similarCount[i] = data.items[i].similarCount;
                 }
-                // console.log(op+" outData",outData);
             
                 localStorage.setItem("searchObjects",JSON.stringify(outData));
 
