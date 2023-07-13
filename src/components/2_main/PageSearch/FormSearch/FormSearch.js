@@ -376,7 +376,7 @@ function FormSearch(props){
             attributeFilters    : attributeFilters,       // Filter.Attributes
             searchArea          : searchArea,
         }
-        console.log("data",data);
+        // console.log("data",data);
         return data;
     }
     function handleSearh(e){
