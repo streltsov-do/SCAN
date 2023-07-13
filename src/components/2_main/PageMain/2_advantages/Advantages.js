@@ -14,10 +14,11 @@ const Container = styled.div`
     flex-direction: column;
     gap: 60px;
     @media (max-width: ${mediaMaxWidh}) {
-        width: auto;
+        width: 375px;
         display: block;
         margin-bottom: 80.48px;
         height: auto;
+        padding-left: 14px;
     }
 `
 
@@ -36,24 +37,17 @@ const Title = styled.h1`
     }
 `
 
-const PerfectImg=styled.img`
-    width: 1307px;
-    height: 575.52px;
-    @media (max-width: ${mediaMaxWidh}) {
-        width: 891.411px;
-        width: auto;
-        height: 392.522px;
-    }
-`
 const PerfectImg1=styled.div`
     width: 1307px;
     height: 575.52px;
     background-image: url(${Perfect});
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     @media (max-width: ${mediaMaxWidh}) {
         /* width: 891.411px; */
         /* width: 80vw; */
+        background-size: cover;
+        width: ${375-14}px;
         height: 392.522px;
     }
 `

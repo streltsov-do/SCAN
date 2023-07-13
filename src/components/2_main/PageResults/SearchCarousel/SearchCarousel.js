@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import CardResult from "./CardResult/CardResult";
 import Loader from "../../../utils/Loading/Loader";
+import { mediaMaxWidh } from "../../../utils/consts";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -26,6 +28,10 @@ const Container=styled.div`
     border-radius: 10px;
     display: flex;
     position: relative;
+    @media (max-width: ${mediaMaxWidh}) {
+        flex-direction: column;
+        margin-left: ${38-14}px
+    }
 `
     const Desc=styled.div`
         width: ${descWidth}px;
@@ -39,6 +45,16 @@ const Container=styled.div`
         position: absolute;
         top:    -2px;
         left:   -2px;
+        @media (max-width: ${mediaMaxWidh}) {
+            flex-direction: row;
+            width: 298px;
+            height: 75px;
+            border-radius: 10px 10px 0px 0px;
+            padding: 23px 18px 23px 13px;
+            top:    -1px;
+            left:   -1px;
+            gap: 0;
+        }
     `
         const DescTitle=styled.span`
             font-family: 'Inter';
@@ -47,6 +63,12 @@ const Container=styled.div`
             line-height: 24px;
             letter-spacing: 0.02em;
             color: #FFFFFF;
+            @media (max-width: ${mediaMaxWidh}) {
+                font-size: 18px;
+                line-height: normal;
+                letter-spacing: 0.18px;
+                margin-right: ${props => props.m_right || 0}px;
+            }
         `    
     const LoaderDesc=styled.div`
         font-size: 18px;
@@ -55,17 +77,26 @@ const Container=styled.div`
         text-align: center;
         width: ${props => props.width};
         padding-top: 11px;
+        @media (max-width: ${mediaMaxWidh}) {
+            padding-top: 0;
+        }
     `
 
     const Div=styled.div`
         width: ${props => props.width}px;
         height: ${cardHeight}px;
-        margin-bottom: 107px;
-        display: relative;
+        position: relative;
         
         padding-top: 18px;
         padding-bottom: 18px;
         margin-left: ${descWidth}px;
+        @media (max-width: ${mediaMaxWidh}) {
+            width: 296px;
+            height: 75px;
+            margin-left: 0;
+            margin-top: 75px;
+            padding-top: 28px;
+        }
     `
 
 const arr=[
@@ -112,10 +143,12 @@ const arr=[
 ]
 
 export default function SearchCarousel(props) {
-    const {parent_p_left, loading, state} = props;
+    const {parent_p_left, loading, state, m_bottom} = props;
     const cards = state.cards;
 
     const [displayNum,setDisplayNum] = useState(1);
+
+    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
 
     function handeResize(){
         const widthDobbyMax=window.innerWidth-descWidth - parent_p_left-2*btnWidth-30;
@@ -146,9 +179,9 @@ export default function SearchCarousel(props) {
         speed: 500,
         row: 1,
         vertical: false,
-        slidesToShow: displayNum,
-        slidesToScroll: displayNum,
-        height: cardHeight,
+        slidesToShow:   isMobile?1:displayNum,
+        slidesToScroll: isMobile?1:displayNum,
+        height:         isMobile?(154-75):cardHeight,
     };
 
     const cWidth = displayNum*cardWidth;
@@ -156,33 +189,42 @@ export default function SearchCarousel(props) {
     return (
         <DivFlex
             width={cWidth+descWidth}
-            m_bottom={107}
+            m_bottom={m_bottom}
             render={
                 <Container>
                     <Desc>
-                        <DescTitle>Период</DescTitle>
-                        <DescTitle>Всего </DescTitle>
-                        <DescTitle>Риски </DescTitle>
+                        <DescTitle m_right={49+5}>Период</DescTitle>
+                        <DescTitle m_right={20+5}>Всего </DescTitle>
+                        <DescTitle m_right={0}>Риски </DescTitle>
                     </Desc>
                     {
                         loading
                             ?
                                 <DivFlex
-                                    direction="column"
+                                    direction={isMobile?"row":"column"}
                                     justify="center"
                                     width={cWidth}
-                                    min_width={262}
-                                    m_left={descWidth}
+                                    min_width={isMobile?296:262}
+                                    m_left={isMobile?0:descWidth}
+                                    m_top={isMobile?75:0}
+                                    align="center"
+                                    height={isMobile?154:""}
                                     render={
                                         <>
                                             {/* TODO: Плавное уменьшение ширины лоадера */}
                                             <Loader 
-                                                widthDiv={(cWidth < 262)?262:displayNum*cardWidth}
+                                                widthDiv={isMobile?50:((cWidth < 262)?262:displayNum*cardWidth)}
+                                                min_widthDiv={isMobile?75:""}
                                                 widthLoader={50}
                                             />
-                                            <LoaderDesc
-                                                width={(cWidth)+"px"}
-                                            >Загружаем данные</LoaderDesc>
+                                            {isMobile?
+                                                <></>
+                                            :
+                                                <LoaderDesc
+                                                    width={(cWidth)+"px"}
+                                                >Загружаем данные
+                                                </LoaderDesc>
+                                            }
                                         </>
                                     }
                                 />
@@ -194,7 +236,7 @@ export default function SearchCarousel(props) {
                                         {cards.map((item,index) =>
                                             <CardResult  
                                                 key   ={index                 }
-                                                width ={cardWidth             }
+                                                width ={isMobile?296:cardWidth}
                                                 period={item.date             }
                                                 all   ={item.docs             }
                                                 risc  ={item.risk             }

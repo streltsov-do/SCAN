@@ -14,10 +14,10 @@ const removeAllTags = (content) => {
     return content.replace(/<.*?>/g, ' ');
 };
 
-export const getContent = (markup) => {
+export const getContent = (markup,wordnum) => {
     const decodedContent = decodeContent(markup);
     const bgUrl = getFirstImageUrl(decodedContent);
-    const content = removeAllTags(decodedContent).slice(0,700) + "...";
+    const content = removeAllTags(decodedContent).slice(0,wordnum) + "...";
 
     return {
         bgUrl,

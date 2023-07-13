@@ -17,7 +17,6 @@ const Container2 = styled.div`
     justify-content: center;
     align-items: center;
     position: relative;
-    position: relative;
     @media (max-width: ${mediaMaxWidh}) {
         width: ${mediaWidthSlide + shadow}px;
         height: ${mediaHeightSlide + shadow}px;
@@ -39,6 +38,12 @@ const Container = styled.div`
     const H3styled=styled.h3`
         font-size: 18px;
         line-height: 22px;
+        font-weight: 400;
+        @media (max-width: ${mediaMaxWidh}) {
+            font-size: 14px;
+            line-height: normal;
+            letter-spacing: 0.18px;
+        }
     `
     const IconImg=styled.img`
         width: 65px;

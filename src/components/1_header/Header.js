@@ -208,8 +208,8 @@ function Header(props) {
                                 Главная
                             </NavLink> */}
                             <NavLi><NavA onClick={(e) => {e.preventDefault(); openMenu(false); navigate('/')}} mobile="true" href="/">Главная</NavA></NavLi>
-                            <NavLi><NavA mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
-                            <NavLi><NavA mobile="true" href="#">FAQ</NavA></NavLi>
+                            <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
+                            <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#">FAQ</NavA></NavLi>
                         </MobileUl>
                         <MobileADiv>
                             {logged?

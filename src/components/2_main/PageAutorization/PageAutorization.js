@@ -41,15 +41,21 @@ const Container=styled.div`
             letter-spacing: 0.02em;
             margin-bottom: 13.9px;
             @media (max-width: ${mediaMaxWidh}) {
+                width: auto;
+                height: 104px;
                 font-size: 22px;
                 line-height: normal;
                 letter-spacing: 0.44px;
+                margin-bottom: 126px;
             }
         `
-        const Img=styled.img`
+        const ImgCharacters=styled.img`
             width: 321.76px;
             height: 342.03px;
             margin-left: ${172-69}px;
+            @media (max-width: ${mediaMaxWidh}) {
+                margin: 0 0 79px 0;
+            }
         `
     const Form=styled.form`
         width: 429px;
@@ -69,6 +75,8 @@ const Container=styled.div`
             position: relative;
             right: 0;
             top: 0;
+            margin: 0 0 49px 0;
+
         }
     `
         const ImgLock=styled.img`
@@ -283,7 +291,7 @@ function PageAutorization(props) {
                         Для оформления подписки<br/>
                         на тариф, необходимо<br/>авторизоваться.
                     </Title>
-                    <Img src={Characters}></Img>
+                    {isMobile?<></>:<ImgCharacters src={Characters}></ImgCharacters>}
                 </div>
                 <Form name="formAutorization">
                     <ImgLock src={Lock}></ImgLock>
@@ -369,6 +377,8 @@ function PageAutorization(props) {
                         </BtnExtLogin>
                     </ExtLoginDiv>
                 </Form>
+                
+                {isMobile?<ImgCharacters src={Characters}></ImgCharacters>:<></>}
             </Container>
         :
             <></>

@@ -3,12 +3,14 @@ import styled from "styled-components/macro";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { useState, useRef } from "react";
+import { useMediaQuery } from 'react-responsive';
 
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import Button from "../../PageMain/custom/Button/Button";
 import Checkbox from "./Checkbox/Checkbox";
 import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
+import { mediaMaxWidh } from "../../../utils/consts";
 
 const Form=styled.form`
     width: 872px;
@@ -20,12 +22,14 @@ const Form=styled.form`
     display: flex;
     gap: 11px;
     position: relative;
+    @media (max-width: ${mediaMaxWidh}) {
+        width: 375px;
+        height: 688px;
+        padding: 32px 0 0 14px;
+        margin-bottom: 24px;
+        box-sizing: border-box;
+    }
 `
-    const DivFlex1=styled.div`
-        display: flex;
-        flex-direction: ${props => props.row?"row":"column"};
-        gap: ${props => props.gap || 30}px;
-    `
         const InputDesc=styled.div`
             font-family: 'Inter';
             font-style: normal;
@@ -36,6 +40,11 @@ const Form=styled.form`
             margin-bottom: 20px;
             margin-top: ${props=>props.m_top || 0}px;
             z-index: 0;
+            @media (max-width: ${mediaMaxWidh}) {
+                font-size: 18px;
+                line-height: normal;
+                letter-spacing: 0.36px;
+            }
         `
         const Input=styled.input`
             width: ${props => props.width || 242}px;
@@ -52,6 +61,15 @@ const Form=styled.form`
             line-height: 17px;
             letter-spacing: 0.03em;
             color: ${props => (!props.$valid)?"#FF5959":"black"};
+            @media (max-width: ${mediaMaxWidh}) {
+                width: 335px;
+                height: 43px;
+
+                /* color: #949494; */
+                font-size: 14px;
+                line-height: normal;
+                letter-spacing: 0.28px;
+            }
         `
         const InputErr=styled.div`
             height: 17px;
@@ -73,7 +91,6 @@ const DivGray=styled.div`
 function FormSearch(props){
     
     const { token, set_histograms, set_objects, set_loading } = props;
-
 
     const [inn      , setInn        ] = useState(7710137066 );
     const [docs     , setDocs       ] = useState(12 );
@@ -105,6 +122,8 @@ function FormSearch(props){
     const refDocs   = useRef(null);
 
     const navigate=useNavigate();
+
+    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
     
     const arr=[
         {
@@ -309,13 +328,13 @@ function FormSearch(props){
                         "sparkId": null,
                         "entityId": null,
                         "inn": inn,
-                        "maxFullness": chkFiltMax,
-                        "inBusinessNews": chkFiltEnd
+                        "maxFullness": (!isMobile)&&chkFiltMax,
+                        "inBusinessNews": (!isMobile)&&chkFiltEnd
                     }
                 ],
-                "onlyMainRole": chkFiltMain,
+                "onlyMainRole": (!isMobile)&&chkFiltMain,
                 "tonality": (tone==2)?"any":((tone==1)?"negative":"positive"),
-                "onlyWithRiskFactors": chkFiltRisc,
+                "onlyWithRiskFactors": (!isMobile)&&chkFiltRisc,
                 "riskFactors": {
                     "and": [],
                     "or": [],
@@ -340,9 +359,9 @@ function FormSearch(props){
             "excludedSourceGroups": []
         };
         const  attributeFilters = {
-            "excludeTechNews":      !chkFiltTech,
-            "excludeAnnouncements": !chkFiltAd,
-            "excludeDigests":       !chkFiltSumm
+            "excludeTechNews":      !((!isMobile)&&chkFiltTech),
+            "excludeAnnouncements": !((!isMobile)&&chkFiltAd  ),
+            "excludeDigests":       !((!isMobile)&&chkFiltSumm)
         };
         
         const data={
@@ -357,6 +376,7 @@ function FormSearch(props){
             attributeFilters    : attributeFilters,       // Filter.Attributes
             searchArea          : searchArea,
         }
+        console.log("data",data);
         return data;
     }
     function handleSearh(e){
@@ -395,6 +415,7 @@ function FormSearch(props){
             <DivFlex
                 gap={30}
                 direction="column"
+                width={isMobile?(375-14):""}
                 render={
                     <>
                         <div>
@@ -507,62 +528,77 @@ function FormSearch(props){
                                     />
                                     <DivFlex 
                                         gap={20} 
-                                        direction="row"
+                                        direction={isMobile?"column":"row"}
                                         position="relative"
                                         render={
                                             <>
-                                                <Input 
-                                                    type="date"
-                                                    width={176} 
-                                                    align="start"
-                                                    defaultValue={dateStart}   
-                                                    $valid={chkNecessary.date!=-1}
-                                                    onChange={(e) => {
-                                                        setChkNecessary({
-                                                            inn : chkNecessary.inn,
-                                                            docs: chkNecessary.docs,
-                                                            date: 0,
-                                                        });
-                                                        setDateStart(e.target.value);
-                                                    }}
-                                                ></Input>
                                                 <DivFlex
-                                                    position="absolute"
-                                                    top="13"
-                                                    left="44"
-                                                    render="Дата начала"
-                                                    color= "#949494"
-                                                    opacity= "0.4000000059604645"
-                                                    letter_spacing="0.42px"
-                                                    display={
-                                                        ((dateStart=="")||(dateStart==undefined))?"flex":"none"
+                                                    position="relative"
+                                                    render={
+                                                        <>
+                                                            <Input 
+                                                                type="date"
+                                                                width={176} 
+                                                                align="start"
+                                                                defaultValue={dateStart}   
+                                                                $valid={chkNecessary.date!=-1}
+                                                                onChange={(e) => {
+                                                                    setChkNecessary({
+                                                                        inn : chkNecessary.inn,
+                                                                        docs: chkNecessary.docs,
+                                                                        date: 0,
+                                                                    });
+                                                                    setDateStart(e.target.value);
+                                                                }}
+                                                            ></Input>
+                                                                
+                                                            <DivFlex
+                                                                position="absolute"
+                                                                top="13"
+                                                                left={isMobile?124:44}
+                                                                render="Дата начала"
+                                                                color= "#949494"
+                                                                opacity= "0.4000000059604645"
+                                                                letter_spacing="0.42px"
+                                                                display={
+                                                                    ((dateStart=="")||(dateStart==undefined))?"flex":"none"
+                                                                }
+                                                            />
+                                                        </>
                                                     }
                                                 />
-                                                <Input 
-                                                    type="date" 
-                                                    width={176} 
-                                                    align="start"
-                                                    defaultValue={dateEnd}
-                                                    $valid={chkNecessary.date!=-1}
-                                                    onChange={(e) => {
-                                                        setChkNecessary({
-                                                            inn : chkNecessary.inn,
-                                                            docs: chkNecessary.docs,
-                                                            date: 0,
-                                                        });
-                                                        setDateEnd(e.target.value);
-                                                    }}
-                                                ></Input>
                                                 <DivFlex
-                                                    position="absolute"
-                                                    top="13"
-                                                    right="51"
-                                                    render="Дата конца"
-                                                    color= "#949494"
-                                                    opacity= "0.4000000059604645"
-                                                    letter_spacing="0.42px"
-                                                    display={
-                                                        ((dateEnd=="")||(dateEnd==undefined))?"flex":"none"
+                                                    position="relative"
+                                                    render={
+                                                        <>
+                                                            <Input 
+                                                                type="date" 
+                                                                width={176} 
+                                                                align="start"
+                                                                defaultValue={dateEnd}
+                                                                $valid={chkNecessary.date!=-1}
+                                                                onChange={(e) => {
+                                                                    setChkNecessary({
+                                                                        inn : chkNecessary.inn,
+                                                                        docs: chkNecessary.docs,
+                                                                        date: 0,
+                                                                    });
+                                                                    setDateEnd(e.target.value);
+                                                                }}
+                                                            ></Input>
+                                                            <DivFlex
+                                                                position="absolute"
+                                                                top="13"
+                                                                left={isMobile?128:44}
+                                                                render="Дата конца"
+                                                                color= "#949494"
+                                                                opacity= "0.4000000059604645"
+                                                                letter_spacing="0.42px"
+                                                                display={
+                                                                    ((dateEnd=="")||(dateEnd==undefined))?"flex":"none"
+                                                                }
+                                                            />
+                                                        </>
                                                     }
                                                 />
                                             </>
@@ -592,6 +628,8 @@ function FormSearch(props){
                 gap={17}
                 m_top={9}
                 position="relative"
+                display={isMobile?"none":"flex"}
+                width={isMobile?(375-14):""}
                 render={
                     <>
                         {
@@ -612,13 +650,13 @@ function FormSearch(props){
             <DivFlex
                 direction="column"
                 position="absolute"
-                top={425}
-                right={39}
+                bottom  ={isMobile?37:32}
+                right   ={isMobile?26:39}
                 render={
                     <>
                         <Button 
                             name="Поиск" 
-                            width={305} 
+                            width={isMobile?335:305} 
                             align= "flex-end"
                             m_bottom={10}
                             type="submit"

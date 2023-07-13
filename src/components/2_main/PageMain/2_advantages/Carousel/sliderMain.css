@@ -53,11 +53,11 @@
 
     .sliderMain .slick-prev {
         top: calc((188px + 30px)/2 - 19px/2);
-        left: -24px;
+        left: -20px;
     }
     .sliderMain .slick-next {
         top: calc((188px + 30px)/2 + 19px/2);
-        right: -24px;
+        right: -20px;
         /* bottom: calc((188px + 30px)/2 - 19px/2); */
     }
 }

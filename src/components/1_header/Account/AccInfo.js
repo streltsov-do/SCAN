@@ -7,7 +7,6 @@ import { useMediaQuery } from "react-responsive";
 import UserStats from "./UserStats/UserStats";
 import UserAcc from "./user/UserAcc";
 import { mediaMaxWidh } from "../../utils/consts";
-import UserDropdown from "./user/UserDropdown/UserDropdown";
 import BtnMenu from "./user/BtnMenu/BtnMenu";
 
 
@@ -124,10 +123,6 @@ function AccInfo(props) {
                     </Stats>
 
                     {isMobile?
-                        // <UserDropdown
-                        //     logout={logout}
-                        //     logged={logged}
-                        // />
                         
                         <BtnMenu
                             openMenu={openMenu}
@@ -148,10 +143,6 @@ function AccInfo(props) {
                         openMenu={openMenu}
                         isMenuOpened={isMenuOpened}
                     />
-                    // <UserDropdown
-                    //     logout={logout}
-                    //     logged={logged}
-                    // />
                 :
                     <Autorization>
                         <Astyled href="#">Зарегистрироваться</Astyled>

@@ -17,6 +17,7 @@ const Container = styled.div`
     position: relative;
 
     @media (max-width: ${mediaMaxWidh}) {
+        width: 375px;
         height: ${34+37 + 512*3+gapMedia*2 +43}px;
     }
 `

@@ -41,3 +41,27 @@
 .sliderResults .slick-next::before {
     content: "";
 }
+
+
+@media screen and (width <= 702px) {
+    .sliderResults .slick-slide {
+        width: 124px;
+        height: calc(154px - 75px);
+        /* margin: 0 0 0 10px; */
+    }
+    /* the parent */
+    .sliderResults .slick-list {
+        margin: 0 0px;
+        height: calc(154px - 75px);
+    }
+    
+    .sliderResults .slick-prev {
+        transform: rotate(180deg);
+        top: -10px;
+        left: -39px;
+    }
+    .sliderResults .slick-next {
+        top: 10px;
+        right: calc(-39px + 2px);
+    }
+}

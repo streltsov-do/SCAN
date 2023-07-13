@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components/macro";
 import DivFlex from "../../../../utils/DivFlex/DivFlex";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 import ArrowDown from "../ArrowDown/ArrowDown";
+import { mediaMaxWidh } from "../../../../utils/consts";
 
 const Btn=styled.button`
     box-sizing: border-box;
@@ -22,6 +24,9 @@ const Btn=styled.button`
     &:hover{
         background: #DFFFFF;
     }
+    @media (max-width: ${mediaMaxWidh}) {
+        width: 335px;
+    }
 `
 
 const items=[
@@ -35,6 +40,8 @@ export default function DropDown(props) {
     const {tone, setTone} = props;
 
     const [showDrops, setShowDrops] = useState(false);
+
+    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
 
     function handleDrops(e) {
         e.preventDefault();
@@ -53,7 +60,7 @@ export default function DropDown(props) {
             render={
                 <>
                     <DivFlex
-                        width={242}
+                        width={isMobile?335:242}
                         position="relative"
                         render={
                             <>
@@ -78,13 +85,13 @@ export default function DropDown(props) {
                             position="absolute"
                             top={43}
                             height={43*3}
-                            width={242}
+                            width={isMobile?335:242}
                             background_color="#FFFFFF"
                             render={
                                 items.map((item,index)=>
                                     <DivFlex
                                         key={index}
-                                        width={242}
+                                        width={isMobile?335:242}
                                         top={43*index}
                                         height={43}
                                         position="absolute"

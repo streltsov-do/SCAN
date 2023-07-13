@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
+import { useMediaQuery } from 'react-responsive';
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
 import SearchCarousel from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 import { getContent } from "./decoder";
+import { mediaMaxWidh } from "../../utils/consts";
 
 import Searching from './Searching.svg';
 import Button from "../PageMain/custom/Button/Button";
@@ -17,6 +19,9 @@ const p_left=69;
 const DivMain=styled.div`
     position: relative;
     padding: ${p_left}px 0 0 60px;
+    @media (max-width: ${mediaMaxWidh}) {
+        padding: 20px 0 0 12px;
+    }
 `
 const ImgSearching=styled.img`
     position: absolute;
@@ -24,6 +29,14 @@ const ImgSearching=styled.img`
     left : ${props => props.left};
     right: ${props => props.right};
     z-index: 1;
+    @media (max-width: ${mediaMaxWidh}) {
+        position: relative;
+        left : 0;
+        right: 0;
+        width: 350px;
+        height: 233.731px;
+        margin-bottom: 59.27px;
+    }
 `
     const Title=styled.h1`
         font-family: 'Ferry';
@@ -32,8 +45,13 @@ const ImgSearching=styled.img`
         font-size: 40px;
         line-height: 48px;
         letter-spacing: 0.04em;
-
         color: #000000;
+        @media (max-width: ${mediaMaxWidh}) {
+            width: 344px;
+            font-size: 28px;
+            line-height: normal;
+            letter-spacing: 0.28px;
+        }
     `
     const TitleDesc=styled.h3`
         font-family: 'Inter';
@@ -42,6 +60,12 @@ const ImgSearching=styled.img`
         font-size: 20px;
         line-height: 24px;
         letter-spacing: 0.02em;
+        @media (max-width: ${mediaMaxWidh}) {
+            font-size: 18px;
+            line-height: normal;
+            letter-spacing: 0.18px;
+            width: 344px;
+        }
     `
     const Title2=styled.h2`
         font-family: 'Ferry';
@@ -51,20 +75,34 @@ const ImgSearching=styled.img`
         line-height: 36px;
         letter-spacing: 0.02em;
         color: #000000;
+        margin-bottom: ${props => props.m_bottom || 0}px;
+        @media (max-width: ${mediaMaxWidh}) {
+            font-size: 28px;
+            line-height: normal;
+            letter-spacing: 0.28px;
+            width: 335px;
+        }
     `
     const Title2Desc=styled.h4`
         font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
-        line-height: 22px;
-        letter-spacing: 0.02em;
+        line-height: normal;
+        letter-spacing: 0.36px;
+        margin-bottom: ${props => props.m_bottom || 0}px;
         color: #949494;
+        @media (max-width: ${mediaMaxWidh}) {
+            letter-spacing: 0.18px;
+        }
     `
     const CardGrid=styled.div`
         display: grid;
         grid-template-columns: 641px 641px;
         gap: 20px;
+        @media (max-width: ${mediaMaxWidh}) {
+            grid-template-columns: 375px;
+        }
     `
 const dummyPublications = [
     {
@@ -102,6 +140,8 @@ function PageResults(props){
     const [ imgOffset, setImgOffset] = useState(["auto","103.44px"]);
 
     const navigate=useNavigate();
+
+    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh });
 
     useEffect(()=> {
         setLoading(state.loading_his || state.loading_obj);
@@ -186,7 +226,7 @@ function PageResults(props){
                 }
                 for (var i=0; i<maxI; i++) {
                     outData[i]=data[i].ok;
-                    const { bgUrl, content } = getContent(data[i].ok.content.markup);
+                    const { bgUrl, content } = getContent(data[i].ok.content.markup, 2000);
                     outData[i].desc=content;
                     outData[i].img=bgUrl;
                     outDataFull.push(outData[i])
@@ -209,7 +249,7 @@ function PageResults(props){
                 <DivFlex
                     direction="column"
                     gap={36}
-                    m_bottom={127}
+                    m_bottom={isMobile?21:127}
                     zindex={2}
                     position="relative"
                     render={
@@ -219,30 +259,40 @@ function PageResults(props){
                         </>
                     }
                 />
-                <DivFlex
-                    direction="column"
-                    gap={17}
-                    m_bottom={27}
-                    render={
-                        <>
-                            <Title2>Общая сводка</Title2>
-                            <Title2Desc>Найдено {total} вариантов</Title2Desc>
-                            
-                            <Title2>Список документов</Title2>
-                        </>
-                    }
-                />
                 <ImgSearching 
                     src={Searching}
                     left={imgOffset[0]}
                     right={imgOffset[1]}
                 ></ImgSearching>
+                <DivFlex
+                    direction="column"
+                    render={
+                        <>
+                            <Title2
+                                m_bottom={17}
+                            >
+                                Общая сводка
+                            </Title2>
+                            <Title2Desc
+                                m_bottom={27}
+                            >
+                                Найдено {total} вариантов
+                            </Title2Desc>
+                        </>
+                    }
+                />
                 <SearchCarousel 
                     loading={loading} 
                     parent_p_left={p_left}
                     state={state}
+                    m_bottom={isMobile?57:107}
                 />
                 
+                <Title2
+                    m_bottom={58}
+                >
+                    Список документов
+                </Title2>
                 <CardGrid>
                     {
                         ((publications!=undefined)&&(publications.length>0))
@@ -267,14 +317,18 @@ function PageResults(props){
                     }
                 </CardGrid>
                 <DivFlex
-                    m_bottom="109"
+                    m_bottom={isMobile?57:109}
                     justify="center"
+                    width={isMobile?335:""}
                     render={
                         <>  
                             {
                                 ((showNum!=-1)&&(((publications!=undefined)&&(publications.length>0))))
                                 ?
                                     <Button
+                                        // width={isMobile?335:""}
+                                        // height={isMobile?59:""}
+                                        // m_bottom={isMobile?57:""}
                                         onClick = {(e) => {
                                             const alo = {
                                                 ids : state.encodedId.slice(0,10)
