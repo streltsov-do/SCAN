@@ -205,6 +205,7 @@ function FormSearch(props){
         } else if ((val<1)&&(val!="")) {
             val=1;
         }
+        refDocs.current.value=val;
         setDocs(val);
     }
 
