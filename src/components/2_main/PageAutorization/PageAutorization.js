@@ -284,14 +284,14 @@ function PageAutorization(props) {
     const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
 
     return(
-        (!isLoading)?
+        (!isLoading)&&
             <Container>
                 <div>
                     <Title>
                         Для оформления подписки<br/>
                         на тариф, необходимо<br/>авторизоваться.
                     </Title>
-                    {isMobile?<></>:<ImgCharacters src={Characters}></ImgCharacters>}
+                    {!isMobile&&<ImgCharacters src={Characters}></ImgCharacters>}
                 </div>
                 <Form name="formAutorization">
                     <ImgLock src={Lock}></ImgLock>
@@ -312,7 +312,10 @@ function PageAutorization(props) {
                             mrg_bottom={6} 
                             b_color={(stateLog==0)?"#FF5959":"#C7C7C7"}
                             ref={refLogin}
-                            defaultValue={inited?"sf_student1":""}
+                            // defaultValue={inited?"sf_student1":""}
+                            // defaultValue={inited&&"sf_student10"}
+                            // defaultValue={inited&&"sf_student5"}
+                            defaultValue={inited&&"sf_student7"}
                         ></Input>
                         <DivFlex 
                             color="#FF5959"
@@ -330,7 +333,10 @@ function PageAutorization(props) {
                             b_color={(statePass==0)?"#FF5959":"#C7C7C7"}
                             ref={refPassword} 
                             type="password"
-                            defaultValue={inited?"4i2385j":""}
+                            // defaultValue={inited?"4i2385j":""}
+                            // defaultValue={inited&&"KHKfTXb"}
+                            // defaultValue={inited&&"LuwAwJf"}
+                            defaultValue={inited&&"P6VcKNf"}
                         ></Input>
                         <DivFlex 
                             color="#FF5959"
@@ -378,10 +384,8 @@ function PageAutorization(props) {
                     </ExtLoginDiv>
                 </Form>
                 
-                {isMobile?<ImgCharacters src={Characters}></ImgCharacters>:<></>}
+                {isMobile&&<ImgCharacters src={Characters}></ImgCharacters>}
             </Container>
-        :
-            <></>
     )
 }
 

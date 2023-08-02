@@ -87,10 +87,54 @@ const DivGray=styled.div`
     color: #949494;
 `
 
+const arrFilt=[
+    {
+        name: "chkFiltMax",
+        desc: "Признак максимальной полноты",
+        defaultChecked: true,
+        enabled: "true"
+    },
+    {
+        name: "chkFiltEnd",
+        desc:"Упоминания в бизнес-контексте",
+        defaultChecked: true,
+        enabled: "true"
+    },
+    {
+        name: "chkFiltMain",
+        desc:"Главная роль в публикации",
+        defaultChecked: true,
+        enabled: "true"
+    },
+    {
+        name: "chkFiltRisc",
+        desc:"Публикации только с риск-факторами",
+        defaultChecked: false,
+        enabled: "false"
+    },
+    {
+        name: "chkFiltTech",
+        desc:"Включать технические новости рынков",
+        defaultChecked: false,
+        enabled: "false"
+    },
+    {
+        name: "chkFiltAd",
+        desc:"Включать анонсы и календари",
+        defaultChecked: true,
+        enabled: "true"
+    },
+    {
+        name: "chkFiltSumm",
+        desc:"Включать сводки новостей",
+        defaultChecked: false,
+        enabled: "false"
+    },
+];
 
 function FormSearch(props){
     
-    const { token, set_histograms, set_objects, set_loading } = props;
+    const { token, loading, set_histograms, set_objects, set_loading } = props;
 
     const [inn      , setInn        ] = useState(7710137066 );
     const [docs     , setDocs       ] = useState(12 );
@@ -110,13 +154,23 @@ function FormSearch(props){
 
     const [tone     , setTone       ] = useState(2);
 
-    const [chkFiltMax   , setChkFiltMax     ] = useState(true);
-    const [chkFiltEnd   , setChkFiltBuis    ] = useState(true);
-    const [chkFiltMain  , setChkFiltMain    ] = useState(true);
-    const [chkFiltRisc  , setChkFiltRisc    ] = useState(false);
-    const [chkFiltTech  , setChkFiltTech    ] = useState(false);
-    const [chkFiltAd    , setChkFiltAd      ] = useState(true);
-    const [chkFiltSumm  , setChkFiltSumm    ] = useState(false);
+    const [ filters , setFilters ] = useState({
+        chkFiltMax   : true,
+        chkFiltEnd   : true,
+        chkFiltMain  : true,
+        chkFiltRisc  : false,
+        chkFiltTech  : false,
+        chkFiltAd    : true,
+        chkFiltSumm  : false,
+    });
+
+    const handleFilters = (filterName) => {
+        console.log("fname",filterName);
+        setFilters((prev) => ({
+            ...prev,
+            [filterName]: !prev[filterName], // [] - для вычисляемого имени свойства
+        }))
+    };
 
     const refInn    = useRef(null);
     const refDocs   = useRef(null);
@@ -125,58 +179,6 @@ function FormSearch(props){
 
     const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
     
-    const arr=[
-        {
-            desc: "Признак максимальной полноты",
-            defaultChecked: chkFiltMax,
-            enabled: "true"
-        },
-        {
-            desc:"Упоминания в бизнес-контексте",
-            defaultChecked: chkFiltEnd,
-            enabled: "true"
-        },
-        {
-            desc:"Главная роль в публикации",
-            defaultChecked: chkFiltMain,
-            enabled: "true"
-        },
-        {
-            desc:"Публикации только с риск-факторами",
-            defaultChecked: chkFiltRisc,
-            enabled: "false"
-        },
-        {
-            desc:"Включать технические новости рынков",
-            defaultChecked: chkFiltTech,
-            enabled: "false"
-        },
-        {
-            desc:"Включать анонсы и календари",
-            defaultChecked: chkFiltAd,
-            enabled: "true"
-        },
-        {
-            desc:"Включать сводки новостей",
-            defaultChecked: chkFiltSumm,
-            enabled: "false"
-        },
-    ]
-
-
-    function handleCheck(idx){
-        switch (idx){
-            case 0: setChkFiltMax (!chkFiltMax ); break;
-            case 1: setChkFiltBuis(!chkFiltEnd ); break;
-            case 2: setChkFiltMain(!chkFiltMain); break;
-            case 3: setChkFiltRisc(!chkFiltRisc); break;
-            case 4: setChkFiltTech(!chkFiltTech); break;
-            case 5: setChkFiltAd  (!chkFiltAd  ); break;
-            case 6: setChkFiltSumm(!chkFiltSumm); break;
-            default: 
-                break;
-        }
-    }
 
     const limitInn = (val) => {
         
@@ -322,13 +324,13 @@ function FormSearch(props){
                         "sparkId": null,
                         "entityId": null,
                         "inn": inn,
-                        "maxFullness": (!isMobile)&&chkFiltMax,
-                        "inBusinessNews": (!isMobile)&&chkFiltEnd
+                        "maxFullness": (!isMobile)&&filters.chkFiltMax,
+                        "inBusinessNews": (!isMobile)&&filters.chkFiltEnd
                     }
                 ],
-                "onlyMainRole": (!isMobile)&&chkFiltMain,
+                "onlyMainRole": (!isMobile)&&filters.chkFiltMain,
                 "tonality": (tone==2)?"any":((tone==1)?"negative":"positive"),
-                "onlyWithRiskFactors": (!isMobile)&&chkFiltRisc,
+                "onlyWithRiskFactors": (!isMobile)&&filters.chkFiltRisc,
                 "riskFactors": {
                     "and": [],
                     "or": [],
@@ -353,9 +355,9 @@ function FormSearch(props){
             "excludedSourceGroups": []
         };
         const  attributeFilters = {
-            "excludeTechNews":      !((!isMobile)&&chkFiltTech),
-            "excludeAnnouncements": !((!isMobile)&&chkFiltAd  ),
-            "excludeDigests":       !((!isMobile)&&chkFiltSumm)
+            "excludeTechNews":      !((!isMobile)&&filters.chkFiltTech),
+            "excludeAnnouncements": !((!isMobile)&&filters.chkFiltAd  ),
+            "excludeDigests":       !((!isMobile)&&filters.chkFiltSumm)
         };
         
         const data={
@@ -627,13 +629,13 @@ function FormSearch(props){
                 render={
                     <>
                         {
-                            (arr.map((item,index) => 
+                            (arrFilt.map((item,index) => 
                                 <Checkbox 
                                     key={index}
                                     name={item.desc}
                                     defaultChecked={item.defaultChecked}
                                     enabled={item.enabled}
-                                    change={(e) => {handleCheck(index)}}
+                                    change={(e) => {handleFilters(item.name)}}
                                 />
                             ))
                         }
@@ -655,6 +657,7 @@ function FormSearch(props){
                             m_bottom={10}
                             type="submit"
                             onClick={handleSearh}
+                            disabled={loading}
                         />
                         <DivGray>* Обязательные к заполнению поля</DivGray>
                     </>
@@ -667,6 +670,7 @@ function FormSearch(props){
 export default connect(
     state => ({
         token  : state.rLogin[state.rLogin.length-1].token,
+        loading: state.rLogin[state.rLogin.length-1].loading,
     }),
     dispatch => ({
         set_histograms : (data) => {

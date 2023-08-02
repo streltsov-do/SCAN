@@ -189,42 +189,39 @@ function Header(props) {
                 logout={fLogout}
             />
             {
-                isMenuOpened?
-                    <MobileMenu
-                        top={headerHeight}
-                    >
-                        
-                        <MobileUl>
-                            {/* <NavLink 
-                                onClick={(e) => {openMenu(false)}} 
-                                to="/" style={({ isActive, isPending }
-                                ) => {
-                                    return {
-                                        color: "white",
-                                        textDecoration: "none"
-                                    };
-                                }}
-                            >
-                                Главная
-                            </NavLink> */}
-                            <NavLi><NavA onClick={(e) => {e.preventDefault(); openMenu(false); navigate('/')}} mobile="true" href="/">Главная</NavA></NavLi>
-                            <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
-                            <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#">FAQ</NavA></NavLi>
-                        </MobileUl>
-                        <MobileADiv>
-                            {logged?
-                                <></>   
-                            :
-                                <MobileA href="#">Зарегистрироваться</MobileA>
-                            }
-                        </MobileADiv>
-                        <MobileBtn
-                            onClick={handleClick}
+                isMenuOpened&&
+                <MobileMenu
+                    top={headerHeight}
+                >
+                    
+                    <MobileUl>
+                        {/* <NavLink 
+                            onClick={(e) => {openMenu(false)}} 
+                            to="/" style={({ isActive, isPending }
+                            ) => {
+                                return {
+                                    color: "white",
+                                    textDecoration: "none"
+                                };
+                            }}
                         >
-                            {logged?"Выйти":"Войти"}
-                        </MobileBtn>
-                    </MobileMenu>
-                :   <></>
+                            Главная
+                        </NavLink> */}
+                        <NavLi><NavA onClick={(e) => {e.preventDefault(); openMenu(false); navigate('/')}} mobile="true" href="/">Главная</NavA></NavLi>
+                        <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
+                        <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#">FAQ</NavA></NavLi>
+                    </MobileUl>
+                    <MobileADiv>
+                        {!logged&&
+                            <MobileA href="#">Зарегистрироваться</MobileA>
+                        }
+                    </MobileADiv>
+                    <MobileBtn
+                        onClick={handleClick}
+                    >
+                        {logged?"Выйти":"Войти"}
+                    </MobileBtn>
+                </MobileMenu>
             }
         </HeaderDiv>
     )

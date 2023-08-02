@@ -132,9 +132,8 @@ export default function PageSearch(props) {
                                 </TitleDesc>
                                 <FormSearch/>
                             </DivMain>
-                            {isMobile?
-                                <></>
-                            :
+                            {
+                                !!isMobile&&
                                 <ImgImgFoldersSvg src={ImgFoldersSvg}></ImgImgFoldersSvg>
                             }
                             <ImgImgDocumentSvg src={ImgDocumentSvg}></ImgImgDocumentSvg>

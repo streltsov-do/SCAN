@@ -162,15 +162,13 @@ export default function CardDoc(props) {
                 height={22}
                 render={
                     <>
-                        {isTechNews     ?<Type bg="#FFB64F">Технические новости</Type>:<></>}
-                        {isAnnouncement ?<Type bg="#11B64F">Анонс</Type>:<></>}
-                        {isDigest       ?<Type bg="#FF004F">Дайджест</Type>:<></>}
+                        {isTechNews     &&<Type bg="#FFB64F">Технические новости</Type>}
+                        {isAnnouncement &&<Type bg="#11B64F">Анонс</Type>}
+                        {isDigest       &&<Type bg="#FF004F">Дайджест</Type>}
                     </>
                 }
             />
-            {img==""?
-                <></>
-            :
+            {!(img=="")&&
                 <Img
                     background={img} 
                     alt="Amasing"

@@ -244,100 +244,110 @@ function PageResults(props){
     }
 
     return(
-        (!isLoading)?
-            <DivMain>
-                <DivFlex
-                    direction="column"
-                    gap={36}
-                    m_bottom={isMobile?21:127}
-                    zindex={2}
-                    position="relative"
-                    render={
-                        <>
-                            <Title>Ищем. Скоро<br/>будут результаты</Title>
-                            <TitleDesc>Поиск может занять некоторое время,<br/>просим сохранять терпение.</TitleDesc>
-                        </>
-                    }
-                />
-                <ImgSearching 
-                    src={Searching}
-                    left={imgOffset[0]}
-                    right={imgOffset[1]}
-                ></ImgSearching>
-                <DivFlex
-                    direction="column"
-                    render={
-                        <>
-                            <Title2
-                                m_bottom={17}
-                            >
-                                Общая сводка
-                            </Title2>
-                            <Title2Desc
-                                m_bottom={27}
-                            >
-                                Найдено {total} вариантов
-                            </Title2Desc>
-                        </>
-                    }
-                />
-                <SearchCarousel 
-                    loading={loading} 
-                    parent_p_left={p_left}
-                    state={state}
-                    m_bottom={isMobile?57:107}
-                />
-                
-                <Title2
-                    m_bottom={58}
-                >
-                    Список документов
-                </Title2>
-                <CardGrid>
-                    {
-                        ((publications!=undefined)&&(publications.length>0))
-                        ?
-                                publications.map((item, index) => 
-                                    <CardDoc
-                                        key             = {index                            }
-                                        issueDate       = {item.issueDate.slice(0,10)       }
-                                        source          = {item.source.name                 }
-                                        title           = {item.title.text                  }
-                                        type            = {item.type                        }
-                                        img             = {item.img                         }
-                                        desc            = {item.desc                        }
-                                        url             = {item.url                         }
-                                        wordCount       = {item.attributes.wordCount        }
-                                        isTechNews      = {item.attributes.isTechNews       }
-                                        isAnnouncement  = {item.attributes.isAnnouncement   }
-                                        isDigest        = {item.attributes.isDigest         }
-                                    />
-                                )
-                        : <>Загрузка...</>
-                    }
-                </CardGrid>
-                <DivFlex
-                    m_bottom={isMobile?57:109}
-                    justify="center"
-                    width={isMobile?335:""}
-                    render={
-                        <>  
-                            {
-                                ((showNum!=-1)&&(((publications!=undefined)&&(publications.length>0))))
-                                ?
-                                    <Button
-                                        onClick = {(e) => {
-                                            fPostDocs();
-                                        }}
-                                        name="Показать больше"
-                                    />
-                                : <></>
-                            }
-                        </>
-                    }
-                />
-            </DivMain>
-        : <></>
+        (!isLoading)&&
+        <DivMain>
+            <DivFlex
+                direction="column"
+                gap={36}
+                m_bottom={isMobile?21:127}
+                zindex={2}
+                position="relative"
+                render={
+                    <>
+                        {
+                        loading?
+                            <>
+                                <Title>Ищем. Скоро<br/>будут результаты</Title>
+                                <TitleDesc>Поиск может занять некоторое время,<br/>просим сохранять терпение.</TitleDesc>
+                            </>
+                        :   
+                            <>
+                                <Title>Запрос выполнен<br/> </Title>
+                                <TitleDesc> <br/> </TitleDesc>
+                            </>
+                        }
+                    </>
+                }
+            />
+            <ImgSearching 
+                src={Searching}
+                left={imgOffset[0]}
+                right={imgOffset[1]}
+            ></ImgSearching>
+            <DivFlex
+                direction="column"
+                render={
+                    <>
+                        <Title2
+                            m_bottom={17}
+                        >
+                            Общая сводка
+                        </Title2>
+                        <Title2Desc
+                            m_bottom={27}
+                        >
+                            Найдено {total} вариантов
+                        </Title2Desc>
+                    </>
+                }
+            />
+            <SearchCarousel 
+                loading={loading} 
+                parent_p_left={p_left}
+                state={state}
+                m_bottom={isMobile?57:107}
+            />
+            
+            <Title2
+                m_bottom={58}
+            >
+                Список документов
+            </Title2>
+            <CardGrid>
+                {
+                    ((publications!=undefined)&&(publications.length>0))
+                    ?
+                            publications.map((item, index) => 
+                                <CardDoc
+                                    key             = {index                            }
+                                    issueDate       = {item.issueDate.slice(0,10)       }
+                                    source          = {item.source.name                 }
+                                    title           = {item.title.text                  }
+                                    type            = {item.type                        }
+                                    img             = {item.img                         }
+                                    desc            = {item.desc                        }
+                                    url             = {item.url                         }
+                                    wordCount       = {item.attributes.wordCount        }
+                                    isTechNews      = {item.attributes.isTechNews       }
+                                    isAnnouncement  = {item.attributes.isAnnouncement   }
+                                    isDigest        = {item.attributes.isDigest         }
+                                />
+                            )
+                    : <>Загрузка...</>
+                }
+            </CardGrid>
+            <DivFlex
+                m_bottom={isMobile?57:109}
+                justify="center"
+                width={isMobile?335:""}
+                render={
+                    <>  
+                        {
+                            ((showNum!=-1)&&(((publications!=undefined)&&(publications.length>0))))
+                            ?
+                                <Button
+                                    onClick = {(e) => {
+                                        fPostDocs();
+                                    }}
+                                    disabled= {loading}
+                                    name="Показать больше"
+                                />
+                            : <></>
+                        }
+                    </>
+                }
+            />
+        </DivMain>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -61,32 +61,6 @@ const Autorization=styled.div`
 
 const urlBase="https://gateway.scan-interfax.ru";
 
-function fGetAccInfo(token,loadingChange) {
-    fetch(urlBase+"/api/v1/account/info", {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+token
-        },
-    })
-        .then((response)=>{
-            // console.log("AccInfo response",response);
-            if (response.ok) {
-                return response.json();
-            }
-            return Promise.reject(response);
-        })
-        .then((data)=>{
-            // console.log("AccInfo",data);
-            loadingChange(false);
-        })
-        .catch(() => { 
-            console.log('AccInfo error');
-        });
-}
-
-
 function AccInfo(props) {
 
     const {
@@ -96,11 +70,52 @@ function AccInfo(props) {
 
     const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
     
+    const [ stats, setStats ] = useState({
+        used: 0,
+        limit: 0
+    })
+
     useEffect(()=>{
+        const localData = JSON.parse(localStorage.getItem("userData"));
+        if (localData!=undefined) {
+            setStats(localData);
+        }
         if (loading) {
             fGetAccInfo(token,auth);
         }
     })
+
+    function fGetAccInfo(token,loadingChange) {
+        fetch(urlBase+"/api/v1/account/info", {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+token
+            },
+        })
+            .then((response)=>{
+                // console.log("AccInfo response",response);
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            })
+            .then((data)=>{
+                let userData = {
+                    used: data.eventFiltersInfo.usedCompanyCount,
+                    limit: data.eventFiltersInfo.companyLimit
+                };
+                setStats(userData);
+
+                localStorage.setItem("userData",JSON.stringify(userData));
+
+                loadingChange(false);
+            })
+            .catch(() => { 
+                console.log('AccInfo error');
+            });
+    }
 
     return(
         <>
@@ -109,8 +124,8 @@ function AccInfo(props) {
                     <Stats>
                         <UserStats
                             loading={loading}
-                            used={1}
-                            limit={1}
+                            used={stats.used}
+                            limit={stats.limit}
                         />
                     </Stats>
 

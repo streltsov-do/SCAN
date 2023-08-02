@@ -57,9 +57,7 @@ export default function CardResult(props) {
                         }
                     />
                     {   
-                        (last || isMobile)
-                        ? <></>
-                        : <DivFax></DivFax>
+                        !(last || isMobile)&&<DivFax></DivFax>
                     }
                 </>
             }

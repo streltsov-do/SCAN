@@ -32,44 +32,63 @@ function Main(props) {
         
     },[])
 
+    const routes = [
+        {
+            path: "/",
+            element: 
+                <PageMain
+                    logged={logged}
+                    tariff={tariff}
+                />
+            ,
+            exact: true,
+        },
+        {
+            path: "/autorization",
+            element: 
+                <PageAutorization/>
+            ,
+            exact: false,
+        },
+        {
+            path: "/search",
+            element: 
+                <PageSearch
+                    logged={logged}
+                />
+            ,
+            exact: false,
+        },
+        {
+            path: "/results",
+            element: 
+                <PageResults
+                    logged={logged}
+                />
+            ,
+            exact: false,
+        },
+        {
+            path: "*",
+            element: 
+                <NotFound/>
+            ,
+            exact: false,
+        },
+    ];
+
     return (
         <Routes>
-
-            <Route exact path="/"
-                element={
-                    <PageMain
-                        logged={logged}
-                        tariff={tariff}
+            {
+                routes.map((item, index) => 
+                    <Route
+                        key     = {index}
+                        path    = {item.path}
+                        exact   = {item.exact}
+                        element = {item.element}
                     />
-                }
-            />
-            <Route 
-                path="/autorization"
-                element={
-                    <PageAutorization/>
-                }
-            />
-            <Route 
-                path="/search"
-                element={
-                    <PageSearch
-                        logged={logged}
-                    />
-                }
-            />
-            <Route 
-                path="/results"
-                element={
-                    <PageResults
-                        logged={logged}
-                    />
-                }
-            />
-
-            <Route 
-                path="*" 
-                element={<NotFound/>}
-            />
+                )
+            }
         </Routes>
     )
 }
