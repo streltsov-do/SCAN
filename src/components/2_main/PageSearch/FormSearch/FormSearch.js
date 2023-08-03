@@ -669,8 +669,8 @@ function FormSearch(props){
 
 export default connect(
     state => ({
-        token  : state.rLogin[state.rLogin.length-1].token,
-        loading: state.rLogin[state.rLogin.length-1].loading,
+        token  : state.rLogin.token,
+        loading: state.rLogin.loading,
     }),
     dispatch => ({
         set_histograms : (data) => {

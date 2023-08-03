@@ -83,7 +83,7 @@ function AccInfo(props) {
         if (loading) {
             fGetAccInfo(token,auth);
         }
-    })
+    },[])
 
     function fGetAccInfo(token,loadingChange) {
         fetch(urlBase+"/api/v1/account/info", {
@@ -168,9 +168,9 @@ function AccInfo(props) {
 
 export default connect(
     state => ({
-        logged  : state.rLogin[state.rLogin.length-1].logged,
-        loading : state.rLogin[state.rLogin.length-1].loading,
-        token   : state.rLogin[state.rLogin.length-1].token,
+        logged  : state.rLogin.logged,
+        loading : state.rLogin.loading,
+        token   : state.rLogin.token,
     }),
     dispatch => ({
         auth: (loading) => {
@@ -179,8 +179,5 @@ export default connect(
                 loading : loading,
             });
         },
-        // logout: () => {
-        //     dispatch({ type: 'LOGOUT'});
-        // }
     })
 )(AccInfo);

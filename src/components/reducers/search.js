@@ -1,5 +1,5 @@
 function init() {
-    let initialValue=[
+    let initialValue=
         {
             loading_his : false,
             loading_obj : false,
@@ -12,17 +12,16 @@ function init() {
             influence   : [],
             similarCount: [],
         }
-    ]
 
     const localHistograms = JSON.parse(localStorage.getItem("searchHistograms"));
     if (localHistograms!==null){
-        initialValue[0].cards       = localHistograms
+        initialValue.cards       = localHistograms
     }
     const localObjects = JSON.parse(localStorage.getItem("searchObjects"));
     if (localObjects!==null){
-        initialValue[0].encodedId   = localObjects.encodedId   ;
-        initialValue[0].influence   = localObjects.influence   ;
-        initialValue[0].similarCount= localObjects.similarCount;
+        initialValue.encodedId   = localObjects.encodedId   ;
+        initialValue.influence   = localObjects.influence   ;
+        initialValue.similarCount= localObjects.similarCount;
     }
     return initialValue;
 }
@@ -33,47 +32,37 @@ export default function rSearch(state=initialState, action) {
     switch (action.type) {
         case 'SET_HISTOGRAMS':
             return(
-                [
-                    ...state,
                     {
+                        ...state,
+
                         loading_his : false,
-                        loading_obj : state[state.length-1].loading_obj,
                         cards       : action.cards,
                         encodedId   : [],
                         influence   : [],
                         similarCount: [],
                     }
-                ]
             )
             break;
         case 'SET_OBJECTS':
             return(
-                [
+                {
                     ...state,
-                    {
-                        loading_his : state[state.length-1].loading_his,
-                        loading_obj : false,
-                        cards       : state[state.length-1].cards,
-                        encodedId   : action.encodedId   ,
-                        influence   : action.influence   ,
-                        similarCount: action.similarCount,
-                    }
-                ]
+
+                    loading_obj : false,
+                    encodedId   : action.encodedId   ,
+                    influence   : action.influence   ,
+                    similarCount: action.similarCount,
+                }
             )
             break;
         case 'SET_LOADING':
             return(
-                [
+                {
                     ...state,
-                    {
-                        loading_his : true,
-                        loading_obj : true,
-                        cards       : state[state.length-1].cards,
-                        encodedId   : state[state.length-1].encodedId   ,
-                        influence   : state[state.length-1].influence   ,
-                        similarCount: state[state.length-1].similarCount,
-                    }
-                ]
+                    
+                    loading_his : true,
+                    loading_obj : true,
+                }
             )
             break;
         default: 

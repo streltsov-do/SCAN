@@ -14,7 +14,7 @@ import LoginGoogle from './LoginGoogle.svg';
 import LoginFb from './LoginFb.svg';
 import LoginYandex from './LoginYandex.svg';
 
-const inited=false;
+const inited=true;
 
 const Container=styled.div`
     display: flex;
@@ -391,7 +391,7 @@ function PageAutorization(props) {
 
 export default connect(
     state => ({
-        logged  : state.rLogin[state.rLogin.length-1].logged,
+        logged  : state.rLogin.logged,
     }),
     dispatch => ({
         auth: (token,expire,logged,loading) => {
