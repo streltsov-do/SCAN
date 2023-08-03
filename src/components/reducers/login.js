@@ -22,7 +22,7 @@ function init(){
 
 const initialState=init();
 
-export default function rLogin(state=initialState, action) {
+export default function login(state=initialState, action) {
     switch (action.type) {
         case 'AUTH':
             return(

@@ -168,9 +168,9 @@ function AccInfo(props) {
 
 export default connect(
     state => ({
-        logged  : state.rLogin.logged,
-        loading : state.rLogin.loading,
-        token   : state.rLogin.token,
+        logged  : state.login.logged,
+        loading : state.login.loading,
+        token   : state.login.token,
     }),
     dispatch => ({
         auth: (loading) => {

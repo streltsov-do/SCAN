@@ -28,7 +28,7 @@ function init() {
 
 const initialState=init();
 
-export default function rSearch(state=initialState, action) {
+export default function search(state=initialState, action) {
     switch (action.type) {
         case 'SET_HISTOGRAMS':
             return(

@@ -228,7 +228,7 @@ function Header(props) {
 }
 export default connect(
     state => ({
-        logged  : state.rLogin.logged,
+        logged  : state.login.logged,
     }),
     dispatch => ({
         logout: () => {

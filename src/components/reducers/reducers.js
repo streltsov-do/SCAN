@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import rLogin from "./login";
-import rSearch from "./search";
+import login from "./login";
+import search from "./search";
 
 export default combineReducers({
-    rLogin,
-    rSearch
+    login,
+    search
 });

@@ -353,9 +353,9 @@ function PageResults(props){
 
 export default connect(
     state => ({
-        token       : state.rLogin.token,
-        logged      : state.rLogin.logged,
-        state       : state.rSearch,
+        token       : state.login.token,
+        logged      : state.login.logged,
+        state       : state.search,
     }),
 )
 (PageResults)

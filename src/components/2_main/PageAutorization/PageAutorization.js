@@ -391,7 +391,7 @@ function PageAutorization(props) {
 
 export default connect(
     state => ({
-        logged  : state.rLogin.logged,
+        logged  : state.login.logged,
     }),
     dispatch => ({
         auth: (token,expire,logged,loading) => {
