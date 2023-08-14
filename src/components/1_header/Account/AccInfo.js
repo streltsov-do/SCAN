@@ -83,7 +83,7 @@ function AccInfo(props) {
         if (loading) {
             fGetAccInfo(token,auth);
         }
-    },[])
+    },[loading])
 
     function fGetAccInfo(token,loadingChange) {
         fetch(urlBase+"/api/v1/account/info", {
@@ -95,7 +95,6 @@ function AccInfo(props) {
             },
         })
             .then((response)=>{
-                // console.log("AccInfo response",response);
                 if (response.ok) {
                     return response.json();
                 }
