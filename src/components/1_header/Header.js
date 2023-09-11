@@ -3,10 +3,10 @@ import styled from 'styled-components/macro';
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import {useMediaQuery} from "react-responsive";
+import { NavHashLink  } from 'react-router-hash-link';
 
 import AccInfo from "./Account/AccInfo";
 import { mediaMaxWidh } from "../utils/consts";
-// import MobileMenu from "./Account/MobileMenu/MobileMenu";
 
 import imgLogo from './scan.svg';
 import imgLogoWhite from './scanWhite.svg';
@@ -24,7 +24,6 @@ const HeaderDiv = styled.div`
     background-clip: border-box;
     @media (max-width: ${mediaMaxWidh}) {
         padding: 0 26px 0 14px;
-        /* padding: 0; */
     }
 `
 
@@ -178,8 +177,28 @@ function Header(props) {
                 >
                     Главная
                 </NavLink>
-                <NavLi><NavA href="#idTariffs">Тарифы</NavA></NavLi>
-                <NavLi><NavA href="#">FAQ</NavA></NavLi>
+                <NavHashLink to="/#idTariffs" 
+                        style={({ isActive, isPending }) => {
+                        return {
+                            color: "black",
+                            textDecoration: "none"
+                        };
+                    }}
+                >
+                    Тарифы
+                </NavHashLink >
+                <NavLink 
+                // to="/" 
+                        style={({ isActive, isPending }) => {
+                        return {
+                            color: "black",
+                            textDecoration: "none"
+                        };
+                    }}
+                >
+                    FAQ
+                </NavLink >
+                {/* <NavLi><NavA href="">FAQ</NavA></NavLi> */}
             </NavUl>
             <AccInfo
                 name={name} 

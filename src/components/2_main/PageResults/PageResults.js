@@ -100,6 +100,9 @@ const ImgSearching=styled.img`
         display: grid;
         grid-template-columns: 641px 641px;
         gap: 20px;
+        @media (max-width: ${641*2+20+60+16}px) {
+            grid-template-columns: 641px;
+        }
         @media (max-width: ${mediaMaxWidh}) {
             grid-template-columns: 375px;
         }

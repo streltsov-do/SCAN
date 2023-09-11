@@ -12,9 +12,13 @@ const gap = 37;
 const gapMedia = 40;
 
 const Container = styled.div`
-    width: 1320px;
+    max-width: 1320px;
     height: 664px;
     position: relative;
+    
+    @media (max-width: 1320px) {
+            height: calc(${512*2+gapMedia*3}px);
+    }
 
     @media (max-width: ${mediaMaxWidh}) {
         width: 375px;
@@ -41,13 +45,24 @@ const Container = styled.div`
         justify-content: space-between;
         gap: ${gap}px;
         height: 540px;
-        width: ${415*3+gap*2};
+        width: auto;
         position: relative;
 
+        @media (max-width: 1320px) {
+            display: grid;
+            grid-template-columns: repeat(2,415px);
+            grid-template-rows: repeat(2,540px);
+            justify-content: start;
+            column-gap: ${gap}px;
+        }
+        
         @media (max-width: ${mediaMaxWidh}) {
+            display: flex;
+            justify-content: space-between;
+            gap: ${gap}px;
             flex-direction: column;
             justify-content: space-between;
-            height: ${512*3+gapMedia*2};
+            height: ${512*3+gapMedia*2}px;
             width : 335px;
             gap: ${gapMedia}px;
         }

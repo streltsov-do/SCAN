@@ -8,7 +8,7 @@ import { mediaMaxWidh } from "../../../utils/consts";
 import Perfect from './perfect.svg';
 
 const Container = styled.div`
-    width: 1346px;
+    width: auto;
     height: ${349+575.52+70*2}px;
     display: flex;
     flex-direction: column;
@@ -38,14 +38,12 @@ const Title = styled.h1`
 `
 
 const PerfectImg1=styled.div`
-    width: 1307px;
     height: 575.52px;
+    max-width: 1320px;
     background-image: url(${Perfect});
     background-size: cover;
     background-repeat: no-repeat;
     @media (max-width: ${mediaMaxWidh}) {
-        /* width: 891.411px; */
-        /* width: 80vw; */
         background-size: cover;
         width: ${375-14}px;
         height: 392.522px;
@@ -61,10 +59,6 @@ function Advantages() {
             <Title>Почему {isMobile?<br/>:""}именно мы</Title>
             <Carousel/>
             <div>
-                {/* <PerfectImg 
-                    src={Perfect} 
-                    alt="Perfect"
-                ></PerfectImg> */}
                 <PerfectImg1 
                 ></PerfectImg1>
             </div>

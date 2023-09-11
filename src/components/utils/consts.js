@@ -1,3 +1,3 @@
-const mediaMaxWidh = "702px";
+const mediaMaxWidh = "924px";
 
 export { mediaMaxWidh };

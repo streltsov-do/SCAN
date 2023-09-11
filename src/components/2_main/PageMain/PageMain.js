@@ -8,7 +8,7 @@ import { mediaMaxWidh } from "../../utils/consts";
 
 const Container = styled.div`
     background: #FFFFFF;
-    padding: 51px 43px 118px 51px;
+    padding: 51px 0 118px 51px;
     position: relative;
     @media (max-width: ${mediaMaxWidh}) {
         padding: 20px 0 0 14px;

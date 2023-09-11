@@ -68,20 +68,24 @@ const Container=styled.div`
                 margin-bottom: 32px;
             }
         `
-    const TitleImg=styled.img`
-        width: 629px;
+        
+    const TitleImgDiv=styled.div`
+        width: ${props => props.width};
+        max-width: 629px;
         height: 593px;
         left:  ${props => props.left};
         right: ${props => props.right};
         z-index: 1;
         position: absolute;
-        @media (max-width: ${mediaMaxWidh}) {
-            position: relative;
-            left:  0;
-            width: 347.182px;
-            height: 327.312px;
-            margin-bottom: 55.39px;
-        }
+        background-image: url(${PicTitle});
+        background-size: cover;
+            @media (max-width: ${mediaMaxWidh}) {
+                position: relative;
+                left:  0;
+                width: 347.182px;
+                height: 327.312px;
+                margin-bottom: 55.39px;
+            }
     `
 
 
@@ -91,7 +95,7 @@ function Service(props) {
     
     const refDiv = useRef(null);
 
-    const [ imgOffset, setImgOffset] = useState(["530px","60px"]);
+    const [ imgParams, setImgParams] = useState(["530px","60px","629px"]);
 
     function handleClick(){
         navigate("/search");
@@ -99,9 +103,10 @@ function Service(props) {
 
     function handeResize() {
         let v_width = refDiv.current.offsetWidth;
-        let lOffset = (v_width<1210)?"522px":"auto";
-        let rOffset = (v_width<1210)?"auto":"60px";
-        setImgOffset([lOffset,rOffset]);
+        let lOffset = (v_width<1211)?"522px":"auto";
+        let rOffset = (v_width<1211)?"auto":"60px";
+        let imgWidth= (v_width<(550+51+629-40))?(v_width-(550+51-79)+"px"):"629px"
+        setImgParams([lOffset,rOffset,imgWidth]);
     }
 
     useEffect(() => {
@@ -115,7 +120,7 @@ function Service(props) {
             window.removeEventListener('resize', handeResize);
         };
 
-    }, [imgOffset]);
+    }, [imgParams]);
 
     const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
 
@@ -137,12 +142,14 @@ function Service(props) {
                     :   <></>
                 }
             </DivTItle>
-            <TitleImg 
-                src={PicTitle}
-                left={imgOffset[0]}
-                right={imgOffset[1]}
-            >
-            </TitleImg>
+            <div>
+                <TitleImgDiv
+                    left ={imgParams[0]}
+                    right={imgParams[1]}
+                    width={imgParams[2]}
+                >
+                </TitleImgDiv>
+            </div>
         </Container>
     )
 }

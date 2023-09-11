@@ -19,7 +19,7 @@ const Div=styled.div`
         width: 335px;
         min-width: 335px;
         height: 694px;
-        padding: 19px 0 0 24px;
+        padding: 19px 10px 0 24px;
     }
 `
     //
