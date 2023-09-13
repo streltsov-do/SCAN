@@ -10,7 +10,7 @@ import Button from "../../PageMain/custom/Button/Button";
 import Checkbox from "./Checkbox/Checkbox";
 import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const Form=styled.form`
     width: 872px;
@@ -22,7 +22,7 @@ const Form=styled.form`
     display: flex;
     gap: 11px;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 375px;
         height: 688px;
         padding: 32px 0 0 14px;
@@ -40,7 +40,7 @@ const Form=styled.form`
             margin-bottom: 20px;
             margin-top: ${props=>props.m_top || 0}px;
             z-index: 0;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 18px;
                 line-height: normal;
                 letter-spacing: 0.36px;
@@ -61,7 +61,7 @@ const Form=styled.form`
             line-height: 17px;
             letter-spacing: 0.03em;
             color: ${props => (!props.$valid)?"#FF5959":"black"};
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 width: 335px;
                 height: 43px;
 
@@ -177,7 +177,7 @@ function FormSearch(props){
 
     const navigate=useNavigate();
 
-    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
     
 
     const limitInn = (val) => {

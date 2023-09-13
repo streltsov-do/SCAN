@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import ArrowDown from "../ArrowDown/ArrowDown";
-import { mediaMaxWidh } from "../../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 const Btn=styled.button`
     box-sizing: border-box;
@@ -24,7 +24,7 @@ const Btn=styled.button`
     &:hover{
         background: #DFFFFF;
     }
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 335px;
     }
 `
@@ -41,7 +41,7 @@ export default function DropDown(props) {
 
     const [showDrops, setShowDrops] = useState(false);
 
-    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     function handleDrops(e) {
         e.preventDefault();

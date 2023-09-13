@@ -3,14 +3,14 @@ import styled from "styled-components/macro";
 import { useMediaQuery } from 'react-responsive';
 
 import DivFlex from "../../../../utils/DivFlex/DivFlex";
-import { mediaMaxWidh } from "../../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 const Span=styled.span`
     text-align: center;
     font-size: 18px;
     line-height: 22px;
     letter-spacing: 0.02em;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         margin-left: ${props => props.m_left || 0}px;
         font-size: 16px;
         line-height: normal;
@@ -22,7 +22,7 @@ const DivFax=styled.div`
     height: 124px;
     background: #949494;
     opacity: 0.4;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         height: ${154-75}px;
         margin-left: 0;
         margin-top: 75px;
@@ -35,7 +35,7 @@ const DivFax=styled.div`
 export default function CardResult(props) {
     const { period, all, risc, last, width} = props;
 
-    const isMobile = useMediaQuery({maxWidth : mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth : MOBILE_WIDTH_BREAKPOINT});
 
     return(
         <DivFlex

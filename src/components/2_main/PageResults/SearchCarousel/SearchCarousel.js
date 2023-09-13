@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import CardResult from "./CardResult/CardResult";
 import Loader from "../../../utils/Loading/Loader";
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -14,28 +14,28 @@ import "slick-carousel/slick/slick-theme.css";
 import "./sliderResults.css";
 
 
-const cardWidth = 131;
-const cardHeight= 124;
+const CARD_WIDTH = 131;
+const CARD_HEIGHT= 124;
 
-const descWidth=133;
-const descHeight=158;
-const btnWidth=39;
+const DESC_WIDTH=133;
+const DESC_HEIGHT=158;
+const BTN_WIDTH=39;
 
 const Container=styled.div`
-    height: ${descHeight}px;
+    height: ${DESC_HEIGHT}px;
     background: #FFFFFF;
     border: 2px solid #029491;
     border-radius: 10px;
     display: flex;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         flex-direction: column;
         margin-left: ${38-14}px
     }
 `
     const Desc=styled.div`
-        width: ${descWidth}px;
-        height: ${descHeight}px;
+        width: ${DESC_WIDTH}px;
+        height: ${DESC_HEIGHT}px;
         background: #029491;
         border-radius: 10px 0px 0px 10px;
         display: flex;
@@ -45,7 +45,7 @@ const Container=styled.div`
         position: absolute;
         top:    -2px;
         left:   -2px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             flex-direction: row;
             width: 298px;
             height: 75px;
@@ -63,7 +63,7 @@ const Container=styled.div`
             line-height: 24px;
             letter-spacing: 0.02em;
             color: #FFFFFF;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 18px;
                 line-height: normal;
                 letter-spacing: 0.18px;
@@ -77,20 +77,20 @@ const Container=styled.div`
         text-align: center;
         width: ${props => props.width};
         padding-top: 11px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             padding-top: 0;
         }
     `
 
     const Div=styled.div`
         width: ${props => props.width}px;
-        height: ${cardHeight}px;
+        height: ${CARD_HEIGHT}px;
         position: relative;
         
         padding-top: 18px;
         padding-bottom: 18px;
-        margin-left: ${descWidth}px;
-        @media (max-width: ${mediaMaxWidh}) {
+        margin-left: ${DESC_WIDTH}px;
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 296px;
             height: 75px;
             margin-left: 0;
@@ -148,11 +148,11 @@ export default function SearchCarousel(props) {
 
     const [displayNum,setDisplayNum] = useState(1);
 
-    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     function handeResize(){
-        const widthDobbyMax=window.innerWidth-descWidth - parent_p_left-2*btnWidth-30;
-        let newDisplayNum=Math.floor(widthDobbyMax/cardWidth);
+        const widthDobbyMax=window.innerWidth-DESC_WIDTH - parent_p_left-2*BTN_WIDTH-30;
+        let newDisplayNum=Math.floor(widthDobbyMax/CARD_WIDTH);
         newDisplayNum=(newDisplayNum>8)?8:newDisplayNum;
         
         if ((newDisplayNum!=displayNum) && (newDisplayNum>0)){
@@ -181,14 +181,14 @@ export default function SearchCarousel(props) {
         vertical: false,
         slidesToShow:   isMobile?1:displayNum,
         slidesToScroll: isMobile?1:displayNum,
-        height:         isMobile?(154-75):cardHeight,
+        height:         isMobile?(154-75):CARD_HEIGHT,
     };
 
-    const cWidth = displayNum*cardWidth;
+    const cWidth = displayNum*CARD_WIDTH;
 
     return (
         <DivFlex
-            width={cWidth+descWidth}
+            width={cWidth+DESC_WIDTH}
             m_bottom={m_bottom}
             render={
                 <Container>
@@ -205,7 +205,7 @@ export default function SearchCarousel(props) {
                                     justify="center"
                                     width={cWidth}
                                     min_width={isMobile?296:262}
-                                    m_left={isMobile?0:descWidth}
+                                    m_left={isMobile?0:DESC_WIDTH}
                                     m_top={isMobile?75:0}
                                     align="center"
                                     height={isMobile?154:""}
@@ -213,7 +213,7 @@ export default function SearchCarousel(props) {
                                         <>
                                             {/* TODO: Плавное уменьшение ширины лоадера */}
                                             <Loader 
-                                                widthDiv={isMobile?50:((cWidth < 262)?262:displayNum*cardWidth)}
+                                                widthDiv={isMobile?50:((cWidth < 262)?262:displayNum*CARD_WIDTH)}
                                                 min_widthDiv={isMobile?75:""}
                                                 widthLoader={50}
                                             />
@@ -236,7 +236,7 @@ export default function SearchCarousel(props) {
                                         {cards.map((item,index) =>
                                             <CardResult  
                                                 key   ={index                 }
-                                                width ={isMobile?296:cardWidth}
+                                                width ={isMobile?296:CARD_WIDTH}
                                                 period={item.date             }
                                                 all   ={item.docs             }
                                                 risc  ={item.risk             }

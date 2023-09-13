@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
 import Button from "../PageMain/custom/Button/Button";
-import { mediaMaxWidh } from "../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 import Characters from './Characters.svg';
 import Lock from './lock.svg';
@@ -14,13 +14,13 @@ import LoginGoogle from './LoginGoogle.svg';
 import LoginFb from './LoginFb.svg';
 import LoginYandex from './LoginYandex.svg';
 
-const inited=true;
+const INITED_LOGIN=true;
 
 const Container=styled.div`
     display: flex;
     padding: 69px 0 80px 60px;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         font-size: 22px;
         line-height: normal;
         letter-spacing: 0.44px;
@@ -40,7 +40,7 @@ const Container=styled.div`
             line-height: 48px;
             letter-spacing: 0.02em;
             margin-bottom: 13.9px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 width: auto;
                 height: 104px;
                 font-size: 22px;
@@ -53,7 +53,7 @@ const Container=styled.div`
             width: 321.76px;
             height: 342.03px;
             margin-left: ${172-69}px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 margin: 0 0 79px 0;
             }
         `
@@ -68,7 +68,7 @@ const Container=styled.div`
         position: absolute;
         right: 141px;
         top: 69px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 335px;
             height: 504px;
             padding: 25px 0 0 15px;
@@ -85,7 +85,7 @@ const Container=styled.div`
             position: absolute;
             top: -55px;
             left: -51px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 left: 81px;
                 top: -${492-504+92.06}px;
             }
@@ -106,7 +106,7 @@ const Container=styled.div`
                 line-height: 19px;
                 letter-spacing: 0.02em;
                 color: #${props => props.color};
-                @media (max-width: ${mediaMaxWidh}) {
+                @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                     letter-spacing: 0.28px;
                 }
             `
@@ -122,7 +122,7 @@ const Container=styled.div`
         color: #949494;
         margin-bottom: ${props => props.m_bottom || 0};
         display: ${props => props.display || "inline"};
-        @media (max-width: ${mediaMaxWidh}){
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}){
             font-size: 14px;
             line-height: normal;
             letter-spacing: 0.28px;
@@ -141,7 +141,7 @@ const Container=styled.div`
         letter-spacing: 0.01em;
         font-size: 17px;
         line-height: 20px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 305px;
         }
     `
@@ -188,8 +188,8 @@ function PageAutorization(props) {
     const [isLoading, setIsLoading] = useState(true);
 
     const [sumbitDis,   setSumbitDis] = useState(false);
-    const [stateLog,    setStateLog ] = useState(inited?1:-1);
-    const [statePass,   setStatePass] = useState(inited?1:-1);
+    const [stateLog,    setStateLog ] = useState(INITED_LOGIN?1:-1);
+    const [statePass,   setStatePass] = useState(INITED_LOGIN?1:-1);
 
     const { logged } = props;
 
@@ -281,7 +281,7 @@ function PageAutorization(props) {
         }
     },[stateLog,statePass]);
 
-    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     return(
         (!isLoading)&&
@@ -312,10 +312,10 @@ function PageAutorization(props) {
                             mrg_bottom={6} 
                             b_color={(stateLog==0)?"#FF5959":"#C7C7C7"}
                             ref={refLogin}
-                            // defaultValue={inited?"sf_student1":""}
-                            // defaultValue={inited&&"sf_student10"}
-                            // defaultValue={inited&&"sf_student5"}
-                            defaultValue={inited&&"sf_student7"}
+                            // defaultValue={INITED_LOGIN?"sf_student1":""}
+                            // defaultValue={INITED_LOGIN&&"sf_student10"}
+                            // defaultValue={INITED_LOGIN&&"sf_student5"}
+                            defaultValue={INITED_LOGIN&&"sf_student7"}
                         ></Input>
                         <DivFlex 
                             color="#FF5959"
@@ -333,10 +333,10 @@ function PageAutorization(props) {
                             b_color={(statePass==0)?"#FF5959":"#C7C7C7"}
                             ref={refPassword} 
                             type="password"
-                            // defaultValue={inited?"4i2385j":""}
-                            // defaultValue={inited&&"KHKfTXb"}
-                            // defaultValue={inited&&"LuwAwJf"}
-                            defaultValue={inited&&"P6VcKNf"}
+                            // defaultValue={INITED_LOGIN?"4i2385j":""}
+                            // defaultValue={INITED_LOGIN&&"KHKfTXb"}
+                            // defaultValue={INITED_LOGIN&&"LuwAwJf"}
+                            defaultValue={INITED_LOGIN&&"P6VcKNf"}
                         ></Input>
                         <DivFlex 
                             color="#FF5959"

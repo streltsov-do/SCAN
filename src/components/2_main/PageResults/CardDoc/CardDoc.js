@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 import DivFlex from "../../../utils/DivFlex/DivFlex";
 import Button from "../../PageMain/custom/Button/Button";
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const Div=styled.div`
     width: 641px;
@@ -15,7 +15,7 @@ const Div=styled.div`
     border-radius: 10px;
     margin-bottom: 38px;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 335px;
         min-width: 335px;
         height: 694px;
@@ -29,7 +29,7 @@ const Div=styled.div`
             line-height: 19px;
             letter-spacing: 0.02em;
             color: #949494;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 min-width: 90px; 
                 font-size: 14px;
                 line-height: normal;
@@ -42,7 +42,7 @@ const Div=styled.div`
             letter-spacing: 0.02em;
             text-decoration-line: underline;
             color: #949494;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 14px;
                 line-height: normal;
                 letter-spacing: 0.14px;
@@ -55,7 +55,7 @@ const Div=styled.div`
         letter-spacing: 0.02em;
         color: #000000;
         margin: 24px 0 14px 0;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 19px;
             line-height: normal;
             letter-spacing: 0.19px;
@@ -72,7 +72,7 @@ const Div=styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 132px;
             height: 20px;
             flex-shrink: 0;
@@ -88,7 +88,7 @@ const Div=styled.div`
         margin-bottom: 20px;
         background-image: url(${props => props.background});
         background-size: cover;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 297px;
             height: 158px;
             flex-shrink: 0;
@@ -103,7 +103,7 @@ const Div=styled.div`
         color: #000000;
         opacity: 0.5;
         background-size: auto;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 290px;
             font-size: 12px;
             line-height: normal;
@@ -119,7 +119,7 @@ const Div=styled.div`
         letter-spacing: 0.02em;
 
         color: #949494;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 14px;
             font-weight: 400;
             line-height: normal;
@@ -141,7 +141,7 @@ export default function CardDoc(props) {
             isDigest        ,
         } = props;
 
-    const isMobile = useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     // console.log("isMob",isMobile);
     return (

@@ -1,3 +1,3 @@
-const mediaMaxWidh = "924px";
+const MOBILE_WIDTH_BREAKPOINT = "924px";
 
-export { mediaMaxWidh };
+export { MOBILE_WIDTH_BREAKPOINT };

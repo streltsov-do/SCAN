@@ -6,23 +6,23 @@ import {useMediaQuery} from "react-responsive";
 import { NavHashLink  } from 'react-router-hash-link';
 
 import AccInfo from "./Account/AccInfo";
-import { mediaMaxWidh } from "../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../utils/consts";
 
 import imgLogo from './scan.svg';
 import imgLogoWhite from './scanWhite.svg';
 
-const headerHeight=93;
+const HEADER_HEIGHT=93;
 
 const HeaderDiv = styled.div`
     width: auto;
-    height: ${headerHeight}px;
+    height: ${HEADER_HEIGHT}px;
     background: ${props => (props.opened == "true")?"#029491":"#FFFFFF"};
     padding: 0 40px 0 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-clip: border-box;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 0 26px 0 14px;
     }
 `
@@ -38,7 +38,7 @@ const HeaderDiv = styled.div`
         font-size: 14px;
         line-height: 17px;
         margin-right: 10px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             display: none;
         }
     `
@@ -52,7 +52,7 @@ const HeaderDiv = styled.div`
 const Logo=styled.img`
     width: 141px;
     height: 141px;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 111px;
         height: 111px;
     }
@@ -130,7 +130,7 @@ function Header(props) {
         logout();
         navigate('/');
     }
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh });
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     const handeResize = () => {
         if (!isMobile){
@@ -210,7 +210,7 @@ function Header(props) {
             {
                 isMenuOpened&&
                 <MobileMenu
-                    top={headerHeight}
+                    top={HEADER_HEIGHT}
                 >
                     
                     <MobileUl>
@@ -227,8 +227,8 @@ function Header(props) {
                             Главная
                         </NavLink> */}
                         <NavLi><NavA onClick={(e) => {e.preventDefault(); openMenu(false); navigate('/')}} mobile="true" href="/">Главная</NavA></NavLi>
-                        <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
-                        <NavLi><NavA onClick={(e) => {openMenu(false);}}mobile="true" href="#">FAQ</NavA></NavLi>
+                        <NavLi><NavA onClick={(e) => {openMenu(false); navigate('/')}}mobile="true" href="#idTariffs">Тарифы</NavA></NavLi>
+                        <NavLi><NavA onClick={(e) => {e.preventDefault();openMenu(false);}}mobile="true" href="">FAQ</NavA></NavLi>
                     </MobileUl>
                     <MobileADiv>
                         {!logged&&

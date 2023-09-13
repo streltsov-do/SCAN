@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './sliderMain.css';
 
 import Slide from "./Slide/Slide";
-import { mediaMaxWidh } from "../../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 import Icon1 from './icon_time.svg';
 import Icon2 from './icon_search.svg';
@@ -93,7 +93,7 @@ function Carousel() {
 
     }, [slideNum]);
 
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     var settings = {
         dots: false,

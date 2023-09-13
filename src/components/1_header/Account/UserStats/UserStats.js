@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 import Loader from "../../../utils/Loading/Loader";
 
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const StatsFont = css`
     font-size: 14px;
@@ -17,7 +17,7 @@ const StatsLogged = styled.div`
     height: 63px;
     display: ${props => props.loading?'none':'flex'};
     padding: 14px 8px 15px 8px;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 5px 0 0 10px;
     }
 `   
@@ -25,7 +25,7 @@ const StatsLogged = styled.div`
         display: grid;
         grid-template-columns: calc(124px) 17px;
         gap: 9px 6px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             display: flex;
             flex-direction: column;
             gap:2px;
@@ -39,7 +39,7 @@ const StatsLogged = styled.div`
             z-index: 3;   
             position: relative;
             letter-spacing: 0em;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 8px;
             }
         `
@@ -55,7 +55,7 @@ export default function UserStats(props){
     
     const { loading, used, limit} = props;
 
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     return (
         <>

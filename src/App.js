@@ -9,9 +9,9 @@ import DivFlex from './components/utils/DivFlex/DivFlex';
 import ava from "./components/utils/img/ava.png";
 
 function App(props) {
-    const name = "Алексей А.";
-    const avatar = ava;
-    const tariff = 1;
+    const NAME = "Алексей А.";
+    const AVATAR = ava;
+    const TARIFF = 1;
 
     return (
         <BrowserRouter>
@@ -21,12 +21,12 @@ function App(props) {
                 render={
                     <>
                         <Header 
-                            name={name} 
-                            avatar={avatar}
+                            name={NAME} 
+                            avatar={AVATAR}
                         />
 
                         <Main 
-                            tariff={tariff}
+                            tariff={TARIFF}
                         />
 
                         <Footer></Footer>

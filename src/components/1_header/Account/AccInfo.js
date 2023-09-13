@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 import UserStats from "./UserStats/UserStats";
 import UserAcc from "./user/UserAcc";
-import { mediaMaxWidh } from "../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 import BtnMenu from "./user/BtnMenu/BtnMenu";
 
 
@@ -20,7 +20,7 @@ const Stats = styled.div`
     justify-content: space-between;
     align-items: center;
     gap: 7px;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 132px;
         height: 75px;
         flex-shrink: 0;
@@ -68,7 +68,7 @@ function AccInfo(props) {
         openMenu, isMenuOpened
     } = props;
 
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
     
     const [ stats, setStats ] = useState({
         used: 0,

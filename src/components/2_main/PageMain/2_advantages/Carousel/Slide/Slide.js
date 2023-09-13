@@ -1,37 +1,37 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { mediaMaxWidh } from "../../../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../../utils/consts";
 
-const widthSlide = 400;
-const heightSlide = 225;
-const shadow= 30;
+const SLIDE_WIDTH = 400;
+const SLIDE_HEIGHT = 225;
+const SLIDE_SHADOW= 30;
 
-const mediaWidthSlide = 298;
-const mediaHeightSlide = 188;
+const MOBILE_SLIDE_WIDTH = 298;
+const MOBILE_SLIDE_HEIGHT = 188;
 
 const Container2 = styled.div`
-    height: ${heightSlide+shadow}px;
-    width: ${widthSlide+shadow}px;
+    height: ${SLIDE_HEIGHT+SLIDE_SHADOW}px;
+    width: ${SLIDE_WIDTH+SLIDE_SHADOW}px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
-        width: ${mediaWidthSlide + shadow}px;
-        height: ${mediaHeightSlide + shadow}px;
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
+        width: ${MOBILE_SLIDE_WIDTH + SLIDE_SHADOW}px;
+        height: ${MOBILE_SLIDE_HEIGHT + SLIDE_SHADOW}px;
     }
 `
 const Container = styled.div`
-    width: ${widthSlide}px;
-    height: ${heightSlide}px;
+    width: ${SLIDE_WIDTH}px;
+    height: ${SLIDE_HEIGHT}px;
     background: #FFFFFF;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.20);
     border-radius: 10px;
     padding: 22px 0 0 19px;
-    @media (max-width: ${mediaMaxWidh}) {
-        width: ${mediaWidthSlide}px;
-        height: ${mediaHeightSlide}px;
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
+        width: ${MOBILE_SLIDE_WIDTH}px;
+        height: ${MOBILE_SLIDE_HEIGHT}px;
         padding: 22px 0 0 16.9px;
     }
 `
@@ -39,7 +39,7 @@ const Container = styled.div`
         font-size: 18px;
         line-height: 22px;
         font-weight: 400;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 14px;
             line-height: normal;
             letter-spacing: 0.18px;
@@ -49,7 +49,7 @@ const Container = styled.div`
         width: 65px;
         height: 79px;
         z-index: 2;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 58px;
             margin-bottom: 12px;
         }

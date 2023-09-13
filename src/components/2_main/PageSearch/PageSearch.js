@@ -5,7 +5,7 @@ import { useMediaQuery } from "react-responsive";
 
 import DivFlex from "../../utils/DivFlex/DivFlex";
 import FormSearch from "./FormSearch/FormSearch";
-import { mediaMaxWidh } from "../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 import ImgDocumentSvg     from './img/Document.svg';
 import ImgFoldersSvg      from './img/Folders.svg';
@@ -26,7 +26,7 @@ import ImgSearchSvg from './img/Search.svg';
             width: 817px;
             height: 96px;
             margin-bottom: 25px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 28px;
                 line-height: normal;
                 letter-spacing: 0.28px;
@@ -46,7 +46,7 @@ import ImgSearchSvg from './img/Search.svg';
             width: 534px;
             height: 48px;
             margin-bottom: 47px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 18px;
                 line-height: normal;
                 width: 297px;
@@ -66,7 +66,7 @@ import ImgSearchSvg from './img/Search.svg';
         top: ${132-69}px;
         right: 411px;
         z-index: 4;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 58.242px;
             height: 71.118px;
             top: 97px;
@@ -82,7 +82,7 @@ import ImgSearchSvg from './img/Search.svg';
         right: -7.59px;
         background-image: url(${ImgSearchSvg});
         background-size: cover;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: ${375-14-40.57}px;
             height: 403.279px;
             position: relative;
@@ -98,15 +98,13 @@ export default function PageSearch(props) {
 
     const navigate=useNavigate();
 
-    const isMobile=useMediaQuery({maxWidth: mediaMaxWidh});
+    const isMobile=useMediaQuery({maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     useEffect(() => {
         if (!logged){
             setIsLoading(true);
-            // console.log('1');
             navigate("/");
         } else {
-            // console.log('2');
             setIsLoading(false);
         }
     });

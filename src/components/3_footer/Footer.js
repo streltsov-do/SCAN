@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components/macro';
 
 import imgLogoPng from './scan_transparent.png';
-import { mediaMaxWidh } from "../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../utils/consts";
 
 const FooterDiv = styled.div`
     width: auto;
@@ -12,7 +12,7 @@ const FooterDiv = styled.div`
     justify-content: space-between;
     padding: 0 45px 0 60px;
     position: relative;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 25px 19px 0 18px;
     }
 `
@@ -20,7 +20,7 @@ const FooterDiv = styled.div`
         width: 141px;
         height: 141px;
         fill: #000;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 111px;
             height: 111px;
             position: absolute;
@@ -35,7 +35,7 @@ const FooterDiv = styled.div`
             flex-direction: column;
             gap: 21px;
             padding: 25px 0;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 font-size: 14px;
                 font-weight: 400;
                 line-height: normal;

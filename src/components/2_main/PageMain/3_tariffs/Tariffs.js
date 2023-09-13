@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import Card from "./Card/Card";
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 import Icon1 from './icon1.svg';
 import Icon2 from './icon2.svg';
 import Icon3 from './icon3.svg';
 
-const gap = 37;
-const gapMedia = 40;
+const GAP_DESKTOP = 37;
+const GAP_MOBILE = 40;
 
 const Container = styled.div`
     max-width: 1320px;
@@ -17,12 +17,12 @@ const Container = styled.div`
     position: relative;
     
     @media (max-width: 1320px) {
-            height: calc(${512*2+gapMedia*3}px);
+            height: calc(${512*2+GAP_MOBILE*3}px);
     }
 
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 375px;
-        height: ${34+37 + 512*3+gapMedia*2 +43}px;
+        height: ${34+37 + 512*3+GAP_MOBILE*2 +43}px;
     }
 `
     const Title = styled.h1`
@@ -33,7 +33,7 @@ const Container = styled.div`
         line-height: 54px;
         margin-bottom: 70px;
 
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 28px;
             line-height: normal;
             letter-spacing: 0.28px;
@@ -43,7 +43,7 @@ const Container = styled.div`
     const RatesMain=styled.div`
         display: flex;
         justify-content: space-between;
-        gap: ${gap}px;
+        gap: ${GAP_DESKTOP}px;
         height: 540px;
         width: auto;
         position: relative;
@@ -53,18 +53,18 @@ const Container = styled.div`
             grid-template-columns: repeat(2,415px);
             grid-template-rows: repeat(2,540px);
             justify-content: start;
-            column-gap: ${gap}px;
+            column-gap: ${GAP_DESKTOP}px;
         }
         
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             display: flex;
             justify-content: space-between;
-            gap: ${gap}px;
+            gap: ${GAP_DESKTOP}px;
             flex-direction: column;
             justify-content: space-between;
-            height: ${512*3+gapMedia*2}px;
+            height: ${512*3+GAP_MOBILE*2}px;
             width : 335px;
-            gap: ${gapMedia}px;
+            gap: ${GAP_MOBILE}px;
         }
     `
 

@@ -8,18 +8,18 @@ import DivFlex from "../../utils/DivFlex/DivFlex";
 import SearchCarousel from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 import { getContent } from "./decoder";
-import { mediaMaxWidh } from "../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 import Searching from './Searching.svg';
 import Button from "../PageMain/custom/Button/Button";
 import sf from "../../../components/utils/img/sf.png"
 
-const p_left=69;
+const PADDING_LEFT=69;
 
 const DivMain=styled.div`
     position: relative;
-    padding: ${p_left}px 0 0 60px;
-    @media (max-width: ${mediaMaxWidh}) {
+    padding: ${PADDING_LEFT}px 0 0 60px;
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 20px 0 0 12px;
     }
 `
@@ -29,7 +29,7 @@ const ImgSearching=styled.img`
     left : ${props => props.left};
     right: ${props => props.right};
     z-index: 1;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         position: relative;
         left : 0;
         right: 0;
@@ -46,7 +46,7 @@ const ImgSearching=styled.img`
         line-height: 48px;
         letter-spacing: 0.04em;
         color: #000000;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             width: 344px;
             font-size: 28px;
             line-height: normal;
@@ -60,7 +60,7 @@ const ImgSearching=styled.img`
         font-size: 20px;
         line-height: 24px;
         letter-spacing: 0.02em;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 18px;
             line-height: normal;
             letter-spacing: 0.18px;
@@ -76,7 +76,7 @@ const ImgSearching=styled.img`
         letter-spacing: 0.02em;
         color: #000000;
         margin-bottom: ${props => props.m_bottom || 0}px;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             font-size: 28px;
             line-height: normal;
             letter-spacing: 0.28px;
@@ -92,7 +92,7 @@ const ImgSearching=styled.img`
         letter-spacing: 0.36px;
         margin-bottom: ${props => props.m_bottom || 0}px;
         color: #949494;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             letter-spacing: 0.18px;
         }
     `
@@ -103,7 +103,7 @@ const ImgSearching=styled.img`
         @media (max-width: ${641*2+20+60+16}px) {
             grid-template-columns: 641px;
         }
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             grid-template-columns: 375px;
         }
     `
@@ -144,7 +144,7 @@ function PageResults(props){
 
     const navigate=useNavigate();
 
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh });
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     useEffect(()=> {
         setLoading(state.loading_his || state.loading_obj);
@@ -296,7 +296,7 @@ function PageResults(props){
             />
             <SearchCarousel 
                 loading={loading} 
-                parent_p_left={p_left}
+                parent_p_left={PADDING_LEFT}
                 state={state}
                 m_bottom={isMobile?57:107}
             />

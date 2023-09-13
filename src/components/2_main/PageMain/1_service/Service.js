@@ -6,14 +6,14 @@ import { useMediaQuery } from "react-responsive";
 
 import PicTitle from './pic1.png';
 import Button from "../custom/Button/Button";
-import { mediaMaxWidh } from "../../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const Container=styled.div`
     height: 620px;
     display: flex;
     position: relative;
     padding-left: 9px;
-    @media (max-width: ${mediaMaxWidh}) {
+    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 0;
         width : auto;
         height: auto;
@@ -28,7 +28,7 @@ const Container=styled.div`
         display: flex;
         flex-direction: column;
         position: relative;
-        @media (max-width: ${mediaMaxWidh}) {
+        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
             padding-top: 0;
             width : auto;
             height: auto;
@@ -45,7 +45,7 @@ const Container=styled.div`
             letter-spacing: 0.01em;
             text-align: left;
             margin-bottom: 20px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 width : auto;
                 height: auto;
                 font-size: 28px;
@@ -62,7 +62,7 @@ const Container=styled.div`
             line-height: 24px;
             text-align: left;
             margin-bottom: 70px;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 width : auto;
                 height: auto;
                 margin-bottom: 32px;
@@ -79,7 +79,7 @@ const Container=styled.div`
         position: absolute;
         background-image: url(${PicTitle});
         background-size: cover;
-            @media (max-width: ${mediaMaxWidh}) {
+            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
                 position: relative;
                 left:  0;
                 width: 347.182px;
@@ -122,7 +122,7 @@ function Service(props) {
 
     }, [imgParams]);
 
-    const isMobile = useMediaQuery({ maxWidth: mediaMaxWidh});
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
 
     return (
         <Container
