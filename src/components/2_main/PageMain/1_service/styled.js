@@ -63,20 +63,21 @@ const TitleDesc = styled.h3`
     }
 `;
 
-const TitleImgDiv = styled.div`
-    width: ${(props) => props.width};
+const TitleImgDiv = styled.div.attrs(({ left, right, width }) => ({
+    style: {
+        left: left,
+        right: right,
+        width: width,
+    },
+}))`
     max-width: 629px;
     height: 593px;
-    left: ${(props) => props.left};
-    right: ${(props) => props.right};
     z-index: 1;
     position: absolute;
     background-image: url(${PicTitle});
     background-size: cover;
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         position: relative;
-        left: 0;
-        width: 347.182px;
         height: 327.312px;
         margin-bottom: 55.39px;
     }

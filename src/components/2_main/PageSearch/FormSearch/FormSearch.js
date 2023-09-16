@@ -403,7 +403,7 @@ function FormSearch(props) {
                         <S.InputDesc m_top={9}>Диапазон поиска</S.InputDesc>
                         <Asterisk top={-1} good={chkNecessary.date !== -1} />
                     </S.DivRelative>
-                    <S.DivDates mobile={isMobile?1:0}>
+                    <S.DivDates mobile={isMobile ? 1 : 0}>
                         <S.DivRelative>
                             <S.Input
                                 type="date"
@@ -461,7 +461,7 @@ function FormSearch(props) {
                     </S.DivCenter>
                 </S.DivRelativeCol>
             </S.Div1>
-            <S.Div2 mobile={isMobile?1:0}>
+            <S.Div2 mobile={isMobile ? 1 : 0}>
                 {arrFilt.map((item, index) => (
                     <Checkbox
                         key={index}
@@ -474,7 +474,7 @@ function FormSearch(props) {
                     />
                 ))}
             </S.Div2>
-            <S.DivBtn mobile={isMobile?1:0}>
+            <S.DivBtn mobile={isMobile ? 1 : 0}>
                 <Button
                     name="Поиск"
                     width={isMobile ? 335 : 305}

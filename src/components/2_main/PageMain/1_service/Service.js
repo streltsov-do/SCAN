@@ -11,6 +11,8 @@ function Service(props) {
     const { logged } = props;
     const navigate = useNavigate();
 
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
+
     const refDiv = useRef(null);
 
     const [imgParams, setImgParams] = useState(["530px", "60px", "629px"]);
@@ -27,12 +29,17 @@ function Service(props) {
             v_width < 550 + 51 + 629 - 40
                 ? v_width - (550 + 51 - 79) + "px"
                 : "629px";
+        if (isMobile) {
+            lOffset = 0;
+            rOffset = 0;
+            imgWidth = 347.182;
+        }
         setImgParams([lOffset, rOffset, imgWidth]);
     }
 
     useEffect(() => {
         handeResize();
-    }, []);
+    }, [isMobile]);
 
     useEffect(() => {
         window.addEventListener("resize", handeResize);
@@ -41,8 +48,6 @@ function Service(props) {
             window.removeEventListener("resize", handeResize);
         };
     }, [imgParams]);
-
-    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     return (
         <S.Container ref={refDiv}>

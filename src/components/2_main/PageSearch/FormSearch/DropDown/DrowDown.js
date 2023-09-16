@@ -27,18 +27,18 @@ export default function DropDown(props) {
 
     return (
         <S.Container>
-            <S.DivArrow mobile={isMobile?1:0}>
+            <S.DivArrow mobile={isMobile ? 1 : 0}>
                 <S.Btn onClick={handleDrops}>
                     {items[tone]}
                     <ArrowDown rotate={showDrops.toString()} />
                 </S.Btn>
             </S.DivArrow>
             {showDrops && (
-                <S.DivDrop mobile={isMobile?1:0} items={items.length}>
+                <S.DivDrop mobile={isMobile ? 1 : 0} items={items.length}>
                     {items.map((item, index) => (
                         <S.DivDropItem
                             key={index}
-                            mobile={isMobile?1:0}
+                            mobile={isMobile ? 1 : 0}
                             index={index}
                         >
                             <S.Btn onClick={(e) => handleChoose(index)}>
