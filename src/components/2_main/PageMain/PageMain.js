@@ -7,26 +7,21 @@ import Tariffs from "./3_tariffs/Tariffs";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 const Container = styled.div`
-    background: #FFFFFF;
+    background: #ffffff;
     padding: 51px 0 118px 51px;
     position: relative;
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         padding: 20px 0 0 14px;
     }
-`
+`;
 
-export default function PageMain(props){
-    const {logged, tariff} = props;
-    return(
+export default function PageMain(props) {
+    const { logged, tariff } = props;
+    return (
         <Container>
-            <Service
-                logged={logged}
-            />
-            <Advantages/>
-            <Tariffs 
-                logged={logged}
-                tariff={tariff}
-            />
+            <Service logged={logged} />
+            <Advantages />
+            <Tariffs logged={logged} tariff={tariff} />
         </Container>
-    )
+    );
 }

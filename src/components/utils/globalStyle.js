@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import FontStyles from "./Fonts/FontStyles";
 
-import Rectangle1 from './Rectangle.svg';
+import Rectangle1 from "./Rectangle.svg";
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -70,6 +70,6 @@ const GlobalStyle = createGlobalStyle`
     input[type="date"]:in-range::-webkit-datetime-edit-month-field, 
     input[type="date"]:in-range::-webkit-datetime-edit-day-field, 
     input[type="date"]:in-range::-webkit-datetime-edit-text { 	color: transparent; }
-`
+`;
 
 export default GlobalStyle;

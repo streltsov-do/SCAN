@@ -1,5 +1,3 @@
-import React from "react";
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 
 const FontStyles = createGlobalStyle`
@@ -87,6 +85,6 @@ const FontStyles = createGlobalStyle`
         font-style: normal;
         font-display: swap;
     } */
-`
+`;
 
 export default FontStyles;

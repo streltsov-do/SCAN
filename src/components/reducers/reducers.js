@@ -5,5 +5,5 @@ import search from "./search";
 
 export default combineReducers({
     login,
-    search
+    search,
 });

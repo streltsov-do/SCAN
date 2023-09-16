@@ -13,22 +13,22 @@
 }
 
 .sliderResults .slick-arrow {
-	z-index: 1;
+    z-index: 1;
     content: "";
-	width: 39px;
+    width: 39px;
     height: 39px;
     padding: 0;
     border: none;
     border-radius: 0;
     background-color: transparent;
-    background-image: url('../../../utils/ButtonArrow/ArrowRight.svg');
+    background-image: url("../../../utils/ButtonArrow/ArrowRight.svg");
 }
 .sliderResults .slick-arrow:hover {
-    background-image: url('../../../utils/ButtonArrow/ArrowRight.svg');
+    background-image: url("../../../utils/ButtonArrow/ArrowRight.svg");
 }
 .sliderResults .slick-prev {
     transform: rotate(180deg);
-    top: calc(124px/2 - 39px/2);
+    top: calc(124px / 2 - 39px / 2);
     left: calc(-4px - 133px - 39px);
 }
 .sliderResults .slick-next {
@@ -42,7 +42,6 @@
     content: "";
 }
 
-
 @media screen and (width <= 702px) {
     .sliderResults .slick-slide {
         width: 124px;
@@ -54,7 +53,7 @@
         margin: 0 0px;
         height: calc(154px - 75px);
     }
-    
+
     .sliderResults .slick-prev {
         transform: rotate(180deg);
         top: -10px;

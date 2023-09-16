@@ -1,251 +1,76 @@
 import React from "react";
-import styled from "styled-components/macro";
-import {useMediaQuery} from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 import Button from "../../custom/Button/Button";
+import * as S from "./styled.js";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
-
-import CheckMark from './CheckMark.svg'
-
-const CARD_WIDTH =415;
-const CARD_HEIGHT=540;
-const TITLE_HEIGHT=132;
-
-const CARD_MOBILE_WIDTH =335;
-const CARD_MOBILE_HEIGHT=512;
-const TITLE_MOBILE_HEIGHT=132;
-
-const Div=styled.div`
-    width: ${CARD_WIDTH}px;
-    height: ${CARD_HEIGHT}px;
-    background: #FFFFFF;
-    border: 2px solid #${props => props.color};
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    position: relative;
-    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-        width: ${CARD_MOBILE_WIDTH}px;
-        height: ${CARD_MOBILE_HEIGHT}px;
-    }
-`
-    const TitleDiv=styled.div`
-        width: ${CARD_WIDTH}px;
-        height: ${TITLE_HEIGHT}px;
-        background: #${props => props.color};
-        border-radius: 10px 10px 0px 0px;
-        padding: 30px 0 0 30px;
-        display: flex;
-        position: relative;
-        margin: -2px 0 0 -2px;
-        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-            width: ${CARD_MOBILE_WIDTH}px;
-            height: ${TITLE_MOBILE_HEIGHT}px;
-        }
-    `
-        const Title=styled.div`
-            color: ${props => props.color};
-            font-weight: 500;
-            font-size: 30px;
-            line-height: 36px;
-            margin-bottom: 10px;
-        `
-        const TitleDesc=styled.div`
-            color: ${props => props.color};
-            font-size: 18px;
-            line-height: 22px;
-        `
-        const IconImg=styled.img`
-            font-size: 18px;
-            line-height: 22px;
-            position: absolute;
-            width   : ${props => props.width    }px;
-            height  : ${props => props.height   }px;
-            top     : ${props => props.top      }px;
-            right   : ${props => props.right    }px;
-            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                width: 59px;
-                height: 53.181px;
-                top   : 13px;
-                right : 5px;
-            }
-        `
-    const MainDiv=styled.div`
-        width: ${CARD_WIDTH}px;
-        height: ${CARD_HEIGHT-TITLE_HEIGHT}px;
-        padding: 33px 0 24px 30px;
-        position: relative;
-        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-            width: ${CARD_MOBILE_WIDTH}px;
-            height: ${CARD_MOBILE_HEIGHT-TITLE_HEIGHT}px;
-            padding: 20px 0 0 24px;
-        }
-    `   
-        const Current=styled.div`
-            position: absolute;
-            width: 134px;
-            height: 24px;
-            background: #3BA5E0;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            right: 10px;
-            top:12px;
-            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                font-size: 12px;
-                right: 10px;
-                top:6px;
-                width: 120px;
-                height: 18px;
-            }
-        `
-        const PriceDiv=styled.div`
-            display: flex;
-            gap: 19px;
-            margin-bottom: 10px;
-            align-items: center;
-            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                gap: 10px;
-            }
-        `
-            const PriceSale=styled.div`
-                font-weight: 500;
-                font-size: 30px;
-                line-height: 36px;
-                /* @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                    font-size: 30px;
-                    letter-spacing: 0.3px;
-                } */
-            `
-            const Price=styled.div`
-                font-weight: 500;
-                font-size: 25px;
-                line-height: 30px;
-                text-decoration: line-through;
-                opacity: 0.5;
-                color: #000;
-            `
-        const PriceInstallment=styled.div`
-            font-size: 18px;
-            line-height: 22px;
-            margin-bottom: 59px;
-            height: 22px;
-            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                font-weight: 400;
-                line-height: normal;
-                display: flex;
-                width: 276px;
-                height: 44px;
-                margin-bottom: 37px;
-            }
-        `
-        const TariffDesc=styled.div`
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 24px;
-            margin-bottom: 10px;
-            @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                font-size: 18px;
-                letter-spacing: 0.18px;
-                line-height: normal;
-            }
-        `
-            const TariffOptions=styled.div`
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                margin-bottom: 55px;
-            `
-                const OptionDiv=styled.div`
-                    display: flex;
-                `
-                    const Check=styled.img`
-                        width: 20px;
-                        height: 20px;
-                        margin-right: 8px;
-                        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                            width: 16px;
-                        }
-                    `
-                    const OptionDecs=styled.div`
-                        font-size: 18px;
-                        line-height: 22px;
-                        @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-                            font-size: 16px;
-                            line-height: normal;
-                            letter-spacing: 0.16px;
-                        }
-                    `
-
+import CheckMark from "./CheckMark.svg";
 
 function Card(props) {
-    const {color, price, title, titleDesc, icon, active} = props;
+    const { color, price, title, titleDesc, icon, active } = props;
 
-    const divColor  = active?color:"FFFFFF";
-    const btnDesc   = active?"Перейти в личный кабинет":"Подробнее"
-    const btnBg     = active?"D2D2D2":"5970FF";
-    const btnColor  = active?"000000":"FFFFFF";
-    
-    const titleColor = (color=="000000")?"white":"black";
+    const divColor = active ? color : "FFFFFF";
+    const btnDesc = active ? "Перейти в личный кабинет" : "Подробнее";
+    const btnBg = active ? "D2D2D2" : "5970FF";
+    const btnColor = active ? "000000" : "FFFFFF";
 
-    const p_installment=price.installment;
-    const installment=(p_installment==0)?"":`или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
-    
-    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
-    
-    return(
-        <Div color={divColor}>
-            <TitleDiv color={color}>
+    const titleColor = color == "000000" ? "white" : "black";
+
+    const p_installment = price.installment;
+    const installment =
+        p_installment == 0
+            ? ""
+            : `или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
+
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
+
+    return (
+        <S.Div color={divColor}>
+            <S.TitleDiv color={color}>
                 <div>
-                    <Title color={titleColor}>{title}</Title>
-                    <TitleDesc color={titleColor}>{titleDesc}</TitleDesc>
+                    <S.Title color={titleColor}>{title}</S.Title>
+                    <S.TitleDesc color={titleColor}>{titleDesc}</S.TitleDesc>
                 </div>
-                <IconImg 
-                    src     ={icon.img    }
-                    width   ={icon.width  }
-                    height  ={icon.width  }
-                    top     ={icon.top    }
-                    right   ={icon.right  }
-                ></IconImg>
-            </TitleDiv>
-            <MainDiv>
-                {   
-                    active
-                    ?   <Current>Текущий тариф</Current>
-                    :   <></>
-                }
-                <PriceDiv>
-                    <PriceSale>{price.sale} ₽</PriceSale>
-                    <Price>{price.src} ₽</Price>
-                </PriceDiv>
-                <PriceInstallment>{installment}</PriceInstallment>
-                <TariffDesc>В тариф входит:</TariffDesc>
-                <TariffOptions>
-                    {
-                        props.options.map((item,index) => 
-                            <OptionDiv key={index}>
-                                <Check src={CheckMark}></Check>
-                                <OptionDecs>{item}</OptionDecs>
-                            </OptionDiv>
-                        )
-                    }
-                </TariffOptions>
-                <Button 
-                    width       ={isMobile?286.566:355}
-                    height      ={59}
-                    background  ={btnBg}
-                    color       ={btnColor}
-                    name        ={btnDesc}
-                    f_size      ={20}
-                    f_height    ={24}
-                    position    ="absolute"
-                    bottom      ={33}
-                    right       ={24}
+                <S.IconImg
+                    src={icon.img}
+                    width={icon.width}
+                    height={icon.width}
+                    top={icon.top}
+                    right={icon.right}
+                ></S.IconImg>
+            </S.TitleDiv>
+            <S.MainDiv>
+                {active ? <S.Current>Текущий тариф</S.Current> : <></>}
+                <S.PriceDiv>
+                    <S.PriceSale>{price.sale} ₽</S.PriceSale>
+                    <S.Price>{price.src} ₽</S.Price>
+                </S.PriceDiv>
+                <S.PriceInstallment>{installment}</S.PriceInstallment>
+                <S.TariffDesc>В тариф входит:</S.TariffDesc>
+                <S.TariffOptions>
+                    {props.options.map((item, index) => (
+                        <S.OptionDiv key={index}>
+                            <S.Check src={CheckMark}></S.Check>
+                            <S.OptionDecs>{item}</S.OptionDecs>
+                        </S.OptionDiv>
+                    ))}
+                </S.TariffOptions>
+                <Button
+                    width={isMobile ? 286.566 : 355}
+                    height={59}
+                    background={btnBg}
+                    color={btnColor}
+                    name={btnDesc}
+                    f_size={20}
+                    f_height={24}
+                    position="absolute"
+                    bottom={33}
+                    right={24}
                 />
-            </MainDiv>
-        </Div>
-    )
+            </S.MainDiv>
+        </S.Div>
+    );
 }
 
 export default Card;

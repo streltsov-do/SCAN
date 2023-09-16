@@ -1,69 +1,22 @@
 import React from "react";
-import styled from "styled-components/macro";
 import { useMediaQuery } from "react-responsive";
 
 import Carousel from "./Carousel/Carousel";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
-
-import Perfect from './perfect.svg';
-
-const Container = styled.div`
-    width: auto;
-    height: ${349+575.52+70*2}px;
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-        width: 375px;
-        display: block;
-        margin-bottom: 80.48px;
-        height: auto;
-        padding-left: 14px;
-    }
-`
-
-const Title = styled.h1`
-    margin-right: 9px;
-    font-family: 'Ferry';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 45px;
-    line-height: 54px;
-    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-        font-size: 28px;
-        line-height: normal;
-        letter-spacing: 0.28px;
-        margin-bottom: 32px;
-    }
-`
-
-const PerfectImg1=styled.div`
-    height: 575.52px;
-    max-width: 1320px;
-    background-image: url(${Perfect});
-    background-size: cover;
-    background-repeat: no-repeat;
-    @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
-        background-size: cover;
-        width: ${375-14}px;
-        height: 392.522px;
-    }
-`
+import * as S from "./styled.js";
 
 function Advantages() {
-    
-    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT});
+    const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     return (
-        <Container>
-            <Title>Почему {isMobile?<br/>:""}именно мы</Title>
-            <Carousel/>
+        <S.Container>
+            <S.Title>Почему {isMobile ? <br /> : ""}именно мы</S.Title>
+            <Carousel />
             <div>
-                <PerfectImg1 
-                ></PerfectImg1>
+                <S.PerfectImg1 />
             </div>
-        </Container>
-    )
+        </S.Container>
+    );
 }
 
 export default Advantages;

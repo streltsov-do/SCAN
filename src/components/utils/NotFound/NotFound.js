@@ -1,19 +1,19 @@
 import React from "react";
-import DivFlex from "../DivFlex/DivFlex";
+import styled from "styled-components/macro";
 
-export default function NotFound() {
-    return(
-        <DivFlex
-            height="200"
-            justify="center"
-            align="center"
-            color="red"
-            render={
-                <h1>
-                    Страница не найдена!
-                </h1>
-            }
-        />
-    )
+const Div = styled.div`
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    color: red;
+`;
+function NotFound() {
+    return (
+        <Div>
+            <h1>Страница не найдена!</h1>
+        </Div>
+    );
 }
 
+export { NotFound };

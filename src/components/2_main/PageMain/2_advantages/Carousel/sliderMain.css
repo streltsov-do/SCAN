@@ -11,22 +11,22 @@
 }
 
 .sliderMain .slick-arrow {
-	z-index: 1;
+    z-index: 1;
     content: "";
-	width: 39px;
+    width: 39px;
     height: 39px;
     padding: 0;
     border: none;
     border-radius: 0;
     background-color: transparent;
-    background-image: url('../../../../utils/ButtonArrow/ArrowRight.svg');
+    background-image: url("../../../../utils/ButtonArrow/ArrowRight.svg");
 }
 .sliderMain .slick-arrow:hover {
-    background-image: url('../../../../utils/ButtonArrow/ArrowRight.svg');
+    background-image: url("../../../../utils/ButtonArrow/ArrowRight.svg");
 }
 .sliderMain .slick-prev {
     transform: rotate(180deg);
-    top: calc(230px/2 - 19px/2);
+    top: calc(230px / 2 - 19px / 2);
     left: -29px;
 }
 .sliderMain .slick-next {
@@ -49,14 +49,14 @@
     .sliderMain .slick-list {
         width: calc(298px + 30px);
         height: calc(188px + 30px);
-    } 
+    }
 
     .sliderMain .slick-prev {
-        top: calc((188px + 30px)/2 - 19px/2);
+        top: calc((188px + 30px) / 2 - 19px / 2);
         left: -20px;
     }
     .sliderMain .slick-next {
-        top: calc((188px + 30px)/2 + 19px/2);
+        top: calc((188px + 30px) / 2 + 19px / 2);
         right: -20px;
         /* bottom: calc((188px + 30px)/2 - 19px/2); */
     }
