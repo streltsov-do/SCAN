@@ -153,7 +153,7 @@ function PageResults(props) {
         !isLoading && (
             <S.DivMain>
                 <S.DivTitle
-                    mobile={isMobile?"true":"false"}
+                    mobile={isMobile?1:0}
                 >
                     {loading ? (
                         <>
@@ -221,7 +221,7 @@ function PageResults(props) {
                         <>Загрузка...</>
                     )}
                 </S.CardGrid>
-                <S.DivBtn mobile={isMobile?"true":"false"}>
+                <S.DivBtn mobile={isMobile?1:0}>
                     {showNum !== -1 &&
                         publications !== undefined &&
                         publications.length > 0 && (
