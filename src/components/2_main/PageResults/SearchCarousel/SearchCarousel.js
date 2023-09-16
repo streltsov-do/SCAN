@@ -73,7 +73,7 @@ export default function SearchCarousel(props) {
         let newDisplayNum = Math.floor(widthDobbyMax / S.CARD_WIDTH);
         newDisplayNum = newDisplayNum > 8 ? 8 : newDisplayNum;
 
-        if (newDisplayNum != displayNum && newDisplayNum > 0) {
+        if (newDisplayNum !== displayNum && newDisplayNum > 0) {
             setDisplayNum(newDisplayNum);
         }
     }
@@ -141,7 +141,7 @@ export default function SearchCarousel(props) {
                                     period={item.date}
                                     all={item.docs}
                                     risc={item.risk}
-                                    last={index + 1 == displayNum}
+                                    last={index + 1 === displayNum}
                                 />
                             ))}
                         </Slider>

@@ -86,7 +86,7 @@ function Tariffs(props) {
                 {arr.map((item, index) => (
                     <Card
                         key={index}
-                        active={logged && tariff == index}
+                        active={logged && tariff === index}
                         color={item.color}
                         title={item.title}
                         titleDesc={item.titleDesc}

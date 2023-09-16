@@ -43,7 +43,7 @@ export default function search(state = initialState, action) {
                 influence: [],
                 similarCount: [],
             };
-            break;
+        // break;
         case "SET_OBJECTS":
             return {
                 ...state,
@@ -53,7 +53,7 @@ export default function search(state = initialState, action) {
                 influence: action.influence,
                 similarCount: action.similarCount,
             };
-            break;
+        // break;
         case "SET_LOADING":
             return {
                 ...state,
@@ -61,7 +61,7 @@ export default function search(state = initialState, action) {
                 loading_his: true,
                 loading_obj: true,
             };
-            break;
+        // break;
         default:
             return state;
     }

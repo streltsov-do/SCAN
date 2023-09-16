@@ -9,14 +9,14 @@ const Container = styled.div`
 const DivArrow = styled.div`
     display: flex;
     position: relative;
-    width: ${(prop) => (prop.isMobile ? 335 : 242)}px;
+    width: ${(prop) => (prop.mobile ? 335 : 242)}px;
 `;
 
 const DivDrop = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    width: ${(prop) => (prop.isMobile ? 335 : 242)}px;
+    width: ${(prop) => (prop.mobile ? 335 : 242)}px;
     overflow-y: hidden;
     top: 43px;
     height: ${(prop) => prop.items * 43}px;
@@ -27,7 +27,7 @@ const DivDrop = styled.div`
 const DivDropItem = styled.div`
     display: flex;
     position: absolute;
-    width: ${(prop) => (prop.isMobile ? 335 : 242)}px;
+    width: ${(prop) => (prop.mobile ? 335 : 242)}px;
     overflow-y: hidden;
     top: ${(prop) => prop.index * 43}px;
     height: ${43}px;

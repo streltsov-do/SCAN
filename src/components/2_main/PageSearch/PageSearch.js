@@ -30,7 +30,7 @@ export default function PageSearch(props) {
 
     return (
         !isLoading && (
-            <S.Container isMobile={isMobile}>
+            <S.Container mobile={isMobile?"true":"false"}>
                 <S.DivMain>
                     <S.Title>Найдите необходимые данные в пару кликов.</S.Title>
                     <S.TitleDesc>

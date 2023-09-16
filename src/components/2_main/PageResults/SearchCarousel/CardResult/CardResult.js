@@ -11,7 +11,7 @@ export default function CardResult(props) {
 
     return (
         <S.Container>
-            <S.DivMain isMobile={isMobile} width={width}>
+            <S.DivMain mobile={isMobile?"true":"false"} width={width}>
                 <S.Span>{period}</S.Span>
                 <S.Span>{all}</S.Span>
                 <S.Span>{risc}</S.Span>

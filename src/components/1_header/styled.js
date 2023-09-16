@@ -6,7 +6,7 @@ const HEADER_HEIGHT = 93;
 const HeaderDiv = styled.div`
     width: auto;
     height: ${HEADER_HEIGHT}px;
-    background: ${(props) => (props.opened == "true" ? "#029491" : "#FFFFFF")};
+    background: ${(props) => (props.opened === "true" ? "#029491" : "#FFFFFF")};
     padding: 0 40px 0 60px;
     display: flex;
     justify-content: space-between;

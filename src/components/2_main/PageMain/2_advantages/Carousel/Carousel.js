@@ -75,7 +75,7 @@ function Carousel() {
 
     const handeResize = () => {
         const vOut = (window.innerWidth - 51 * 2 - 10) / 430;
-        if (vOut != slideNum && vOut > 1) {
+        if (vOut !== slideNum && vOut > 1) {
             setSlideNum(parseInt(vOut));
         }
     };

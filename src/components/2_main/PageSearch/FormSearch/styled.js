@@ -23,7 +23,7 @@ const Div1 = styled.div`
     display: flex;
     gap: 30px;
     flex-direction: column;
-    width: ${(props) => (props.isMobile ? 375 - 14 + "px" : "auto")};
+    width: ${(props) => (props.mobile ? 375 - 14 + "px" : "auto")};
 `;
 const DivRelative = styled.div`
     display: flex;
@@ -42,7 +42,7 @@ const DivCenter = styled.div`
 const DivDates = styled.div`
     display: flex;
     position: relative;
-    flex-direction: ${(prop) => (prop.isMobile ? "column" : "row")};
+    flex-direction: ${(prop) => (prop.mobile ? "column" : "row")};
     gap: 20px;
 `;
 const DivDatePlaceholder = styled.div`
@@ -55,8 +55,8 @@ const DivDatePlaceholder = styled.div`
     letter-spacing: 0.42px;
 `;
 const Div2 = styled.div`
-    display: ${(prop) => (prop.isMobile ? "none" : "flex")};
-    width: ${(prop) => (prop.isMobile ? 375 - 14 + "px" : "auto")};
+    display: ${(prop) => (prop.mobile ? "none" : "flex")};
+    width: ${(prop) => (prop.mobile ? 375 - 14 + "px" : "auto")};
     position: relative;
     flex-direction: column;
     gap: 17px;
@@ -66,8 +66,8 @@ const DivBtn = styled.div`
     display: flex;
     flex-direction: column;
     position: absolute;
-    bottom: ${(prop) => (prop.isMobile ? 37 : 32) + "px"};
-    right: ${(prop) => (prop.isMobile ? 26 : 39) + "px"};
+    bottom: ${(prop) => (prop.mobile ? 37 : 32) + "px"};
+    right: ${(prop) => (prop.mobile ? 26 : 39) + "px"};
 `;
 const InputDesc = styled.div`
     font-family: "Inter";

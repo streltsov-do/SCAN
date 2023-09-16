@@ -30,7 +30,7 @@ const DivTitle = styled.div`
     flex-direction: column;
     gap: 36px;
     z-index: 2;
-    margin-bottom: ${(prop) => (prop.isMobile ? 21 : 127)}px;
+    margin-bottom: ${(prop) => (prop.mobile ? 21 : 127)}px;
 `;
 
 const Title = styled.h1`
@@ -94,8 +94,8 @@ const Title2Desc = styled.h4`
 const DivBtn = styled.div`
     display: flex;
     justify-content: center;
-    width: ${(prop) => prop.isMobile && "335px"};
-    margin-bottom: ${(prop) => (prop.isMobile ? 57 : 109)}px;
+    width: ${(prop) => prop.mobile && "335px"};
+    margin-bottom: ${(prop) => (prop.mobile ? 57 : 109)}px;
 
     /* m_bottom={isMobile ? 57 : 109}
     justify="center"

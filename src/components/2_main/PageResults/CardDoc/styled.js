@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const DivDates = styled.div`
     display: flex;
-    gap: ${(prop) => (prop.isMobile ? 2 : 14)}px;
+    gap: ${(prop) => (prop.mobile ? 2 : 14)}px;
 `;
 const Date = styled.div`
     height: 19px;
@@ -134,7 +134,7 @@ const Words = styled.div`
 const DivBtn = styled.div`
     position: absolute;
     bottom: 35px;
-    width: ${(prop) => (prop.isMobile ? 335 - 24 * 2 : 338 + 223)}px;
+    width: ${(prop) => (prop.mobile ? 335 - 24 * 2 : 338 + 223)}px;
 `;
 
 export {

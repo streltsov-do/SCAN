@@ -34,14 +34,14 @@ export default function login(state = initialState, action) {
                 expire: action.expire,
                 loading: action.loading,
             };
-            break;
+        // break;
         case "END_LOADING":
             return {
                 ...state,
 
                 loading: action.loading,
             };
-            break;
+        // break;
         case "LOGOUT":
             return {
                 ...state,
@@ -52,7 +52,7 @@ export default function login(state = initialState, action) {
                 token: "",
                 expire: 0,
             };
-            break;
+        // break;
         default:
             return state;
     }

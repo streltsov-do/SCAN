@@ -9,8 +9,8 @@ const Container = styled.div`
 const DivMain = styled.div`
     display: flex;
     width: ${(prop) => prop.width}px;
-    flex-direction: ${(prop) => (prop.isMobile ? "row" : "column")};
-    gap: ${(prop) => (prop.isMobile ? 59 : 29)}px;
+    flex-direction: ${(prop) => (prop.mobile ? "row" : "column")};
+    gap: ${(prop) => (prop.mobile ? 59 : 29)}px;
     padding-left: 10px;
 `;
 const Span = styled.span`

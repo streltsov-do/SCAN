@@ -15,11 +15,11 @@ function Card(props) {
     const btnBg = active ? "D2D2D2" : "5970FF";
     const btnColor = active ? "000000" : "FFFFFF";
 
-    const titleColor = color == "000000" ? "white" : "black";
+    const titleColor = color === "000000" ? "white" : "black";
 
     const p_installment = price.installment;
     const installment =
-        p_installment == 0
+        p_installment === 0
             ? ""
             : `или ${p_installment} ₽/мес. при рассрочке на 24 мес.`;
 

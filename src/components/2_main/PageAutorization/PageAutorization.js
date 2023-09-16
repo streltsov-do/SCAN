@@ -96,7 +96,7 @@ function PageAutorization(props) {
             };
             inputPassVal.addEventListener("input", inputPasChange);
 
-            if (stateLog != -1 && statePass != -1) {
+            if (stateLog !== -1 && statePass !== -1) {
                 setSumbitDis(false);
             } else {
                 setSumbitDis(true);

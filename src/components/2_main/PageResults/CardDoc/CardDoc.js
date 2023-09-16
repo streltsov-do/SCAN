@@ -24,7 +24,7 @@ export default function CardDoc(props) {
     // console.log("isMob",isMobile);
     return (
         <S.Container>
-            <S.DivDates isMobile={isMobile}>
+            <S.DivDates mobile={isMobile?"true":"false"}>
                 <S.Date>{issueDate}</S.Date>
                 <S.Source>{source}</S.Source>
             </S.DivDates>
@@ -44,7 +44,7 @@ export default function CardDoc(props) {
                         (img === "" ? (isMobile ? 2 : 1.5) : 1),
                 )}
             </S.Desc>
-            <S.DivBtn isMobile={isMobile}>
+            <S.DivBtn mobile={isMobile?"true":"false"}>
                 <Button
                     width={isMobile ? 195 : 223}
                     height={isMobile ? 40.696 : 46.54}

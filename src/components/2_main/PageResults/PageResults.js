@@ -116,7 +116,7 @@ function PageResults(props) {
                 return response.json();
             })
             .then((data) => {
-                if (data.errorCode == undefined) {
+                if (data.errorCode === undefined) {
                     let outData = [];
                     let outDataFull = publications;
                     if (last) {
@@ -152,7 +152,9 @@ function PageResults(props) {
     return (
         !isLoading && (
             <S.DivMain>
-                <S.DivTitle>
+                <S.DivTitle
+                    mobile={isMobile?"true":"false"}
+                >
                     {loading ? (
                         <>
                             <S.Title>
@@ -198,7 +200,7 @@ function PageResults(props) {
 
                 <S.Title2 m_bottom={58}>Список документов</S.Title2>
                 <S.CardGrid>
-                    {publications != undefined && publications.length > 0 ? (
+                    {publications !== undefined && publications.length > 0 ? (
                         publications.map((item, index) => (
                             <CardDoc
                                 key={index}
@@ -219,9 +221,9 @@ function PageResults(props) {
                         <>Загрузка...</>
                     )}
                 </S.CardGrid>
-                <S.DivBtn isMobile={isMobile}>
-                    {showNum != -1 &&
-                        publications != undefined &&
+                <S.DivBtn mobile={isMobile?"true":"false"}>
+                    {showNum !== -1 &&
+                        publications !== undefined &&
                         publications.length > 0 && (
                             <Button
                                 onClick={(e) => {

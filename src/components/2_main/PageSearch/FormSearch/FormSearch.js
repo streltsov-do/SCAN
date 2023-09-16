@@ -144,7 +144,7 @@ function FormSearch(props) {
             });
             return -2;
         }
-        if (arr.length != 10) {
+        if (arr.length !== 10) {
             setChkNecessary({
                 inn: -1,
                 docs: chkNecessary.docs,
@@ -159,7 +159,7 @@ function FormSearch(props) {
             v_out += arr[i] * coefs[i];
         }
         v_out = v_out % 11;
-        if (v_out == arr[9]) {
+        if (v_out === arr[9]) {
             return 1;
         }
         return -1;
@@ -180,7 +180,7 @@ function FormSearch(props) {
 
     function fPostSearch(op, token, data) {
         const adr =
-            op == "histograms" ? "objectsearch/histograms" : "objectsearch";
+            op === "histograms" ? "objectsearch/histograms" : "objectsearch";
         fetch("https://gateway.scan-interfax.ru/api/v1/" + adr, {
             method: "POST",
             headers: {
@@ -194,10 +194,10 @@ function FormSearch(props) {
                 return response.json();
             })
             .then((data) => {
-                if (op == "histograms") {
+                if (op === "histograms") {
                     const outData = [];
 
-                    for (var i = 0; i < data.data[0].data.length; i++) {
+                    for (let i = 0; i < data.data[0].data.length; i++) {
                         const obj = {
                             docs: data.data[0].data[i].value,
                             date: data.data[0].data[i].date.slice(0, 10),
@@ -218,7 +218,7 @@ function FormSearch(props) {
                         similarCount: [],
                     };
 
-                    for (var i = 0; i < data.items.length; i++) {
+                    for (let i = 0; i < data.items.length; i++) {
                         outData.encodedId[i] = data.items[i].encodedId;
                         outData.influence[i] = data.items[i].influence;
                         outData.similarCount[i] = data.items[i].similarCount;
@@ -257,7 +257,7 @@ function FormSearch(props) {
                 ],
                 onlyMainRole: !isMobile && filters.chkFiltMain,
                 tonality:
-                    tone == 2 ? "any" : tone == 1 ? "negative" : "positive",
+                    tone === 2 ? "any" : tone === 1 ? "negative" : "positive",
                 onlyWithRiskFactors: !isMobile && filters.chkFiltRisc,
                 riskFactors: {
                     and: [],
@@ -313,7 +313,7 @@ function FormSearch(props) {
 
         stateNecessary.inn = chkInn(inn);
 
-        if (docs === "" || docs == -1 || docs == undefined) {
+        if (docs === "" || docs === -1 || docs === undefined) {
             stateNecessary.docs = -1;
         }
 
@@ -321,9 +321,9 @@ function FormSearch(props) {
 
         setChkNecessary(stateNecessary);
         if (
-            stateNecessary.inn != 1 ||
-            stateNecessary.docs != 1 ||
-            stateNecessary.date != 1
+            stateNecessary.inn !== 1 ||
+            stateNecessary.docs !== 1 ||
+            stateNecessary.date !== 1
         ) {
             return;
         } else {
@@ -356,8 +356,8 @@ function FormSearch(props) {
                             $valid={chkNecessary.inn > -1}
                         ></S.Input>
                         <S.InputErr>
-                            {chkNecessary.inn == -1 || chkNecessary.inn == -2
-                                ? chkNecessary.inn == -1
+                            {chkNecessary.inn === -1 || chkNecessary.inn === -2
+                                ? chkNecessary.inn === -1
                                     ? "Введите корректные данные"
                                     : "Обязательное поле"
                                 : ""}
@@ -376,7 +376,7 @@ function FormSearch(props) {
                         <S.InputDesc>
                             Количество документов в выдаче
                         </S.InputDesc>
-                        <Asterisk good={!(chkNecessary.docs == -1)} />
+                        <Asterisk good={!(chkNecessary.docs === -1)} />
                     </S.DivRelative>
 
                     <S.DivRelativeCol>
@@ -388,10 +388,12 @@ function FormSearch(props) {
                                 limitDocs(e.target.value);
                             }}
                             defaultValue={docs}
-                            $valid={!(chkNecessary.docs == -1)}
+                            $valid={!(chkNecessary.docs === -1)}
                         ></S.Input>
                         <S.InputErr>
-                            {chkNecessary.docs == -1 ? "Обязательное поле" : ""}
+                            {chkNecessary.docs === -1
+                                ? "Обязательное поле"
+                                : ""}
                         </S.InputErr>
                     </S.DivRelativeCol>
                 </div>
@@ -399,16 +401,16 @@ function FormSearch(props) {
                 <S.DivRelativeCol>
                     <S.DivRelative>
                         <S.InputDesc m_top={9}>Диапазон поиска</S.InputDesc>
-                        <Asterisk top={-1} good={chkNecessary.date != -1} />
+                        <Asterisk top={-1} good={chkNecessary.date !== -1} />
                     </S.DivRelative>
-                    <S.DivDates isMobile={isMobile}>
+                    <S.DivDates mobile={isMobile?"true":"false"}>
                         <S.DivRelative>
                             <S.Input
                                 type="date"
                                 width={176}
                                 align="start"
                                 defaultValue={dateStart}
-                                $valid={chkNecessary.date != -1}
+                                $valid={chkNecessary.date !== -1}
                                 onChange={(e) => {
                                     setChkNecessary({
                                         inn: chkNecessary.inn,
@@ -419,7 +421,7 @@ function FormSearch(props) {
                                 }}
                             ></S.Input>
                             <S.DivDatePlaceholder
-                                enable={!dateStart}
+                                $enable={!dateStart}
                                 left={isMobile ? 124 : 44}
                             >
                                 Дата начала
@@ -431,7 +433,7 @@ function FormSearch(props) {
                                 width={176}
                                 align="start"
                                 defaultValue={dateEnd}
-                                $valid={chkNecessary.date != -1}
+                                $valid={chkNecessary.date !== -1}
                                 onChange={(e) => {
                                     setChkNecessary({
                                         inn: chkNecessary.inn,
@@ -442,7 +444,7 @@ function FormSearch(props) {
                                 }}
                             ></S.Input>
                             <S.DivDatePlaceholder
-                                enable={!dateEnd}
+                                $enable={!dateEnd}
                                 left={isMobile ? 128 : 44}
                             >
                                 Дата конца
@@ -452,14 +454,14 @@ function FormSearch(props) {
 
                     <S.DivCenter>
                         <S.InputErr>
-                            {chkNecessary.date == -1
+                            {chkNecessary.date === -1
                                 ? "Введите корректные данные"
                                 : ""}
                         </S.InputErr>
                     </S.DivCenter>
                 </S.DivRelativeCol>
             </S.Div1>
-            <S.Div2 isMobile={isMobile}>
+            <S.Div2 mobile={isMobile?"true":"false"}>
                 {arrFilt.map((item, index) => (
                     <Checkbox
                         key={index}
@@ -472,7 +474,7 @@ function FormSearch(props) {
                     />
                 ))}
             </S.Div2>
-            <S.DivBtn isMobile={isMobile}>
+            <S.DivBtn mobile={isMobile?"true":"false"}>
                 <Button
                     name="Поиск"
                     width={isMobile ? 335 : 305}

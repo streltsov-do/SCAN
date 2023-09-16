@@ -5,12 +5,12 @@ import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 const Container = styled.div`
     display: flex;
     position: relative;
-    flex-direction: ${(props) => (props.isMobile ? "column" : "row")};
-    width: ${(props) => (props.isMobile ? "375px" : "auto")};
-    margin-top: ${(props) => !props.isMobile && "69px"};
+    flex-direction: ${(props) => (props.mobile ? "column" : "row")};
+    width: ${(props) => (props.mobile ? "375px" : "auto")};
+    margin-top: ${(props) => !props.mobile && "69px"};
     margin-right: 0;
-    margin-bottom: ${(props) => !props.isMobile && "80px"};
-    margin-left: ${(props) => !props.isMobile && "64px"};
+    margin-bottom: ${(props) => !props.mobile && "80px"};
+    margin-left: ${(props) => !props.mobile && "64px"};
 `;
 
 const DivMain = styled.div`

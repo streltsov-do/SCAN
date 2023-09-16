@@ -62,7 +62,7 @@ function Header(props) {
             <S.NavUl>
                 <NavLink
                     to="/"
-                    style={({ isActive, isPending }) => {
+                    style={({ $isActive, $isPending }) => {
                         return {
                             color: "black",
                             textDecoration: "none",
@@ -73,7 +73,7 @@ function Header(props) {
                 </NavLink>
                 <NavHashLink
                     to="/#idTariffs"
-                    style={({ isActive, isPending }) => {
+                    style={({ $isActive, $isPending }) => {
                         return {
                             color: "black",
                             textDecoration: "none",
@@ -84,7 +84,7 @@ function Header(props) {
                 </NavHashLink>
                 <NavLink
                     // to="/"
-                    style={({ isActive, isPending }) => {
+                    style={({ $isActive, $isPending }) => {
                         return {
                             color: "black",
                             textDecoration: "none",

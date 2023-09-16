@@ -9,20 +9,20 @@ const Btn = styled.button`
     background: ${(props) => props.background};
     color: #${(props) => props.color || "FFFFFF"};
     margin-top: ${(props) =>
-        props.m_top == undefined ? 0 : props.m_top + "px"};
+        props.m_top === undefined ? 0 : props.m_top + "px"};
     margin-right: ${(props) =>
-        props.m_right == undefined ? 0 : props.m_right + "px"};
+        props.m_right === undefined ? 0 : props.m_right + "px"};
     margin-bottom: ${(props) =>
-        props.m_bottom == undefined ? 0 : props.m_bottom + "px"};
+        props.m_bottom === undefined ? 0 : props.m_bottom + "px"};
     margin-left: ${(props) =>
-        props.m_left == undefined ? 0 : props.m_left + "px"};
+        props.m_left === undefined ? 0 : props.m_left + "px"};
     position: ${(props) => props.position};
-    top: ${(props) => (props.top == undefined ? "auto" : props.top + "px")};
+    top: ${(props) => (props.top === undefined ? "auto" : props.top + "px")};
     right: ${(props) =>
-        props.right == undefined ? "auto" : props.right + "px"};
+        props.right === undefined ? "auto" : props.right + "px"};
     bottom: ${(props) =>
-        props.bottom == undefined ? "auto" : props.bottom + "px"};
-    left: ${(props) => (props.left == undefined ? "auto" : props.left + "px")};
+        props.bottom === undefined ? "auto" : props.bottom + "px"};
+    left: ${(props) => (props.left === undefined ? "auto" : props.left + "px")};
     align-self: ${(props) => props.align};
     justify-self: ${(props) => props.justify};
     font-family: "Inter";
