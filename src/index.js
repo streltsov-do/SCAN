@@ -4,10 +4,10 @@ import App from "./App";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import GlobalStyle from "./components/utils/globalStyle";
-import FontStyles from "./components/utils/Fonts/FontStyles";
+import GlobalStyle from "./styles/globalStyle";
+import FontStyles from "./styles/Fonts/FontStyles";
 
-import reducer from "./components/reducers/reducers";
+import reducer from "./reducers/reducers";
 
 const store = createStore(
     reducer,
