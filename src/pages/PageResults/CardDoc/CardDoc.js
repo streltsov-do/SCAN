@@ -21,7 +21,6 @@ export default function CardDoc(props) {
 
     const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
-    // console.log("isMob",isMobile);
     return (
         <S.Container>
             <S.DivDates mobile={isMobile ? 1 : 0}>

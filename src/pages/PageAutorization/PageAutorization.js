@@ -19,7 +19,6 @@ function PageAutorization(props) {
     const refLogin = useRef(null);
     const refPassword = useRef(null);
     const navigate = useNavigate();
-    const [isLoading, setIsLoading] = useState(true);
 
     const [sumbitDis, setSumbitDis] = useState(INITED_LOGIN);
     const [stateLog, setStateLog] = useState(INITED_LOGIN ? 1 : -1);
@@ -28,12 +27,7 @@ function PageAutorization(props) {
     const { logged } = props;
 
     useEffect(() => {
-        if (logged) {
-            setIsLoading(true);
-            navigate("/");
-        } else {
-            setIsLoading(false);
-        }
+        logged && navigate("/");
     });
 
     function fPostAuth(login, password) {
@@ -82,7 +76,7 @@ function PageAutorization(props) {
     }
 
     useEffect(() => {
-        if (!isLoading) {
+        if (!logged) {
             const inputLoginVal = refLogin.current;
             const inLogChange = () => {
                 setStateLog(inputLoginVal.value === "" ? -1 : 1);
@@ -107,12 +101,12 @@ function PageAutorization(props) {
                 inputPassVal.removeEventListener("input", inputPasChange);
             };
         }
-    }, [stateLog, statePass, isLoading]);
+    }, [stateLog, statePass, logged]);
 
     const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     return (
-        !isLoading && (
+        !logged && (
             <S.Container>
                 <div>
                     <S.Title>

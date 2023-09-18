@@ -42,7 +42,7 @@
     content: "";
 }
 
-@media screen and (width <= 702px) {
+@media screen and (width <= 924px) {
     .sliderResults .slick-slide {
         width: 124px;
         height: calc(154px - 75px);

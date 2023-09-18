@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
-
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+import Button from "../../components/Button/Button";
+import sf from "../../assets/sf.png";
 import SearchCarousel from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 import { getContent } from "./decoder";
 import * as S from "./styled.js";
-import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
-
 import Searching from "./Searching.svg";
-import Button from "../../components/Button/Button";
-import sf from "../../assets/sf.png";
 
 const dummyPublications = [
     {
@@ -40,7 +38,6 @@ const dummyPublications = [
 function PageResults(props) {
     const { logged } = props;
     const [loading, setLoading] = useState(true);
-    const [isLoading, setIsLoading] = useState(true);
     const { state, token } = props;
     const [publications, setPublications] = useState([]);
     // useState(dummyPublications)
@@ -57,18 +54,13 @@ function PageResults(props) {
     }, [state]);
 
     useEffect(() => {
-        if (!logged) {
-            navigate("/");
-            setIsLoading(true);
-        } else {
-            setIsLoading(false);
-        }
+        !logged && navigate("/");
 
         if (loading === false && showNum === 0 && total === 0) {
             setTotal(state.encodedId.length);
             return fPostDocs();
         }
-    }, [showNum, total, loading]);
+    }, [showNum, total, loading, logged]);
 
     function handeResize() {
         const v_width = window.innerWidth;
@@ -150,7 +142,7 @@ function PageResults(props) {
     }
 
     return (
-        !isLoading && (
+        logged && (
             <S.DivMain>
                 <S.DivTitle mobile={isMobile ? 1 : 0}>
                     {loading ? (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
 
@@ -13,23 +13,17 @@ import ImgFoldersSvg from "./img/Folders.svg";
 
 export default function PageSearch(props) {
     const { logged } = props;
-    const [isLoading, setIsLoading] = useState(true);
 
     const navigate = useNavigate();
 
     const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
     useEffect(() => {
-        if (!logged) {
-            setIsLoading(true);
-            navigate("/");
-        } else {
-            setIsLoading(false);
-        }
+        !logged && navigate("/");
     });
 
     return (
-        !isLoading && (
+        logged && (
             <S.Container mobile={isMobile ? 1 : 0}>
                 <S.DivMain>
                     <S.Title>Найдите необходимые данные в пару кликов.</S.Title>

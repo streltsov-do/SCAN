@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { NavHashLink } from "react-router-hash-link";
 
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+
 import AccInfo from "./Account/AccInfo";
 import * as S from "./styled.js";
 
-import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 import imgLogo from "./scan.svg";
 import imgLogoWhite from "./scanWhite.svg";
 
@@ -25,15 +26,11 @@ function Header(props) {
     };
     const isMobile = useMediaQuery({ maxWidth: MOBILE_WIDTH_BREAKPOINT });
 
-    const handeResize = () => {
+    const handeResize = useCallback(() => {
         if (!isMobile) {
             openMenu(false);
         }
-    };
-
-    useEffect(() => {
-        handeResize();
-    });
+    }, [isMobile]);
 
     useEffect(() => {
         window.addEventListener("resize", handeResize);
@@ -41,7 +38,7 @@ function Header(props) {
         return () => {
             window.removeEventListener("resize", handeResize);
         };
-    }, [isMenuOpened]);
+    }, [handeResize]);
 
     function handleClick(e) {
         e.preventDefault();

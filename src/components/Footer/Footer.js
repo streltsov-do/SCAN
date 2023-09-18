@@ -1,7 +1,8 @@
 import React from "react";
 
-import imgLogoPng from "./scan_transparent.png";
 import * as S from "./styled.js";
+
+import imgLogoPng from "./scan_transparent.png";
 
 function Footer() {
     return (

@@ -94,7 +94,7 @@ const Title2Desc = styled.h4`
 const DivBtn = styled.div`
     display: flex;
     justify-content: center;
-    width: ${(prop) => prop.mobile ? "335px" : "auto"};
+    width: ${(prop) => (prop.mobile ? "335px" : "auto")};
     margin-bottom: ${(prop) => (prop.mobile ? 57 : 109)}px;
 
     /* m_bottom={isMobile ? 57 : 109}

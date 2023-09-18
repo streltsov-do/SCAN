@@ -4,9 +4,9 @@ import * as S from "./styled.js";
 import loader from "./loader.svg";
 
 const Loader = (props) => {
-    const { widthDiv, widthLoader, min_widthDiv } = props;
+    const { widthDiv, widthLoader, widthDivMin } = props;
     return (
-        <S.StatsLoading width={widthDiv} min_width={min_widthDiv}>
+        <S.StatsLoading width={widthDiv} min_width={widthDivMin}>
             <S.StatsLoader
                 width={widthLoader}
                 src={loader}

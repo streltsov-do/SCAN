@@ -1,12 +1,14 @@
 import styled from "styled-components/macro";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
-const CARD_WIDTH = 131;
-const CARD_HEIGHT = 124;
-
-const DESC_WIDTH = 133;
-const DESC_HEIGHT = 158;
-const BTN_WIDTH = 39;
+import {
+    TEST_ARR,
+    CARD_WIDTH,
+    CARD_HEIGHT,
+    DESC_WIDTH,
+    DESC_HEIGHT,
+    BTN_WIDTH,
+} from "./consts.js";
 
 const Container = styled.div`
     display: flex;
@@ -65,14 +67,14 @@ const DescTitle = styled.span`
 
 const DivResults = styled.div`
     display: flex;
-    direction: ${(props) => (props.isMobile ? "row" : "column")};
+    direction: ${(props) => (props.mobile ? "row" : "column")};
     justify-content: center;
     align-items: center;
     width: ${(props) => props.width}px;
-    min-width: ${(props) => (props.isMobile ? "154px" : "")};
-    min-width: ${(props) => (props.isMobile ? 296 : 262)}px;
-    margin-left: ${(props) => (props.isMobile ? 0 : DESC_WIDTH)}px;
-    margin-top: ${(props) => (props.isMobile ? 75 : 0)}px;
+    min-width: ${(props) => (props.mobile ? "154px" : "")};
+    min-width: ${(props) => (props.mobile ? 296 : 262)}px;
+    margin-left: ${(props) => (props.mobile ? 0 : DESC_WIDTH)}px;
+    margin-top: ${(props) => (props.mobile ? 75 : 0)}px;
 `;
 
 const LoaderDesc = styled.div`
@@ -104,17 +106,4 @@ const Div = styled.div`
     }
 `;
 
-export {
-    CARD_WIDTH,
-    CARD_HEIGHT,
-    DESC_WIDTH,
-    DESC_HEIGHT,
-    BTN_WIDTH,
-    Container,
-    DivMain,
-    Desc,
-    DescTitle,
-    DivResults,
-    LoaderDesc,
-    Div,
-};
+export { Container, DivMain, Desc, DescTitle, DivResults, LoaderDesc, Div };
