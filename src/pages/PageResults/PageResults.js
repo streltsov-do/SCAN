@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 import Button from "../../components/Button/Button";
-import sf from "../../assets/sf.png";
+
 import SearchCarousel from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 import { getContent } from "./decoder";
 import * as S from "./styled.js";
+
+import sf from "../../assets/sf.png";
 import Searching from "./Searching.svg";
 
 const dummyPublications = [

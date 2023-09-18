@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as S from "./styled.js";
+
 import loader from "./loader.svg";
 
 const Loader = (props) => {

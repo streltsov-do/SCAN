@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import ArrowDown from "../ArrowDown/ArrowDown";
-import * as S from "./styled";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
+
+import * as S from "./styled";
 
 const items = ["Позитивная", "Негативная", "Любая"];
 

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
+import { Btn } from "./styled";
+
 import IconMenu from "./IconMenu.svg";
 import ExitMenu from "./Exit.svg";
-
-import { Btn } from "./styled";
 
 const BtnMenu = (props) => {
     const { openMenu, isMenuOpened } = props;

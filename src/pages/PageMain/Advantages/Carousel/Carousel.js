@@ -1,15 +1,16 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components/macro";
 import { useMediaQuery } from "react-responsive";
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 import "./sliderMain.css";
+
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 import Slide from "./Slide/Slide";
 import { ARR_SLIDES } from "./consts";
-import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 const Div = styled.div`
     /* height: 430px; */

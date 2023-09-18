@@ -2,9 +2,10 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import Button from "../../../../components/Button/Button.js";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
+
 import * as S from "./styled.js";
 
-import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 import CheckMark from "./CheckMark.svg";
 
 function Card(props) {

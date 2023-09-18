@@ -2,9 +2,9 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import Loader from "../../../Loader/Loader.js";
-import * as S from "./styled.js";
-
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
+
+import * as S from "./styled.js";
 
 export default function UserStats(props) {
     const { loading, used, limit } = props;

@@ -5,12 +5,12 @@ import { useState, useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import Button from "../../../components/Button/Button";
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
 import Checkbox from "./Checkbox/Checkbox";
 import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
 import * as S from "./styled.js";
-
-import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 import { FILT_ARR } from "./consts.js";
 
 function FormSearch(props) {

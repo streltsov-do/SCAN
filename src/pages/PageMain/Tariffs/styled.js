@@ -1,4 +1,5 @@
 import styled from "styled-components/macro";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const GAP_DESKTOP = 37;

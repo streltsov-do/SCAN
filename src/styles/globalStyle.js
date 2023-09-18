@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+
 import FontStyles from "./Fonts/FontStyles";
 
 import Rectangle1 from "../assets/Rectangle.svg";

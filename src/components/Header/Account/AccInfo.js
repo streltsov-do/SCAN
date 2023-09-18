@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
+import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
 import UserStats from "./UserStats/UserStats";
 import UserAcc from "./user/UserAcc";
 import BtnMenu from "./user/BtnMenu/BtnMenu";
 import * as S from "./styled.js";
-
-import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 const urlBase = "https://gateway.scan-interfax.ru";
 

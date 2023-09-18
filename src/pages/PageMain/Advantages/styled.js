@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
-import Perfect from "./perfect.svg";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
+import Perfect from "./perfect.svg";
 
 const Container = styled.div`
     width: auto;

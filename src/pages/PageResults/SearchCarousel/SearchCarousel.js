@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+import Slider from "react-slick";
 
 import Loader from "../../../components/Loader/Loader";
 
 import * as S from "./styled.js";
 
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -25,7 +25,6 @@ import {
     DESC_HEIGHT,
     BTN_WIDTH,
 } from "./consts.js";
-
 import CardResult from "./CardResult/CardResult";
 
 import "./sliderResults.css";
@@ -48,7 +47,6 @@ export default function SearchCarousel(props) {
             setDisplayNum(newDisplayNum);
         }
     }, [displayNum, parent_p_left]);
-
 
     useEffect(() => {
         handeResize();
@@ -97,7 +95,11 @@ export default function SearchCarousel(props) {
                                     ? LOADER_DIV_WIDTH
                                     : displayNum * CARD_WIDTH
                             }
-                            widthDivMin={isMobile ? LOADER_DIV_WIDTH_MIN_MOBILE : "undefined"}
+                            widthDivMin={
+                                isMobile
+                                    ? LOADER_DIV_WIDTH_MIN_MOBILE
+                                    : "undefined"
+                            }
                             widthLoader={LOADER_DIV_WIDTH_MOBILE}
                         />
                         {!isMobile && (

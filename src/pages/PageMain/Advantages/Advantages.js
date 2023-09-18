@@ -1,8 +1,9 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-import Carousel from "./Carousel/Carousel";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
+import Carousel from "./Carousel/Carousel";
 import * as S from "./styled.js";
 
 function Advantages() {

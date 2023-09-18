@@ -5,6 +5,7 @@ import { useMediaQuery } from "react-responsive";
 
 import Button from "../../../components/Button/Button";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
 import * as S from "./styled.js";
 
 function Service(props) {

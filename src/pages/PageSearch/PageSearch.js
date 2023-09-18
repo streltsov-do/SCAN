@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "react-responsive";
 
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+
 import FormSearch from "./FormSearch/FormSearch";
 import * as S from "./styled.js";
 
-import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 import ImgDocumentSvg from "./img/Document.svg";
 import ImgFoldersSvg from "./img/Folders.svg";
 

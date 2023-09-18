@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+
 import Service from "./Service/Service";
 import Advantages from "./Advantages/Advantages";
 import Tariffs from "./Tariffs/Tariffs";
-import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 const Container = styled.div`
     background: #ffffff;

@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
-import ImgSearchSvg from "./img/Search.svg";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+
+import ImgSearchSvg from "./img/Search.svg";
 
 const Container = styled.div`
     display: flex;

@@ -1,6 +1,8 @@
 import styled from "styled-components/macro";
-import PicTitle from "./pic1.png";
+
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
+
+import PicTitle from "./pic1.png";
 
 const Container = styled.div`
     height: 620px;

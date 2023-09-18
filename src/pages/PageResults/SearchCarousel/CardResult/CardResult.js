@@ -1,8 +1,9 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-import * as S from "./styled.js";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
+
+import * as S from "./styled.js";
 
 export default function CardResult(props) {
     const { period, all, risc, last, width } = props;
