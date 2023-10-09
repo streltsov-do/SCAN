@@ -27,8 +27,6 @@ import {
 } from "./consts.js";
 import CardResult from "./CardResult/CardResult";
 
-import "./sliderResults.css";
-
 export default function SearchCarousel(props) {
     const { parent_p_left, loading, state, m_bottom } = props;
     const cards = state.cards;
@@ -110,7 +108,7 @@ export default function SearchCarousel(props) {
                     </S.DivResults>
                 ) : (
                     <S.Div width={containerWidth}>
-                        <Slider {...settings} className="sliderResults">
+                        <Slider {...settings}>
                             {cards.map((item, index) => (
                                 <CardResult
                                     key={index}

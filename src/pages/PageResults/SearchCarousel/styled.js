@@ -2,6 +2,8 @@ import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
+import btnArrow from "../../../assets/ArrowRight.svg";
+
 import {
     TEST_ARR,
     CARD_WIDTH,
@@ -98,12 +100,73 @@ const Div = styled.div`
     padding-top: 18px;
     padding-bottom: 18px;
     margin-left: ${DESC_WIDTH}px;
+
+    > .slick-slider {
+        > .slick-slide {
+            width: 124px;
+            height: 124px;
+            margin: 0 0;
+        }
+        > .slick-list {
+            margin: 0 0px;
+            height: 124px;
+        }
+
+        > .slick-arrow {
+            z-index: 100;
+            content: "";
+            color: red;
+            width: 39px;
+            height: 39px;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            background-color: transparent;
+            background-image: url(${btnArrow});
+        }
+        > .slick-prev {
+            transform: rotate(180deg);
+            top: calc(124px / 2 - 39px / 2);
+            left: calc(-4px - 133px - 39px);
+            &:before {
+                content: "";
+            }
+        }
+        > .slick-next {
+            right: calc(-39px - 4px);
+            &:before {
+                content: "";
+            }
+        }
+    }
+
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 296px;
         height: 75px;
         margin-left: 0;
         margin-top: 75px;
         padding-top: 28px;
+
+        > .slick-slider {
+            > .slick-slide {
+                width: 124px;
+                height: calc(154px - 75px);
+            }
+            > .slick-list {
+                margin: 0 0px;
+                height: calc(154px - 75px);
+            }
+
+            > .slick-prev {
+                transform: rotate(180deg);
+                top: -10px;
+                left: -39px;
+            }
+            > .slick-next {
+                top: 10px;
+                right: calc(-39px + 2px);
+            }
+        }
     }
 `;
 
