@@ -12,6 +12,7 @@ const Form = styled.form`
     display: flex;
     gap: 11px;
     position: relative;
+    z-index: 5;
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: 375px;
         height: 688px;

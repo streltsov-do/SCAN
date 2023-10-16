@@ -4,6 +4,11 @@ import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 const PADDING_LEFT = 69;
 
+const DivBackground = styled.div`
+    position: relative;
+    overflow-x: hidden;
+`;
+
 const DivMain = styled.div`
     position: relative;
     padding: ${PADDING_LEFT}px 0 0 60px;
@@ -11,6 +16,7 @@ const DivMain = styled.div`
         padding: 20px 0 0 12px;
     }
 `;
+
 const ImgSearching = styled.img`
     position: absolute;
     top: 20px;
@@ -32,6 +38,8 @@ const DivTitle = styled.div`
     gap: 36px;
     z-index: 2;
     margin-bottom: ${(prop) => (prop.mobile ? 21 : 127)}px;
+    position: relative;
+    /* overflow-x: hidden; */
 `;
 
 const Title = styled.h1`
@@ -117,6 +125,7 @@ const CardGrid = styled.div`
 
 export {
     DivMain,
+    DivBackground,
     ImgSearching,
     DivTitle,
     Title,

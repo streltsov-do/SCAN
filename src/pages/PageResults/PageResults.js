@@ -146,88 +146,93 @@ function PageResults(props) {
 
     return (
         logged && (
-            <S.DivMain>
-                <S.DivTitle mobile={isMobile ? 1 : 0}>
-                    {loading ? (
-                        <>
-                            <S.Title>
-                                Ищем. Скоро
-                                <br />
-                                будут результаты
-                            </S.Title>
-                            <S.TitleDesc>
-                                Поиск может занять некоторое время,
-                                <br />
-                                просим сохранять терпение.
-                            </S.TitleDesc>
-                        </>
-                    ) : (
-                        <>
-                            <S.Title>
-                                Запрос выполнен
-                                <br /> 
-                            </S.Title>
-                            <S.TitleDesc>
-                                 <br /> 
-                            </S.TitleDesc>
-                        </>
-                    )}
-                </S.DivTitle>
-                <S.ImgSearching
-                    src={Searching}
-                    left={imgOffset[0]}
-                    right={imgOffset[1]}
-                ></S.ImgSearching>
-                <div>
-                    <S.Title2 m_bottom={17}>Общая сводка</S.Title2>
-                    <S.Title2Desc m_bottom={27}>
-                        Найдено {total} вариантов
-                    </S.Title2Desc>
-                </div>
-                <SearchCarousel
-                    loading={loading}
-                    parent_p_left={S.PADDING_LEFT}
-                    state={state}
-                    m_bottom={isMobile ? 57 : 107}
-                />
-
-                <S.Title2 m_bottom={58}>Список документов</S.Title2>
-                <S.CardGrid>
-                    {publications !== undefined && publications.length > 0 ? (
-                        publications.map((item, index) => (
-                            <CardDoc
-                                key={index}
-                                issueDate={item.issueDate.slice(0, 10)}
-                                source={item.source.name}
-                                title={item.title.text}
-                                type={item.type}
-                                img={item.img}
-                                desc={item.desc}
-                                url={item.url}
-                                wordCount={item.attributes.wordCount}
-                                isTechNews={item.attributes.isTechNews}
-                                isAnnouncement={item.attributes.isAnnouncement}
-                                isDigest={item.attributes.isDigest}
-                            />
-                        ))
-                    ) : (
-                        <>Загрузка...</>
-                    )}
-                </S.CardGrid>
-                <S.DivBtn mobile={isMobile ? 1 : 0}>
-                    {showNum !== -1 &&
-                        publications !== undefined &&
-                        publications.length > 0 && (
-                            <Button
-                                onClick={(e) => {
-                                    fPostDocs();
-                                }}
-                                disabled={loading}
-                                name="Показать больше"
-                            />
+            <S.DivBackground>
+                <S.DivMain>
+                    <S.DivTitle mobile={isMobile ? 1 : 0}>
+                        {loading ? (
+                            <>
+                                <S.Title>
+                                    Ищем. Скоро
+                                    <br />
+                                    будут результаты
+                                </S.Title>
+                                <S.TitleDesc>
+                                    Поиск может занять некоторое время,
+                                    <br />
+                                    просим сохранять терпение.
+                                </S.TitleDesc>
+                            </>
+                        ) : (
+                            <>
+                                <S.Title>
+                                    Запрос выполнен
+                                    <br /> 
+                                </S.Title>
+                                <S.TitleDesc>
+                                     <br /> 
+                                </S.TitleDesc>
+                            </>
                         )}
-                </S.DivBtn>
-            </S.DivMain>
+                    </S.DivTitle>
+                    <S.ImgSearching
+                        src={Searching}
+                        left={imgOffset[0]}
+                        right={imgOffset[1]}
+                    ></S.ImgSearching>
+                    <div>
+                        <S.Title2 m_bottom={17}>Общая сводка</S.Title2>
+                        <S.Title2Desc m_bottom={27}>
+                            Найдено {total} вариантов
+                        </S.Title2Desc>
+                    </div>
+                    <SearchCarousel
+                        loading={loading}
+                        parent_p_left={S.PADDING_LEFT}
+                        state={state}
+                        m_bottom={isMobile ? 57 : 107}
+                    />
+
+                    <S.Title2 m_bottom={58}>Список документов</S.Title2>
+                    <S.CardGrid>
+                        {publications !== undefined &&
+                        publications.length > 0 ? (
+                            publications.map((item, index) => (
+                                <CardDoc
+                                    key={index}
+                                    issueDate={item.issueDate.slice(0, 10)}
+                                    source={item.source.name}
+                                    title={item.title.text}
+                                    type={item.type}
+                                    img={item.img}
+                                    desc={item.desc}
+                                    url={item.url}
+                                    wordCount={item.attributes.wordCount}
+                                    isTechNews={item.attributes.isTechNews}
+                                    isAnnouncement={
+                                        item.attributes.isAnnouncement
+                                    }
+                                    isDigest={item.attributes.isDigest}
+                                />
+                            ))
+                        ) : (
+                            <>Загрузка...</>
+                        )}
+                    </S.CardGrid>
+                    <S.DivBtn mobile={isMobile ? 1 : 0}>
+                        {showNum !== -1 &&
+                            publications !== undefined &&
+                            publications.length > 0 && (
+                                <Button
+                                    onClick={(e) => {
+                                        fPostDocs();
+                                    }}
+                                    disabled={loading}
+                                    name="Показать больше"
+                                />
+                            )}
+                    </S.DivBtn>
+                </S.DivMain>
+            </S.DivBackground>
         )
     );
 }

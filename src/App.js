@@ -5,18 +5,13 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import { Footer } from "./components/Footer/Footer";
 
-import ava from "./assets/ava.png";
-
-const NAME = "Алексей А.";
-const TARIFF = 1;
-
 function App() {
     return (
         <BrowserRouter>
             <div>
-                <Header name={NAME} avatar={ava} />
+                <Header />
 
-                <Main tariff={TARIFF} />
+                <Main />
 
                 <Footer />
             </div>

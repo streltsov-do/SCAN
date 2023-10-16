@@ -4,6 +4,10 @@ import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
 import ImgSearchSvg from "./img/Search.svg";
 
+const DivBackground = styled.div`
+    position: relative;
+    overflow-x: hidden;
+`;
 const Container = styled.div`
     display: flex;
     position: relative;
@@ -90,6 +94,7 @@ const ImgSearch = styled.div`
     right: -7.59px;
     background-image: url(${ImgSearchSvg});
     background-size: cover;
+
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         width: ${375 - 14 - 40.57}px;
         height: 403.279px;
@@ -101,6 +106,7 @@ const ImgSearch = styled.div`
 `;
 
 export {
+    DivBackground,
     Container,
     DivMain,
     Title,

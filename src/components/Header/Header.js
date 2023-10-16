@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 import { NavHashLink } from "react-router-hash-link";
 
-import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
+import { MOBILE_WIDTH_BREAKPOINT, NAME, ava } from "../../utils/consts";
 
 import AccInfo from "./Account/AccInfo";
 import * as S from "./styled.js";
@@ -13,7 +13,7 @@ import imgLogo from "./scan.svg";
 import imgLogoWhite from "./scanWhite.svg";
 
 function Header(props) {
-    const { name, avatar, logout, logged } = props;
+    const { logout, logged } = props;
 
     const [isMenuOpened, openMenu] = useState(false);
 
@@ -92,8 +92,8 @@ function Header(props) {
                 </NavLink>
             </S.NavUl>
             <AccInfo
-                name={name}
-                avatar={avatar}
+                name={NAME}
+                avatar={ava}
                 openMenu={openMenu}
                 isMenuOpened={isMenuOpened}
                 logout={fLogout}

@@ -25,24 +25,30 @@ export default function PageSearch(props) {
 
     return (
         logged && (
-            <S.Container mobile={isMobile ? 1 : 0}>
-                <S.DivMain>
-                    <S.Title>Найдите необходимые данные в пару кликов.</S.Title>
-                    <S.TitleDesc>
-                        Задайте параметры поиска.
-                        <br />
-                        Чем больше заполните, тем точнее поиск
-                    </S.TitleDesc>
-                    <FormSearch />
-                </S.DivMain>
-                {!!isMobile && (
-                    <S.ImgImgFoldersSvg
-                        src={ImgFoldersSvg}
-                    ></S.ImgImgFoldersSvg>
-                )}
-                <S.ImgImgDocumentSvg src={ImgDocumentSvg}></S.ImgImgDocumentSvg>
-                <S.ImgSearch></S.ImgSearch>
-            </S.Container>
+            <S.DivBackground>
+                <S.Container mobile={isMobile ? 1 : 0}>
+                    <S.DivMain>
+                        <S.Title>
+                            Найдите необходимые данные в пару кликов.
+                        </S.Title>
+                        <S.TitleDesc>
+                            Задайте параметры поиска.
+                            <br />
+                            Чем больше заполните, тем точнее поиск
+                        </S.TitleDesc>
+                        <FormSearch />
+                    </S.DivMain>
+                    {!!isMobile && (
+                        <S.ImgImgFoldersSvg
+                            src={ImgFoldersSvg}
+                        ></S.ImgImgFoldersSvg>
+                    )}
+                    <S.ImgImgDocumentSvg
+                        src={ImgDocumentSvg}
+                    ></S.ImgImgDocumentSvg>
+                    <S.ImgSearch></S.ImgSearch>
+                </S.Container>
+            </S.DivBackground>
         )
     );
 }

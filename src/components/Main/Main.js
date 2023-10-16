@@ -7,9 +7,10 @@ import PageAutorization from "../../pages/PageAutorization/PageAutorization";
 import PageSearch from "../../pages/PageSearch/PageSearch";
 import PageResults from "../../pages/PageResults/PageResults";
 import { PageNotFound } from "../../pages/PageNotFound/PageNotFound";
+import { TARIFF } from "../../utils/consts";
 
 function Main(props) {
-    const { logged, tariff, logout } = props;
+    const { logged, logout } = props;
 
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem("auth"));
@@ -33,7 +34,7 @@ function Main(props) {
     const ROUTES_ARR = [
         {
             path: "/",
-            element: <PageMain logged={logged} tariff={tariff} />,
+            element: <PageMain logged={logged} tariff={TARIFF} />,
             exact: true,
         },
         {

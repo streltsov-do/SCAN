@@ -2,16 +2,14 @@ import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
-import btnArrow from "../../../assets/ArrowRight.svg";
-
 import {
-    TEST_ARR,
-    CARD_WIDTH,
     CARD_HEIGHT,
     DESC_WIDTH,
     DESC_HEIGHT,
-    BTN_WIDTH,
 } from "./consts.js";
+
+import btnArrow from "../../../assets/ArrowRight.svg";
+
 
 const Container = styled.div`
     display: flex;

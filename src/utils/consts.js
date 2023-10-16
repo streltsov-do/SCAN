@@ -1,3 +1,8 @@
-const MOBILE_WIDTH_BREAKPOINT = "924px";
+import ava from "../assets/ava.png";
 
-export { MOBILE_WIDTH_BREAKPOINT };
+const MOBILE_WIDTH_BREAKPOINT = "936px";
+
+const NAME = "Алексей А.";
+const TARIFF = 1;
+
+export { MOBILE_WIDTH_BREAKPOINT, ava, NAME, TARIFF };

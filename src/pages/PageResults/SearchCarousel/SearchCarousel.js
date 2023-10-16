@@ -13,7 +13,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
 import {
-    TEST_ARR,
     CARD_WIDTH,
     CARD_WIDTH_MOBILE,
     CARD_HEIGHT,
@@ -22,7 +21,6 @@ import {
     LOADER_DIV_WIDTH_MIN_MOBILE,
     LOADER_DIV_WIDTH,
     DESC_WIDTH,
-    DESC_HEIGHT,
     BTN_WIDTH,
 } from "./consts.js";
 import CardResult from "./CardResult/CardResult";
