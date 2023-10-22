@@ -20,6 +20,7 @@ import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
 import * as S from "./styled";
 import { FiltNames, FILT_ARR } from "./consts";
+import { SearchContext, SearchRequest } from "../../../types/search";
 
 function FormSearch() {
     const token = useAppSelector((state: RootState) => state.login.token);
@@ -148,7 +149,7 @@ function FormSearch() {
         return 1;
     }
 
-    function fPostSearch(op: string, token: string, data: any) {
+    function fPostSearch(op: string, token: string, data: SearchRequest) {
         const adr =
             op === "histograms" ? "objectsearch/histograms" : "objectsearch";
         fetch("https://gateway.scan-interfax.ru/api/v1/" + adr, {
@@ -213,7 +214,7 @@ function FormSearch() {
             startDate: dateStart + "T00:00:00+03:00",
             endDate: dateEnd + "T23:59:59+03:00",
         };
-        const searchContext = {
+        const searchContext : SearchContext = {
             targetSearchEntitiesContext: {
                 targetSearchEntities: [
                     {
@@ -258,7 +259,7 @@ function FormSearch() {
             excludeDigests: !(!isMobile && filters.chkFiltSumm),
         };
 
-        const data = {
+        const data : SearchRequest = {
             intervalType: "month",
             histogramTypes: ["totalDocuments", "riskFactors"],
             issueDateInterval: DateInterval, // Search.DateInterval
@@ -297,7 +298,7 @@ function FormSearch() {
         ) {
             return;
         } else {
-            const data = getData();
+            const data : SearchRequest = getData();
             dispatch(setLoading());
             fPostSearch("histograms", token, data);
             fPostSearch("objectsearch", token, data);
