@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 const Container = styled.div<{
-    $align: string
+    $align: string;
 }>`
     display: flex;
     position: relative;
     z-index: 2;
-    align-self: ${props => props.$align};
+    align-self: ${(props) => props.$align};
 `;
 const DivArrow = styled.div<{
-    $mobile: boolean
+    $mobile: boolean;
 }>`
     display: flex;
     position: relative;
@@ -19,8 +19,8 @@ const DivArrow = styled.div<{
 `;
 
 const DivDrop = styled.div<{
-    $mobile: boolean,
-    items: number
+    $mobile: boolean;
+    items: number;
 }>`
     display: flex;
     flex-direction: column;
@@ -34,8 +34,8 @@ const DivDrop = styled.div<{
 `;
 
 const DivDropItem = styled.div<{
-    $mobile: boolean,
-    index: number
+    $mobile: boolean;
+    index: number;
 }>`
     display: flex;
     position: absolute;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
@@ -9,7 +9,7 @@ const DivBackground = styled.div`
     overflow-x: hidden;
 `;
 const Container = styled.div<{
-    $mobile: boolean
+    $mobile: boolean;
 }>`
     display: flex;
     position: relative;

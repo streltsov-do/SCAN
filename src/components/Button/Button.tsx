@@ -25,7 +25,7 @@ export default function Button(props: ButtonProps) {
         disabled,
         onClick,
         type,
-        form
+        form,
     } = props;
 
     const bg = "#" + ($background || "5970FF") + (disabled ? "88" : "FF");
@@ -53,6 +53,8 @@ export default function Button(props: ButtonProps) {
             onClick={onClick}
             type={type}
             form={form}
-        >{children}</Btn>
+        >
+            {children}
+        </Btn>
     );
 }

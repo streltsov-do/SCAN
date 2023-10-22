@@ -8,7 +8,7 @@ import { RootState } from "../../reducers/reducers";
 import { useAppDispatch, useAppSelector } from "../../reducers/hooks";
 import { ScanDoc } from "../../types/cards";
 
-import {SearchCarousel} from "./SearchCarousel/SearchCarousel";
+import { SearchCarousel } from "./SearchCarousel/SearchCarousel";
 import CardDoc from "./CardDoc/CardDoc";
 import { getContent } from "./decoder";
 import * as S from "./styled";
@@ -119,8 +119,8 @@ function PageResults() {
                     // console.log("DATA_type =", typeof data);
                     // console.log("DATA =", data);
 
-                    let outData : ScanDoc[] = [];
-                    let outDataFull : ScanDoc[] = publications;
+                    let outData: ScanDoc[] = [];
+                    let outDataFull: ScanDoc[] = publications;
                     if (last) {
                         setShowNum(-1);
                     } else {

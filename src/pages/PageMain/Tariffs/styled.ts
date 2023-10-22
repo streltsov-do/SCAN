@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
-const GAP_DESKTOP : number = 37;
-const GAP_MOBILE : number = 40;
+const GAP_DESKTOP: number = 37;
+const GAP_MOBILE: number = 40;
 
 const Container = styled.div`
     max-width: 1320px;

@@ -49,7 +49,7 @@ export default function CardDoc(props: {
             </S.DivTypes>
             {!(img === "") && (
                 <S.Img
-                    $background={(typeof img === "string")?img:""}
+                    $background={typeof img === "string" ? img : ""}
                     // alt="Amasing"
                 ></S.Img>
             )}

@@ -21,7 +21,7 @@ interface ButtonProps {
     $line_height?: number;
     disabled?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    form?: string,
+    form?: string;
     type?: "button" | "submit" | "reset";
 }
 

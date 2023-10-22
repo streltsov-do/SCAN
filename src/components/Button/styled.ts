@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { ButtonProps } from "./types";
 
@@ -19,12 +19,18 @@ const Btn = styled.button<ButtonProps>`
     margin-left: ${(props) =>
         props.$margin_left === undefined ? 0 : props.$margin_left + "px"};
     position: ${(props) => props.$position};
-    top: ${(props) => (props.$offset_top === undefined ? "auto" : props.$offset_top + "px")};
+    top: ${(props) =>
+        props.$offset_top === undefined ? "auto" : props.$offset_top + "px"};
     right: ${(props) =>
-        props.$offset_right === undefined ? "auto" : props.$offset_right + "px"};
+        props.$offset_right === undefined
+            ? "auto"
+            : props.$offset_right + "px"};
     bottom: ${(props) =>
-        props.$offset_bottom === undefined ? "auto" : props.$offset_bottom + "px"};
-    left: ${(props) => (props.$offset_left === undefined ? "auto" : props.$offset_left + "px")};
+        props.$offset_bottom === undefined
+            ? "auto"
+            : props.$offset_bottom + "px"};
+    left: ${(props) =>
+        props.$offset_left === undefined ? "auto" : props.$offset_left + "px"};
     align-self: ${(props) => props.$align};
     justify-self: ${(props) => props.justify};
     font-family: "Inter";

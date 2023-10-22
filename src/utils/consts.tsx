@@ -1,5 +1,3 @@
-
-
 const MOBILE_WIDTH_BREAKPOINT: string = "936px";
 
 const NAME: string = "Алексей А.";

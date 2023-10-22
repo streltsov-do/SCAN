@@ -1,17 +1,17 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
 const Container = styled.div<{
-    width?: number
+    width?: number;
 }>`
     display: flex;
     width: ${(prop) => prop.width}px;
 `;
 
 const DivMain = styled.div<{
-    width: number,
-    $mobile: boolean
+    width: number;
+    $mobile: boolean;
 }>`
     display: flex;
     width: ${(prop) => prop.width}px;
@@ -20,7 +20,7 @@ const DivMain = styled.div<{
     padding-left: 10px;
 `;
 const Span = styled.span<{
-    margin_left?: number
+    margin_left?: number;
 }>`
     text-align: center;
     font-size: 18px;

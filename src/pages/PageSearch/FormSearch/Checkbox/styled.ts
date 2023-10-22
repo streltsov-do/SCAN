@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 const Container = styled.div`
     display: flex;
@@ -10,7 +10,7 @@ const Input = styled.input`
     width: 20px;
     height: 20px;
 `;
-const Label = styled.label<{$enabled: boolean}>`
+const Label = styled.label<{ $enabled: boolean }>`
     color: #000000;
     font-size: 18px;
     line-height: 22px;

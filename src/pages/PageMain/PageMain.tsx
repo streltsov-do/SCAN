@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
@@ -16,7 +16,7 @@ const Container = styled.div`
     }
 `;
 
-export default function PageMain(props: {logged: boolean, tariff: number}) {
+export default function PageMain(props: { logged: boolean; tariff: number }) {
     const { logged, tariff } = props;
     return (
         <Container>

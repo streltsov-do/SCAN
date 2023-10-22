@@ -5,7 +5,7 @@ import { composeWithDevTools } from "@reduxjs/toolkit/dist/devtoolsExtension";
 // import login from "./login";
 // import search from "./search";
 
-import loginReducer from './loginSlice';
+import loginReducer from "./loginSlice";
 import searchReducer from "./searchSlice";
 
 export const store = configureStore({

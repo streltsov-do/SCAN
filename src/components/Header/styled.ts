@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
@@ -7,7 +7,8 @@ const HEADER_HEIGHT = 93;
 const HeaderDiv = styled.div<{ $opened: boolean }>`
     width: auto;
     height: ${HEADER_HEIGHT}px;
-    background: ${(props: {$opened: boolean}) => (props.$opened ? "#029491" : "#FFFFFF")};
+    background: ${(props: { $opened: boolean }) =>
+        props.$opened ? "#029491" : "#FFFFFF"};
     padding: 0 40px 0 60px;
     display: flex;
     justify-content: space-between;
@@ -34,9 +35,10 @@ const NavUl = styled.ul`
     }
 `;
 const NavLi = styled.li``;
-const NavA = styled.a<{$mobile: boolean}>`
+const NavA = styled.a<{ $mobile: boolean }>`
     text-decoration: none;
-    color: ${(props: {$mobile: boolean}) => (props.$mobile ? "#fff" : "#000000")};
+    color: ${(props: { $mobile: boolean }) =>
+        props.$mobile ? "#fff" : "#000000"};
 `;
 
 const Logo = styled.img`
@@ -47,11 +49,11 @@ const Logo = styled.img`
         height: 111px;
     }
 `;
-const MobileMenu = styled.div<{$top: number}>`
+const MobileMenu = styled.div<{ $top: number }>`
     height: ${494 - 93}px;
     background-color: #029491;
     position: absolute;
-    top: ${(props: {$top: number}) => props.$top}px;
+    top: ${(props: { $top: number }) => props.$top}px;
     left: 0;
     z-index: 30;
     width: 100%;
@@ -83,12 +85,13 @@ const MobileADiv = styled.div`
 
     margin-bottom: 20.52px;
 `;
-const MobileA = styled.a<{$mobile: boolean}>`
+const MobileA = styled.a<{ $mobile: boolean }>`
     font-family: "Inter";
     letter-spacing: 0.16px;
     text-decoration: none;
     opacity: 0.4000000059604645;
-    color: ${(props: {$mobile: boolean}) => (props.$mobile ? "#fff" : "#000000")};
+    color: ${(props: { $mobile: boolean }) =>
+        props.$mobile ? "#fff" : "#000000"};
 `;
 const MobileBtn = styled.button`
     width: 295px;

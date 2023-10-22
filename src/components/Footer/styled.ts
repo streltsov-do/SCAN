@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../utils/consts";
 
@@ -38,7 +38,7 @@ const Info = styled.div`
         font-weight: 400;
         line-height: normal;
         letter-spacing: 0.14px;
-        position: absolute;;
+        position: absolute;
         right: 19px;
         top: 25px;
         padding: 0;

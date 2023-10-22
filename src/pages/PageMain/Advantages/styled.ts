@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
@@ -36,7 +36,7 @@ const Title = styled.h1`
 
 const PerfectImg1 = styled.div`
     height: 575.52px;
-    max-width: 1320px;
+    max-width: 1307px;
     background-image: url(${Perfect});
     background-size: cover;
     background-repeat: no-repeat;

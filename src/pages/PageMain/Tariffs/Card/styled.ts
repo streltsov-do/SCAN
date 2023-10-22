@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../../utils/consts";
 
@@ -50,10 +50,10 @@ const TitleDesc = styled.div`
     line-height: 22px;
 `;
 const IconImg = styled.img<{
-    width: number,
-    height: number,
-    $top: number,
-    $right: number
+    width: number;
+    height: number;
+    $top: number;
+    $right: number;
 }>`
     font-size: 18px;
     line-height: 22px;

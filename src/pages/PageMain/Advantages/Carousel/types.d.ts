@@ -4,4 +4,4 @@ interface SlideProps {
     alt: string;
 }
 
-export { SlideProps }
+export { SlideProps };

@@ -20,6 +20,7 @@ import DropDown from "./DropDown/DrowDown";
 import Asterisk from "./Asterisk/Asterisk";
 import * as S from "./styled";
 import { FiltNames, FILT_ARR } from "./consts";
+
 import { SearchContext, SearchRequest } from "../../../types/search";
 
 function FormSearch() {
@@ -214,7 +215,7 @@ function FormSearch() {
             startDate: dateStart + "T00:00:00+03:00",
             endDate: dateEnd + "T23:59:59+03:00",
         };
-        const searchContext : SearchContext = {
+        const searchContext: SearchContext = {
             targetSearchEntitiesContext: {
                 targetSearchEntities: [
                     {
@@ -259,7 +260,7 @@ function FormSearch() {
             excludeDigests: !(!isMobile && filters.chkFiltSumm),
         };
 
-        const data : SearchRequest = {
+        const data: SearchRequest = {
             intervalType: "month",
             histogramTypes: ["totalDocuments", "riskFactors"],
             issueDateInterval: DateInterval, // Search.DateInterval
@@ -298,7 +299,7 @@ function FormSearch() {
         ) {
             return;
         } else {
-            const data : SearchRequest = getData();
+            const data: SearchRequest = getData();
             dispatch(setLoading());
             fPostSearch("histograms", token, data);
             fPostSearch("objectsearch", token, data);
