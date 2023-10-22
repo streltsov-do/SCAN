@@ -6,6 +6,7 @@ function UserAcc(props) {
     const { logout, name, avatar } = props;
 
     function handleClick(e) {
+        localStorage.removeItem("auth");
         logout();
     }
 

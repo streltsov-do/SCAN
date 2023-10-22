@@ -34,7 +34,7 @@ function AccInfo(props) {
 
     useEffect(() => {
         const localData = JSON.parse(localStorage.getItem("userData"));
-        if (localData !== undefined) {
+        if (localData !== null) {
             setStats(localData);
         }
         if (loading) {
