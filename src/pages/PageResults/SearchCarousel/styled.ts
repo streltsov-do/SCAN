@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 
 import { MOBILE_WIDTH_BREAKPOINT } from "../../../utils/consts";
 
-import { CARD_HEIGHT, DESC_WIDTH, DESC_HEIGHT } from "./consts";
+import { CARD_HEIGHT, DESC_WIDTH, DESC_HEIGHT, CONTAINER_WIDTH_MOBILE } from "./consts";
 
 import btnArrow from "../../../assets/ArrowRight.svg";
 
@@ -24,6 +24,8 @@ const DivMain = styled.div`
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         flex-direction: column;
         margin-left: ${38 - 14}px;
+        
+        width: ${CONTAINER_WIDTH_MOBILE}px;
     }
 `;
 const Desc = styled.div`

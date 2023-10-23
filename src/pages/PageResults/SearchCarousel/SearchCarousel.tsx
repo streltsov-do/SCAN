@@ -24,6 +24,7 @@ import {
     LOADER_DIV_WIDTH,
     DESC_WIDTH,
     BTN_WIDTH,
+    CONTAINER_WIDTH_MOBILE
 } from "./consts";
 import CardResult from "./CardResult/CardResult";
 
@@ -77,7 +78,7 @@ function SearchCarousel(props: {
 
     return (
         <S.Container
-            width={containerWidth + DESC_WIDTH}
+            width={isMobile ? CONTAINER_WIDTH_MOBILE : containerWidth + DESC_WIDTH}
             $margin_bottom={$margin_bottom}
         >
             <S.DivMain>
@@ -87,7 +88,7 @@ function SearchCarousel(props: {
                     <S.DescTitle $margin_right={0}>Риски </S.DescTitle>
                 </S.Desc>
                 {loading ? (
-                    <S.DivResults width={containerWidth} $mobile={isMobile}>
+                    <S.DivResults width={isMobile ? (CONTAINER_WIDTH_MOBILE-4) : containerWidth} $mobile={isMobile}>
                         {/* TODO: Плавное уменьшение ширины лоадера */}
                         <Loader
                             widthDiv={

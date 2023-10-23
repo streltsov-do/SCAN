@@ -54,6 +54,8 @@ const DESC_WIDTH = 133;
 const DESC_HEIGHT = 158;
 const BTN_WIDTH = 39;
 
+const CONTAINER_WIDTH_MOBILE = 300;
+
 export {
     TEST_ARR,
     CARD_WIDTH,
@@ -66,4 +68,5 @@ export {
     DESC_WIDTH,
     DESC_HEIGHT,
     BTN_WIDTH,
+    CONTAINER_WIDTH_MOBILE
 };
