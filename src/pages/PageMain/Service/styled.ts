@@ -73,15 +73,16 @@ const TitleImgDiv = styled.div<{
     max-width: 629px;
     height: 593px;
     z-index: 1;
-    left: $left;
-    right: $right;
-    width: $width;
+    left: ${(props) => props.$left};
+    right: ${(props) => props.$right};
+    width: ${(props) => props.$width};
     position: absolute;
     background-image: url(${PicTitle});
     background-size: cover;
     @media (max-width: ${MOBILE_WIDTH_BREAKPOINT}) {
         position: relative;
         height: 327.312px;
+        width: 347px;
         margin-bottom: 55.39px;
     }
 `;
