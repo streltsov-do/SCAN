@@ -108,6 +108,16 @@ const MobileBtn = styled.button`
     letter-spacing: 0.2px;
 `;
 
+const HashLinkWrap = styled.div`
+    margin: 0;
+    padding: 0;
+
+    > .HashLinkStyled {
+        text-decoration: none;
+        color: black;
+    }
+`;
+
 export {
     HEADER_HEIGHT,
     HeaderDiv,
@@ -120,4 +130,5 @@ export {
     MobileADiv,
     MobileA,
     MobileBtn,
+    HashLinkWrap,
 };

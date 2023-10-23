@@ -1,8 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { connect } from "react-redux";
 import { useMediaQuery } from "react-responsive";
-import { NavHashLink } from "react-router-hash-link";
+import { HashLink } from "react-router-hash-link";
 
 import { useAppSelector, useAppDispatch } from "../../reducers/hooks";
 import { RootState } from "../../reducers/reducers";
@@ -74,17 +73,11 @@ function Header() {
                 >
                     Главная
                 </NavLink>
-                <NavHashLink
-                    to="/#idTariffs"
-                    style={() => {
-                        return {
-                            color: "black",
-                            textDecoration: "none",
-                        };
-                    }}
-                >
-                    Тарифы
-                </NavHashLink>
+                <S.HashLinkWrap>
+                    <HashLink className="HashLinkStyled" to="/#idTariffs">
+                        Тарифы
+                    </HashLink>
+                </S.HashLinkWrap>
                 <NavLink
                     to=""
                     style={() => {
